@@ -100,7 +100,7 @@ Route::post('/transport/add/{id}',[TransportController::class,'transportadd'])->
 Route::post('/transport/update/{id}',[TransportController::class,'updatetransport'])->name('uodatetransport'); //แก้ไขmodal edit
 Route::get('/transport/edit/{id}',[TransportController::class,'edittransport'])->name('edittransport'); //แก้ไขmodal edit
 Route::post('/transport/edit/depositor',[TransportController::class,'adddepositor1'])->name('adddepositortransport');
-// Route::get('/search',[TransportController::class,'search'])->name('search'); 
+// Route::get('/search',[TransportController::class,'search'])->name('search');
 
 //แจ้งเตือน
 Route::get('/warn',[WarnController::class,'warn'])->name('warn');
@@ -161,3 +161,4 @@ Route::middleware([
 
 
 Route::get('redirects','App\Http\Controllers\HomeController@index');
+///ทดสอบ
