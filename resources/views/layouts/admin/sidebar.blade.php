@@ -271,13 +271,18 @@
           @endif
           @endforeach
 
-
+          @foreach($setallow as $dataagency)
+           @if($dataagency->id==28&&$dataagency->adminstatus==1)
           <li class="nav-item">
             <a href="{{route('agency')}}" class="nav-link">
             <i class="nav-icon bi bi-building"></i>
               <p>ข้อมูลหน่วยงาน</p>
             </a>
           </li>
+          @else
+
+          @endif
+          @endforeach
   
           <!-- กำหนดสิทธิ์ผู้ใช้ -->
           @foreach($setallow as $allowadmin)

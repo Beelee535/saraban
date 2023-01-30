@@ -18,17 +18,17 @@ class AllowController extends Controller
     public function allowstatus(){
             // 14ออกจากระบบ 8เพิ่มรายละเอียดที่ไม่เอาเพราะต้องกรอกฟอร์มถึงจะเข้าหน้านั้นได้
         // admin
-        $allowadminsidebar =permissions::whereBetween('id', [1, 7])->orwhereBetween('id', [9, 13])->get();
+        $allowadminsidebar =permissions::whereBetween('id', [1, 7])->orwhereBetween('id', [9, 13])->orwhereBetween('id', [28, 28])->get();
         $allowadminadmit =permissions::whereBetween('id', [15, 18])->get();
         $allowadminbookout =permissions::whereBetween('id', [19, 23])->get();
         $allowadmintransport =permissions::whereBetween('id', [24, 27])->get();
         // staff
-        $allowstaffsidebar =permissions::whereBetween('id', [1, 7])->orwhereBetween('id', [9, 13])->get();
+        $allowstaffsidebar =permissions::whereBetween('id', [1, 7])->orwhereBetween('id', [9, 13])->orwhereBetween('id', [28, 28])->get();
         $allowstaffadmit =permissions::whereBetween('id', [15, 18])->get();
         $allowstaffbookout =permissions::whereBetween('id', [19, 23])->get();
         $allowstafftransport =permissions::whereBetween('id', [24, 27])->get();
         // user
-        $allowusersidebar =permissions::whereBetween('id', [1, 7])->orwhereBetween('id', [9, 13])->get();
+        $allowusersidebar =permissions::whereBetween('id', [1, 7])->orwhereBetween('id', [9, 13])->orwhereBetween('id', [28, 28])->get();
         $allowuseradmit =permissions::whereBetween('id', [15, 18])->get();
         $allowuserbookout =permissions::whereBetween('id', [19, 23])->get();
         $allowusertransport =permissions::whereBetween('id', [24, 27])->get();

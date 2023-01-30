@@ -610,7 +610,7 @@ $amagency ->save();
 
     public function saveadmitagency(Request $request)
     {
-     \Log::info($request->all());
+    //  \Log::info($request->all());
 
 $amagency = new admitagency();
 $amagency-> amagency_name = $request->amagency_name;

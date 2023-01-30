@@ -289,6 +289,19 @@
 
           @endif
           @endforeach
+
+          @foreach($setallow as $dataagency)
+           @if($dataagency->id==28&&$dataagency->staffstatus==1)
+          <li class="nav-item">
+            <a href="{{route('agency')}}" class="nav-link">
+            <i class="nav-icon bi bi-building"></i>
+              <p>ข้อมูลหน่วยงาน</p>
+            </a>
+          </li>
+          @else
+
+          @endif
+          @endforeach
          
           <li class="nav-item"> 
           <form method="POST" action="{{ route('logout') }}" class="nav-link"x-data>                  

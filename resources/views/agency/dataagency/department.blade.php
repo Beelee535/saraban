@@ -16,13 +16,13 @@
       <div class="container-fluid py-4">
         <!--  เริ่ม  -->
 <br>
-<nav class="navbar navbar-light bg-light">
+<!-- <nav class="navbar navbar-light bg-light">
   <h1 class="text-left">ชื่อแผนก</h1>
     <form class="d-flex" action="show/department" method="GET">
       <input class="form-control me-2" type="search" name="search" id ="serach" placeholder="ค้นหาแผนก">
       <button class="btn btn-dark" type="submit"> <i class="bi bi-search"></i></button>
     </form>
-</nav><br><br>
+</nav><br><br> -->
 
         <table class="table table-bordered table-hover">
                                 <thead class="text-center box">
