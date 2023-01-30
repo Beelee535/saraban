@@ -126,24 +126,21 @@
                             <div class="mb-3 row">
                                 <div class="col-sm-2 col-form-label">เรื่อง :</div>
                                     <div class="col-sm-9">
-                                    <select class="form-control" name="Esubject" required>
-                                    <option selected value="{{$admit->Esubject}}" required>{{$admit->Esubject}}</option>
-                                    @foreach($story as $rowstory)
-                                    <option value="{{$rowstory->amstory_name}}">{{$rowstory->amstory_name}}</option>
-                                    @endforeach
+                                    <select class="form-control" name="Esubject" id="Esubject"  >
+                                    <option selected  value="{{$admit->Esubject}}">{{$admit->Esubject}}</option>
+                                   
                                     </select>
                                     </div>
                                     <button type="button" class="btn btn-light" style ="border-radius: 100px; padding: .25rem 0.8rem" data-bs-toggle="modal" data-bs-target="#story"><i class="bi bi-plus-circle" style="font-size:20px;"></i></button>
                             </div>
 
+
                             <div class="mb-3 row">
                              <div class="col-sm-2 col-form-label">หนังสือจากหน่วยงาน :</div>
                                     <div class="col-sm-9">
-                                    <select class="form-control" name="Ebookeagency"   required>
-                                    <option selected value="{{$admit->Ebookeagency}}" required>{{$admit->Ebookeagency}}</option>
-                                    @foreach($admitagency as $rowagency)
-                                    <option value="{{$rowagency->amagency_name}}">{{$rowagency->amagency_name}}</option>
-                                    @endforeach
+                                    <select class="form-control" name="Ebookeagency" id="Ebookeagency" >
+                                    <option selected  value="{{$admit->Ebookeagency}}">{{$admit->Ebookeagency}}</option>
+
                                     </select>
                                     </div>
                                     <button type="button" class="btn btn-light" style ="border-radius: 100px; padding: .25rem 0.8rem" data-bs-toggle="modal" data-bs-target="#by"><i class="bi bi-plus-circle" style="font-size:20px;"></i></button>
@@ -170,36 +167,42 @@
                         <br>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <button class="btn btn-success" type="submit" style="margin-right:10px" data-bs-toggle="modal" data-bs-target="#confirm">บันทึก</button>
+                                @if(Auth::user()->role==0)
+                                <a href="{{route('admituser')}}" class="btn btn-secondary" type="button">ยกเลิก</a>
+                                @elseif(Auth::user()->role==1)
                                 <a href="{{route('admitstaff')}}" class="btn btn-secondary" type="button">ยกเลิก</a>
+                                @elseif(Auth::user()->role==2)
+                                <a href="{{route('admitadmin')}}" class="btn btn-secondary" type="button">ยกเลิก</a>
+                                @endif      
                             </div>
                         </form>
             
-                        <!-- Modal เพิ่มเรื่องในselect-->
-                            <div class="modal fade" id="story" tabindex="-1" aria-labelledby="storyLabel" aria-hidden="true">
+                      <!-- Modal เพิ่มเรื่องในselect-->
+                      <div class="modal fade" id="story" tabindex="-1" aria-labelledby="storyLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                     <div class="modal-content">
                                     <div class="modal-header">
                                         <h4 class="modal-title fs-5" id="storyLabel">บันทึกข้อมูลเรื่อง</h4>
                                         <i class="bi bi-x-circle" type="button" data-bs-dismiss="modal" aria-label="Close" style='font-size:25px'></i>
                                     </div>
-                                    <form action="{{url('/admit/add/story')}}" method="post" enctype="multipart/form-data">
-                                    @csrf 
+
+
                                     <div class="modal-body">
                                     <div class="mb-3 row">
                                     <div class="col-sm-2 col-form-label">เรื่อง </div>
                                         <div class="col-sm-10">
-                                     <input class="form-control" name="amstory_name" type="text" placeholder="กรุณากรอกเรื่อง" required>
+                                     <input class="form-control" name="amstory_name" id="amstory_name" type="text" placeholder="กรุณากรอกเรื่อง" required>
                                         </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                                        <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
+                                        <button type="button" class="btn btn-success btn-save">บันทึกข้อมูล</button>
                                     </div>
                                     </div>
                                 </div>
                             </div>
-                            </form>
+
                             <!-- /เพิ่มเรื่องในselectmodal -->
 
                             <!-- Modal เพิ่มหนังสือจากในselect-->
@@ -210,25 +213,26 @@
                                     <h4 class="modal-title fs-5" id="byLabel">บันทึกหนังสือจากหน่วยงาน</h4>
                                     <i class="bi bi-x-circle" type="button" data-bs-dismiss="modal" aria-label="Close" style='font-size:25px'></i>
                                 </div>
-                                <form action="{{url('/admit/add/by')}}" method="post" enctype="multipart/form-data">
-                                @csrf 
+
                                 <div class="modal-body">
                                 <div class="mb-3 row">
                                     <div class="col-sm-4 col-form-label">หนังสือจากหน่วยงาน</div>
                                         <div class="col-sm-8">
-                                     <input class="form-control" name="amagency_name" type="text" placeholder="กรุณากรอกหน่วยงาน" required>
+                                     <input class="form-control" name="amagency_name" id="amagency_name" type="text" placeholder="กรุณากรอกหน่วยงาน" required>
                                         </div>
-                                </div>  
+                                </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                                    <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
+                                    <button type="button" class="btn btn-success btn-save-amagency">บันทึกข้อมูล</button>
                                 </div>
                                 </div>
                             </div>
                             </div>
-                        </form><br>
+
+                        <br>
                             <!-- /เพิ่มเรื่องในselectmodal -->
+
 
     @elseif($admit->Status->Sname=='ไม่ตอบรับ')
 
@@ -247,7 +251,7 @@
                                 <div class="col-sm-2 col-form-label">หน่วยงาน ผู้รับ</div>
                                 <div class="col-sm-9">
                                 <select class="form-control" name="Eagency_receive" id="agency"  required>
-                                <option selected=""  disabled>กรุณาเลือกหน่วยงาน</option>
+                                <option selected="" value="{{$admit->Eagency_receive}}" >กรุณาเลือกหน่วยงาน</option>
                                 @foreach($agency as $rowabs)
                                 <option value="{{ $rowabs->agency_id}}">{{ $rowabs->agency_name}}</option>
                                 @endforeach
@@ -259,7 +263,7 @@
                                 <div class="col-sm-2 col-form-label">สาขางาน ผู้รับ</div>
                                 <div class="col-sm-9">
                                 <select class="form-control" name="Ebranch_receive" id="branch"  required>
-                                <option value="">กรุณาเลือกสาขา</option>
+                                <option value="{{$admit->Edepartment_receive}}">กรุณาเลือกสาขา</option>
                                 </select>
                                 </div>
                             </div>
@@ -268,7 +272,7 @@
                                 <div class="col-sm-2 col-form-label">ฝ่าย ผู้รับ</div>
                                 <div class="col-sm-9">
                                 <select class="form-control input-lg" name="Edepartment_receive" id="department"  required>
-                                <option value="">กรุณาเลือกฝ่าย</option>
+                                <option value="{{$admit->Edepartment_receive}}">กรุณาเลือกฝ่าย</option>
                                 </select>
                                 </div>
                             </div>
@@ -301,24 +305,21 @@
                             <div class="mb-3 row">
                                 <div class="col-sm-2 col-form-label">เรื่อง :</div>
                                     <div class="col-sm-9">
-                                    <select class="form-control" name="Esubject" required>
-                                    <option selected="" value="" disabled>กรุณาเลือกเรื่อง</option>
-                                    @foreach($story as $rowstory)
-                                    <option value="{{$rowstory->amstory_name}}">{{$rowstory->amstory_name}}</option>
-                                    @endforeach
+                                    <select class="form-control" name="Esubject" id="Esubject"  >
+                                    <option selected  disabled>กรุณาเลือกเรื่อง</option>
+                                   
                                     </select>
                                     </div>
                                     <button type="button" class="btn btn-light" style ="border-radius: 100px; padding: .25rem 0.8rem" data-bs-toggle="modal" data-bs-target="#story"><i class="bi bi-plus-circle" style="font-size:20px;"></i></button>
                             </div>
 
+
                             <div class="mb-3 row">
                              <div class="col-sm-2 col-form-label">หนังสือจากหน่วยงาน :</div>
                                     <div class="col-sm-9">
-                                    <select class="form-control" name="Ebookeagency" required>
-                                    <option selected=""  value="" disabled>กรุณาเลือกหน่วยงาน</option>
-                                    @foreach($admitagency as $rowagency)
-                                    <option value="{{$rowagency->amagency_name}}">{{$rowagency->amagency_name}}</option>
-                                    @endforeach
+                                    <select class="form-control" name="Ebookeagency" id="Ebookeagency" >
+                                    <option selected  disabled>กรุณาเลือกหน่วยงาน</option>
+
                                     </select>
                                     </div>
                                     <button type="button" class="btn btn-light" style ="border-radius: 100px; padding: .25rem 0.8rem" data-bs-toggle="modal" data-bs-target="#by"><i class="bi bi-plus-circle" style="font-size:20px;"></i></button>
@@ -349,35 +350,31 @@
                             </div>
                         </form>
             
-                        <!-- Modal เพิ่มเรื่องในselect-->
-                            <div class="modal fade" id="story" tabindex="-1" aria-labelledby="storyLabel" aria-hidden="true">
+                                    <!-- Modal เพิ่มเรื่องในselect-->
+                                    <div class="modal fade" id="story" tabindex="-1" aria-labelledby="storyLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                     <div class="modal-content">
                                     <div class="modal-header">
                                         <h4 class="modal-title fs-5" id="storyLabel">บันทึกข้อมูลเรื่อง</h4>
                                         <i class="bi bi-x-circle" type="button" data-bs-dismiss="modal" aria-label="Close" style='font-size:25px'></i>
                                     </div>
-                                    <form action="{{url('/admit/add/story')}}" method="post" enctype="multipart/form-data">
-                                    @csrf 
                                     <div class="modal-body">
                                     <div class="mb-3 row">
                                     <div class="col-sm-2 col-form-label">เรื่อง </div>
                                         <div class="col-sm-10">
-                                     <input class="form-control" name="amstory_name" type="text" placeholder="กรุณากรอกเรื่อง" required>
+                                     <input class="form-control" name="amstory_name" id="amstory_name" type="text" placeholder="กรุณากรอกเรื่อง" required>
                                         </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                                        <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
+                                        <button type="button" class="btn btn-success btn-save">บันทึกข้อมูล</button>
                                     </div>
                                     </div>
                                 </div>
                             </div>
-                            </form>
+
                             <!-- /เพิ่มเรื่องในselectmodal -->
-
-
 
                             <!-- Modal เพิ่มหนังสือจากในselect-->
                             <div class="modal fade" id="by" tabindex="-1" aria-labelledby="byLabel" aria-hidden="true">
@@ -387,24 +384,23 @@
                                     <h4 class="modal-title fs-5" id="byLabel">บันทึกหนังสือจากหน่วยงาน</h4>
                                     <i class="bi bi-x-circle" type="button" data-bs-dismiss="modal" aria-label="Close" style='font-size:25px'></i>
                                 </div>
-                                <form action="{{url('/admit/add/by')}}" method="post" enctype="multipart/form-data">
-                                @csrf 
                                 <div class="modal-body">
                                 <div class="mb-3 row">
                                     <div class="col-sm-4 col-form-label">หนังสือจากหน่วยงาน</div>
                                         <div class="col-sm-8">
-                                     <input class="form-control" name="amagency_name" type="text" placeholder="กรุณากรอกหน่วยงาน" required>
+                                     <input class="form-control" name="amagency_name" id="amagency_name" type="text" placeholder="กรุณากรอกหน่วยงาน" required>
                                         </div>
-                                </div>  
+                                </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                                    <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
+                                    <button type="button" class="btn btn-success btn-save-amagency">บันทึกข้อมูล</button>
                                 </div>
                                 </div>
                             </div>
                             </div>
-                        </form><br>
+
+                        <br>
                             <!-- /เพิ่มเรื่องในselectmodal -->
 
     @endif    
@@ -442,5 +438,104 @@
        })
     });
     })
+$(document).ready(function(){
+        $.ajax({
+                    dataType: 'json',
+                    type:'GET',
+                    url: '/admit/story',
+                    success: function(datas){
+
+$.each(datas, function(i, item) {
+  $('#Esubject').append($('<option>', {value:item.amstory_name, text:item.amstory_name}));
+});
+
+                    }
+                })
+                $.ajax({
+                    dataType: 'json',
+                    type:'GET',
+                    url: '/admit/admitagency',
+                    success: function(data){
+$.each(data, function(x, itemx) {
+  $('#Ebookeagency').append($('<option>', {value:itemx.amagency_name, text:itemx.amagency_name}));
+});
+
+                    }
+                })
+    });
+    $('body').on('click', '.btn-save-amagency', function () {
+        var amagency_name = $('#amagency_name').val();
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var token = '{{ csrf_token() }}';
+        $.ajax({
+                    dataType: 'json',
+                    type:'POST',
+                    data:{amagency_name:amagency_name,'_token': token},
+                    url: '/admit/admitagency/save',
+                    success: function(datas){
+                        var amagency_name = $('#amagency_name').val('');
+                        newselectEbookeagency();
+
+                    }
+                })
+                $('#by').modal('hide');
+    })
+    $('body').on('click', '.btn-save', function () {
+        var amstory_name = $('#amstory_name').val();
+        $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var token = '{{ csrf_token() }}';
+        $.ajax({
+                    dataType: 'json',
+                    type:'POST',
+                    data:{amstory_name:amstory_name,'_token': token},
+                    url: '/admit/story/save',
+                    success: function(datas){
+                        var amstory_name = $('#amstory_name').val('');
+                        newselect();
+                    }
+                })
+        $('#story').modal('hide');
+    });
+
+function newselect(){
+        $("#Esubject").empty();
+        $.ajax({
+                    dataType: 'json',
+                    type:'GET',
+                    url: '/admit/story',
+                    success: function(datas){
+
+$('#Esubject').append($('<option selected disabled>กรุณาเลือกเรื่อง</option>'));
+$.each(datas, function(i, item) {
+  $('#Esubject').append($('<option>', {value:item.amstory_name, text:item.amstory_name}));
+});
+                    }
+                })
+    }
+function newselectEbookeagency(){
+$("#Ebookeagency").empty();
+
+$.ajax({
+            dataType: 'json',
+            type:'GET',
+            url: '/admit/admitagency',
+            success: function(datas){
+$('#Ebookeagency').append($('<option selected disabled required>กรุณาเลือกเรื่อง</option>'));
+$.each(datas, function(i, item) {
+$('#Ebookeagency').append($('<option>', {value:item.amagency_name, text:item.amagency_name}));
+});
+            }
+        })
+
+}
+
 </script>
 @endsection

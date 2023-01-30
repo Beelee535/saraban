@@ -270,6 +270,20 @@ public function transportexport(Request $request)
         }
       }
 
+public function depositor(Request $request)
+      {
+          $depositor = depositor::all();
+          return response()->json($depositor);
+      }
+  
+public function savedepositor(Request $request)
+      {
+  $trdepositor = new depositor();
+  $trdepositor-> depositor_name = $request->depositor_name;
+  $trdepositor ->save();
+          return response()->json('success');
+      }
+
 public function edittransport($id)
     {
         $transport= transport::find($id);  

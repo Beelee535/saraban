@@ -567,7 +567,7 @@ public function getdepartment(Request $request)
 
     //  else{
      $department= Department::where('branch',$sid)->get();
-     $html='<option value="">กรุณาเลือกฝ่าย</option>';
+     $html='<option value="" >กรุณาเลือกฝ่าย</option>';
      foreach($department as $list){
      $html.='<option value="'.$list->Dpmid.'">'.$list->Dpmname.'</option>';
      }
@@ -586,36 +586,30 @@ public function addbook()
         return view('admit.addbook',compact('agency','story','admitagency','admitcount'));
     }
 
-    public function story(Request $request)
+public function story(Request $request)
     {
         $story = admitstory::all();
         return response()->json($story);
        // return view('admit.addbook',compact('agency','story','admitagency','admitcount'));
     }
 
-    public function savestory(Request $request)
+public function savestory(Request $request)
     {
-
-
-
 $amagency = new admitstory();
 $amagency-> amstory_name = $request->amstory_name;
 $amagency ->save();
-
         return response()->json('success');
      //   $story = admitstory::all();
      //   return response()->json($story);
        // return view('admit.addbook',compact('agency','story','admitagency','admitcount'));
     }
 
-    public function saveadmitagency(Request $request)
+public function saveadmitagency(Request $request)
     {
     //  \Log::info($request->all());
-
-$amagency = new admitagency();
-$amagency-> amagency_name = $request->amagency_name;
-$amagency ->save();
-
+    $amagency = new admitagency();
+    $amagency-> amagency_name = $request->amagency_name;
+    $amagency ->save();
         return response()->json('success');
 
     }

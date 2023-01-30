@@ -51,7 +51,8 @@ class FormController extends Controller
         $cs = Form::where('fdepartment','CS')->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();//ส่วนงานเลขานุการ
         $iso = Form::where('fdepartment','ISO')->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();//ส่วนงานบริหารงานคุณภาพ
         $pm = Form::where('fdepartment','PM')->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();//บริหารงานโครงการ
-        $total = Form::where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();
+        // $total = Form::where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();
+        $total = Form::count();
         $data10 = date("y-m-d");
         $ec1 = explode("-", $data10);
         $years = $ec1[0];
@@ -77,7 +78,8 @@ class FormController extends Controller
         $cs = Form::where('fdepartment','CS')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//ส่วนงานเลขานุการ
         $iso = Form::where('fdepartment','ISO')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//ส่วนงานบริหารงานคุณภาพ
         $pm = Form::where('fdepartment','PM')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//บริหารงานโครงการ
-        $total = Form::where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();
+        // $total = Form::where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();
+        $total = Form::count();
         $data10 = date("y-m-d");
         $ec1 = explode("-", $data10);
         $years = $ec1[0];
@@ -103,7 +105,8 @@ class FormController extends Controller
         $cs = Form::where('fdepartment','CS')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//ส่วนงานเลขานุการ
         $iso = Form::where('fdepartment','ISO')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//ส่วนงานบริหารงานคุณภาพ
         $pm = Form::where('fdepartment','PM')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//บริหารงานโครงการ
-        $total = Form::where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();
+        // $total = Form::where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();
+        $total = Form::count();
         $data10 = date("y-m-d");
         $ec1 = explode("-", $data10);
         $years = $ec1[0];
@@ -129,7 +132,8 @@ class FormController extends Controller
         $cs = Form::where('fdepartment','CS')->where('type','ศูนย์ฝึกอบรม')->count();//ส่วนงานเลขานุการ
         $iso = Form::where('fdepartment','ISO')->where('type','ศูนย์ฝึกอบรม')->count();//ส่วนงานบริหารงานคุณภาพ
         $pm = Form::where('fdepartment','PM')->where('type','ศูนย์ฝึกอบรม')->count();//บริหารงานโครงการ
-        $total = Form::where('type','ศูนย์ฝึกอบรม')->count();
+        // $total = Form::where('type','ศูนย์ฝึกอบรม')->count();
+        $total = Form::count();
         $data10 = date("y-m-d");
         $ec1 = explode("-", $data10);
         $years = $ec1[0];

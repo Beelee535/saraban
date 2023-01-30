@@ -175,8 +175,14 @@
                         </div>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <button class="btn btn-success" type="submit" style="margin-right:10px">บันทึก</button>
+                                @if(Auth::user()->role==0)
+                                <a href="{{route('admituser')}}" class="btn btn-secondary" type="button">ยกเลิก</a>
+                                @elseif(Auth::user()->role==1)
                                 <a href="{{route('admitstaff')}}" class="btn btn-secondary" type="button">ยกเลิก</a>
-                            </div>
+                                @elseif(Auth::user()->role==2)
+                                <a href="{{route('admitadmin')}}" class="btn btn-secondary" type="button">ยกเลิก</a>
+                                @endif      
+                                </div>
                         </form>
 
                         <!-- Modal เพิ่มเรื่องในselect-->

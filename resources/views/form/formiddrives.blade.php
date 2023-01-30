@@ -1,5 +1,8 @@
 @extends('layouts.menu.app')
 @section('content')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun&display=swap" rel="stylesheet">
 
 <style>
     .font1{
@@ -391,12 +394,12 @@
 
             <div class="d-flex justify-content-start">
             เรื่อง&nbsp;&nbsp;
-            <input type="text" class="form-control" placeholder="กรุณากรอกเรื่อง" style="width: 500px" name="story">
+            <input type="text" class="form-control" placeholder="กรุณากรอกเรื่อง" style="width: 500px" name="story" required>
             </div>
 
             <div class="d-flex justify-content-start">
             เรียน&nbsp;&nbsp;
-            <input type="text" class="form-control" placeholder="กรุณากรอกเรียน" style="width: 500px" name="learn">
+            <input type="text" class="form-control" placeholder="กรุณากรอกเรียน" style="width: 500px" name="learn" required>
             </div>
 
             <div class="d-flex justify-content-start">
@@ -449,13 +452,13 @@
             สอบถามได้ที่
             </div>
             <div class="d-flex justify-content-start" style="margin-left: 20px">
-            ชื่อ&nbsp;<input type="text" class="form-control" placeholder="กรุณากรอกชื่อ" style="width: 200px" name="ctname">
+            ชื่อ&nbsp;<input type="text" class="form-control" placeholder="กรุณากรอกชื่อ" style="width: 200px" name="ctname" required>
             </div>
             <div class="d-flex justify-content-start" style="margin-left: 20px">
-            เบอร์โทรศัพท์&nbsp;<input type="text" class="form-control" placeholder="กรุณากรอกเบอร์โทร" style="width: 200px" name="ctphone">
+            เบอร์โทรศัพท์&nbsp;<input type="text" class="form-control" placeholder="กรุณากรอกเบอร์โทร" style="width: 200px" name="ctphone" required>
             </div>
             <div class="d-flex justify-content-start"style="margin-left: 20px">
-            E-mail &nbsp;<input type="text" class="form-control" placeholder="กรุณากรอกอีเมล" style="width: 200px" name="ctemail">
+            E-mail &nbsp;<input type="text" class="form-control" placeholder="กรุณากรอกอีเมล" style="width: 200px" name="ctemail" required>
             </div><br>
             </div><br><br>
 

@@ -108,6 +108,9 @@ Route::get('/transport/edit/{id}',[TransportController::class,'edittransport'])-
 Route::post('/transport/edit/depositor',[TransportController::class,'adddepositor1'])->name('adddepositortransport');
 // Route::get('/search',[TransportController::class,'search'])->name('search');
 
+Route::get('/transport/depositor',[TransportController::class,'depositor']); //ดึงข้อมูล story
+Route::post('/transport/depositor/save',[TransportController::class,'savedepositor']); //ดึงข้อมูล story
+
 //แจ้งเตือน
 Route::get('/warn',[WarnController::class,'warn'])->name('warn');
 

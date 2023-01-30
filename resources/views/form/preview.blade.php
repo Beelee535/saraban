@@ -80,7 +80,15 @@
              <br></div><hr noshade="noshade" size="2"><br>
                       
              @elseif($type=='ศูนย์ฝึกอบรม')
-
+             <div class="d-flex">
+             <div class="p-2 py-3 flex-fill" style="margin-left:40px">
+             <h4><b> ศูนย์ฝึกอบรมไอดีไดรฟ์ สาขาแก่งคอย </b></h4>
+              บริหารโดยบริษัท ไอดีไดรฟ์ จำกัด เลขที่ผู้เสียภาษี 0405536000531
+            <p>ที่อยู่ 58/1 หมู่ 9 ตำบลทับกวาง อำเภอแก่งคอย จังหวัดสระบุรี 18260</p>    
+            <p style="margin-top:-15px;margin-bottom:-45px;"> Email: id.trainingcenter@iddrives.co.th  Tel: 082-7513888 <p>
+              </div>
+              <img src="{{ asset('dist/img/logotz.png') }}" style="margin-right:40px" width="166px"></div>
+              <hr noshade="noshade" size="2">
              @endif
               <!-- /head-form -->
 

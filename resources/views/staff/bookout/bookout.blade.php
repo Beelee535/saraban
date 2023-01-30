@@ -315,14 +315,17 @@
                                         <!-- ดาวน์โหลด -->
                                         @foreach($setallow as $download)
                                         @if($download->id==22&&$download->staffstatus==1)
-                                        <div class="dropdown">
+                                        <td class="text-center"><a class="btn btn-success" style="border-radius: 20px; padding: .25rem 1rem" href="{{url('/pdf/form/pdf/'.$rowyes->Form->id)}}" role="button">
+                                        <i class="bi bi-filetype-pdf" style="font-size:20px;"></i>
+                                        </a></td>
+                                        <!-- <div class="dropdown">
                                         <td class="text-center"><a class="btn btn-success dropdown-toggle" style ="border-radius: 20px;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             ดาวน์โหลด
                                         </a>
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" href="{{url('/pdf/form/pdf/'.$rowyes->Form->id)}}"><i class="bi bi-file-earmark-pdf-fill text-red" style="font-size:20px;"></i> &nbsp;&nbsp;PDF</a></li>
                                             <li><a class="dropdown-item" href="{{ url('/bookout/wordExport/'.$rowyes->Form->id) }}"><i class="bi bi-file-word text-blue" style="font-size:20px;"></i> &nbsp;&nbsp;Word</a></li>
-                                        </ul></td></div>                                       
+                                        </ul></td></div>                                        -->
                                         @else
 
                                         @endif
@@ -520,14 +523,17 @@
                                         <!-- ดาวน์โหลด -->
                                         @foreach($setallow as $download)
                                         @if($download->id==22&&$download->staffstatus==1)
-                                        <div class="dropdown">
+                                        <td class="text-center"><a class="btn btn-success" style="border-radius: 20px; padding: .25rem 1rem" href="{{url('/pdf/form/pdf/'.$rowno->Form->id)}}" role="button">
+                                        <i class="bi bi-filetype-pdf" style="font-size:20px;"></i>
+                                        </a></td>
+                                        <!-- <div class="dropdown">
                                         <td class="text-center"><a class="btn btn-success dropdown-toggle" style ="border-radius: 20px;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             ดาวน์โหลด
                                         </a>
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" href="{{url('/pdf/form/pdf/'.$rowno->Form->id)}}"><i class="bi bi-file-earmark-pdf-fill text-red" style="font-size:20px;"></i> &nbsp;&nbsp;PDF</a></li>
                                             <li><a class="dropdown-item" href="{{ url('/bookout/wordExport/'.$rowno->Form->id) }}"><i class="bi bi-file-word text-blue" style="font-size:20px;"></i> &nbsp;&nbsp;Word</a></li>
-                                        </ul></td></div>
+                                        </ul></td></div> -->
                                         @else
 
                                         @endif
@@ -815,14 +821,17 @@
                                         <!-- ดาวน์โหลด -->
                                         @foreach($setallow as $download)
                                         @if($download->id==22&&$download->staffstatus==1)
-                                        <div class="dropdown">
+                                        <td class="text-center"><a class="btn btn-success" style="border-radius: 20px; padding: .25rem 1rem" href="{{url('/pdf/form/pdf/'.$row->Form->id)}}" role="button">
+                                        <i class="bi bi-filetype-pdf" style="font-size:20px;"></i>
+                                        </a></td>
+                                        <!-- <div class="dropdown">
                                         <td class="text-center"><a class="btn btn-success dropdown-toggle" style ="border-radius: 20px;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             ดาวน์โหลด
                                         </a>
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" href="{{url('/pdf/form/pdf/'.$row->Form->id)}}"><i class="bi bi-file-earmark-pdf-fill text-red" style="font-size:20px;"></i> &nbsp;&nbsp;PDF</a></li>
                                             <li><a class="dropdown-item" href="{{ url('/bookout/wordExport/'.$row->Form->id) }}"><i class="bi bi-file-word text-blue" style="font-size:20px;"></i> &nbsp;&nbsp;Word</a></li>
-                                        </ul></td></div>
+                                        </ul></td></div> -->
                                         @else
 
                                         @endif

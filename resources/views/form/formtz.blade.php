@@ -29,17 +29,17 @@
         <div class="card" >
           <!-- headform -->
           <div class="card-header">
-          <div class="d-flex justify-content-center">
-             <!-- <img src="{{ asset('dist/img/logoINS.png') }}" width="158"> -->
-             </div><br>
-             <!-- ความจริงกว้างสูง 268x152 -->
-             <div class="d-flex justify-content-start" style="margin-left: 40px">
-             <h5></h5>&nbsp;
+          <div class="d-flex">
              
+             <!-- ความจริงกว้างสูง 186x186 -->
+             <div class="p-2 py-4 flex-fill" style="margin-left:40px">
+             <h4><b> ศูนย์ฝึกอบรมไอดีไดรฟ์ สาขาแก่งคอย </b></h4>
+            บริหารโดยบริษัท ไอดีไดรฟ์ จำกัด เลขที่ผู้เสียภาษี 0405536000531
+           <p>ที่อยู่ 58/1 หมู่ 9 ตำบลทับกวาง อำเภอแก่งคอย จังหวัดสระบุรี 18260</p>    
+           <p style="margin-top:-15px;margin-bottom:-65px;"> Email: id.trainingcenter@iddrives.co.th  Tel: 082-7513888 <p>
             </div>
-             <div class="d-flex justify-content-start">
-            
-             <br></div><hr noshade="noshade" size="2"><br>
+            <img src="{{ asset('dist/img/logotz.png') }}" style="margin-right:40px" width="166px"></div>
+            <hr noshade="noshade" size="2"><br>
 
              <!-- bodyform -->
             <div class="card-body" style="margin: 20px">
@@ -393,17 +393,17 @@
 
             <div class="d-flex justify-content-center">
             วันที่&nbsp;
-            <input type="date" class="form-control"  style="width: 300px" value="<?php echo date("Y-m-d"); ?>" name="date">
+            <input type="date" class="form-control"  style="width: 300px" value="<?php echo date("Y-m-d"); ?>" name="date" required>
             </div><br><br><br><br>
 
             <div class="d-flex justify-content-start">
             เรื่อง&nbsp;&nbsp;
-            <input type="text" class="form-control" placeholder="กรุณากรอกเรื่อง" style="width: 500px" name="story">
+            <input type="text" class="form-control" placeholder="กรุณากรอกเรื่อง" style="width: 500px" name="story" required>
             </div>
 
             <div class="d-flex justify-content-start">
             เรียน&nbsp;&nbsp;
-            <input type="text" class="form-control" placeholder="กรุณากรอกเรียน" style="width: 500px" name="learn">
+            <input type="text" class="form-control" placeholder="กรุณากรอกเรียน" style="width: 500px" name="learn" required>
             </div>
 
             <div class="d-flex justify-content-start">
@@ -456,13 +456,13 @@
             สอบถามได้ที่
             </div>
             <div class="d-flex justify-content-start" style="margin-left: 20px">
-            ชื่อ&nbsp;<input type="text" class="form-control" placeholder="กรุณากรอกชื่อ" style="width: 200px" name="ctname">
+            ชื่อ&nbsp;<input type="text" class="form-control" placeholder="กรุณากรอกชื่อ" style="width: 200px" name="ctname" required>
             </div>
             <div class="d-flex justify-content-start" style="margin-left: 20px">
-            เบอร์โทรศัพท์&nbsp;<input type="text" class="form-control" placeholder="กรุณากรอกเบอร์โทร" style="width: 200px" name="ctphone">
+            เบอร์โทรศัพท์&nbsp;<input type="text" class="form-control" placeholder="กรุณากรอกเบอร์โทร" style="width: 200px" name="ctphone" required>
             </div>
             <div class="d-flex justify-content-start"style="margin-left: 20px">
-            E-mail &nbsp;<input type="text" class="form-control" placeholder="กรุณากรอกอีเมล" style="width: 200px" name="ctemail">
+            E-mail &nbsp;<input type="text" class="form-control" placeholder="กรุณากรอกอีเมล" style="width: 200px" name="ctemail" required>
             </div><br>
             </div><br><br>
 

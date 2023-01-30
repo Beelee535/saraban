@@ -62,6 +62,12 @@
         height: 100px;
         margin-right: 1px;
       }
+      .box4 {
+        float: right;
+        width: 110px;
+        height: 100px;
+        margin-right: 1px;
+      }
       .box1 {
         display: flex;
         float: left;
@@ -114,6 +120,14 @@
              </p><div style="border: 0.5px solid #B4B4B4;margin:10px;margin-top:-5px;"></div>
                       
              @elseif($form->type=='ศูนย์ฝึกอบรม')
+              <p style="margin-top:-30px;margin-left:10px;"><b style="font-size:22px;" >  ศูนย์ฝึกอบรมไอดีไดรฟ์ สาขาแก่งคอย </b></p>
+              <p style="font-size:18px;margin-top:-40px;margin-left:10px;">บริหารโดยบริษัท ไอดีไดรฟ์ จำกัด เลขที่ผู้เสียภาษี 0405536000531</p>
+              <p style="font-size:18px;margin-top:-25px;margin-left:10px;">ที่อยู่ 58/1 หมู่ 9 ตำบลทับกวาง อำเภอแก่งคอย จังหวัดสระบุรี 18260</p>
+              <p style="font-size:18px;margin-top:-25px;margin-left:10px;">Email: id.trainingcenter@iddrives.co.th  Tel: 082-7513888</p>
+              <div class="box4"  style="margin-top:-100px;margin-right:85px;">
+              <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('dist/img/logotz1.png'))) }}" style="margin-left:10px;margin-top:-25px;" width="106px"/>
+              </div>
+              <div style="border: 0.5px solid #B4B4B4;margin:10px;margin-top:-10px;"></div>
              @endif
 
             <div class="text-end" style="font-size:18px;">
@@ -168,7 +182,7 @@
             <div class="text-center" style="font-size:18px;">
             ขอแสดงความนับถือ
             <p>.......................................................</p>
-            (.........................................................)
+            (...........................................................)
             </div>
 
             <div class="footer">
