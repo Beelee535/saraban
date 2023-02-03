@@ -26,20 +26,20 @@ class Bookout extends Model
         'Oupload' //อัพโหลดไฟล์
     ];
 
-    // public function agency(){
-    //     return $this->hasOne(agency::class,'agency_id','Oag_receive');
-    //     //thisคือตัวแทนของdepartmentไปเชื่อมกับuserแบบ 1ต่อ1 id=user user_id=department
-    // }
+    public function agency(){
+        return $this->hasOne(agency::class,'agency_id','Oagency');
+        //thisคือตัวแทนของdepartmentไปเชื่อมกับuserแบบ 1ต่อ1 id=user user_id=department
+    }
 
-    // public function branch(){
-    //     return $this->hasOne(branch::class,'branche_id','Obr_receive');
-    //     //thisคือตัวแทนของdepartmentไปเชื่อมกับuserแบบ 1ต่อ1 id=user user_id=department
-    // }
+    public function branch(){
+        return $this->hasOne(branch::class,'branche_id','Obranch');
+        //thisคือตัวแทนของdepartmentไปเชื่อมกับuserแบบ 1ต่อ1 id=user user_id=department
+    }
 
-    // public function Department(){
-    //     return $this->hasOne(Department::class,'Dpmid','Odpm_receive');
-    //     //thisคือตัวแทนของdepartmentไปเชื่อมกับuserแบบ 1ต่อ1 id=user user_id=department
-    // }
+    public function Department(){
+        return $this->hasOne(Department::class,'Dpmid','Odepartment');
+        //thisคือตัวแทนของdepartmentไปเชื่อมกับuserแบบ 1ต่อ1 id=user user_id=department
+    }
 
     public function Form(){
         return $this->hasOne(Form::class,'id','formid');

@@ -69,10 +69,10 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-4"><label class="labels">คำนำหน้า</label>
-                                    <select class="form-control" name="prefix"  id="prefix"  aria-label="Default select example"  required>
-                                        <option class="text-secondary"  selected="">คำนำหน้า </option>
+                                    <select class="form-control" name="Prefix"   aria-label="Default select example"  required>
+                                        <option class="text-secondary" >คำนำหน้า </option>
                                             @foreach($prefix as $row)
-                                                <option value="{{$row->Preid}}">{{ $row->Prename}}</option>
+                                                <option value="{{$row->Prename}}">{{ $row->Prename}}</option>
                                             @endforeach
                                     </select>
                                     </div>
@@ -85,27 +85,23 @@
 
                                     <div class="col-md-12"><label class="labels">หน่วยงาน</label>
                                         <select class="form-control" name="Agency"  id="agency" required>
-                                            <option value="" selected disabled >กรุณาเลือกหน่วยงาน</option>
+                                            <option selected="" disabled>กรุณาเลือกหน่วยงาน</option>
                                                 @foreach($agency as $row)
-                                                    <option value="{{$row->agency_name}}">{{ $row->agency_name}}</option>
+                                                    <option value="{{$row->agency_id}}">{{ $row->agency_name}}</option>
                                                 @endforeach
                                         </select>
                                     </div>
 
                                     <div class="col-md-12"><label class="labels">สาขา</label>
                                         <select class="form-control" name="Branch"  id="branch" required>
-                                            <option value="" selected disabled >กรุณาเลือกสาขา</option>
-                                                @foreach($branch as $row1)
-                                                    <option value="{{ $row1->branche_name}}">{{ $row1->branche_name}}</option>
-                                                @endforeach
+                                            <option value="">กรุณาเลือกสาขา</option>
+                                             
                                         </select>
                                     </div>
                                     <div class="col-md-12"><label class="labels">แผนก</label>
-                                        <select class="form-control" name="Department" id="department"  required>
-                                            <option value="" selected disabled >กรุณาเลือกแผนก</option>
-                                                @foreach($department as $row2)
-                                                    <option value="{{ $row2->Dpmname}}">{{ $row2->Dpmname}}</option>
-                                                @endforeach
+                                        <select class="form-control" name="Department" id="department" required>
+                                            <option value="" >กรุณาเลือกแผนก</option>
+                                             
                                         </select>
                                     </div>
                                 </div>
@@ -157,5 +153,36 @@
         </div>
     </div>
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script>
+    jQuery(document).ready(function(){
+    jQuery('#agency').change(function(){
+       let cid=jQuery(this).val();
+       jQuery.ajax({
+        url:'/claim/getbranch',
+        type:'post',
+        data:'cid='+cid+'&_token={{csrf_token()}}',
+        success:function(result){
+            jQuery('#branch').html(result)
+        }
+       })
+    });
+
+    jQuery('#branch').change(function(){
+       let sid=jQuery(this).val();
+       jQuery.ajax({
+        url:'/claim/getdepartment',
+        type:'post',
+        data:'sid='+sid+'&_token={{csrf_token()}}',
+        success:function(result){
+            jQuery('#department').html(result)
+        }
+       })
+    });
+    })
+ </script>
 @endsection
 

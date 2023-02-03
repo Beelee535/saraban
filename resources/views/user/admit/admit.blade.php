@@ -65,7 +65,15 @@
     word-wrap: break-word;
 }
 .number{
-    width: 5em; 
+    width: 4em; 
+    word-wrap: break-word;
+}
+.story{
+    width: 8em; 
+    word-wrap: break-word;
+}
+.note{
+    width: 7em; 
     word-wrap: break-word;
 }
 </style>
@@ -209,7 +217,7 @@ function selectAll() {
                                                                 echo date("d $myMonth ",strtotime($myDate)).$myYearBuddhist;
                                                                 ?></td>
                                                             <td>{{$row->Ebookeagency}}</td>
-                                                            <td>{{$row->Esubject}}</td>
+                                                            <td lass="story">{{$row->Esubject}}</td>
                                                             <td>{{$row->Ebook_receipt}}</td>
                                                             <td><?php
                                                                 $myDate= $row->Edate_out;
@@ -224,13 +232,13 @@ function selectAll() {
                                                             {{$row->Ename_receive}}/{{$row->Department->Dpmname}}
 
                                                             @elseif($row->agency->agency_name=='โรงเรียนสอนขับรถไอดี ไดร์ฟเวอร์')
-                                                            {{$row->Ename_receive}}/{{$row->Department->Dpmname}}/{{$row->branch->branche_name}}
+                                                            {{$row->Ename_receive}}/{{$row->branch->branche_name}}
 
                                                             @elseif($row->agency->agency_name=='สถานตรวจสภาพรถ ศูนย์ตรอ.ไอดี')
                                                             {{$row->Ename_receive}}/{{$row->Department->Dpmname}}/{{$row->branch->branche_name}}
 
                                                             @elseif($row->agency->agency_name=='ศูนย์ฝึกอบรม')
-                                                            {{$row->Ename_receive}}/{{$row->Department->Dpmname}}/{{$row->branch->branche_name}}
+                                                            {{$row->Ename_receive}}/{{$row->agency->agency_name}}
                                                             @endif
                                                             </td>
                                                             <td class="text-center"><button type="button" class="btn btn-primary disabled" style="border-radius: 20px; padding: .25rem .8rem"> {{$row->Status->Sname}}</button></td>
@@ -248,7 +256,7 @@ function selectAll() {
                                                             <!-- แก้ไขหนังสือเข้า -->
                                                             @foreach($setallow as $edit)
                                                             @if($edit->id==15&&$edit->userstatus==1)
-                                                           <td class="text-center"><a href="{{url('/admit/staff/editadmit/'.$row->id)}}" type="button" class="btn btn-warning" style ="border-radius: 20px; padding: .25rem 1rem" ><i class="bi bi-pencil-square text-white" style="font-size:20px;"></i></a></td>
+                                                           <td class="text-center"><a href="{{url('/admit/editadmit/'.$row->id)}}" type="button" class="btn btn-warning" style ="border-radius: 20px; padding: .25rem 1rem" ><i class="bi bi-pencil-square text-white" style="font-size:20px;"></i></a></td>
                                                             @else
 
                                                             @endif
@@ -503,13 +511,13 @@ function selectAll() {
                                                             {{$row2->Ename_receive}}/{{$row2->Department->Dpmname}}
 
                                                             @elseif($row2->agency->agency_name=='โรงเรียนสอนขับรถไอดี ไดร์ฟเวอร์')
-                                                            {{$row2->Ename_receive}}/{{$row2->Department->Dpmname}}/{{$row2->branch->branche_name}}
+                                                            {{$row2->Ename_receive}}/{{$row2->branch->branche_name}}
                                                             
                                                             @elseif($row2->agency->agency_name=='สถานตรวจสภาพรถ ศูนย์ตรอ.ไอดี')
                                                             {{$row2->Ename_receive}}/{{$row2->Department->Dpmname}}/{{$row2->branch->branche_name}}
                                                             
                                                             @elseif($row2->agency->agency_name=='ศูนย์ฝึกอบรม')
-                                                            {{$row2->Ename_receive}}/{{$row2->Department->Dpmname}}/{{$row2->branch->branche_name}}
+                                                            {{$row2->Ename_receive}}/{{$row2->agency->agency_name}}
                                                             @endif
                                                             </td>
                                                             <td class="text-center"><button type="button" class="btn btn-primary disabled" style="border-radius: 20px;padding: .25rem .9rem">{{$row2->Status->Sname}}</button></td><!-- สถานะ -->
@@ -801,13 +809,13 @@ function selectAll() {
                                                             {{$row3->Ename_receive}}/{{$row3->Department->Dpmname}}
 
                                                             @elseif($row3->agency->agency_name=='โรงเรียนสอนขับรถไอดี ไดร์ฟเวอร์')
-                                                            {{$row3->Ename_receive}}/{{$row3->Department->Dpmname}}/{{$row3->branch->branche_name}}
+                                                            {{$row3->Ename_receive}}/{{$row3->branch->branche_name}}
                                                             
                                                             @elseif($row3->agency->agency_name=='สถานตรวจสภาพรถ ศูนย์ตรอ.ไอดี')
                                                             {{$row3->Ename_receive}}/{{$row3->Department->Dpmname}}/{{$row3->branch->branche_name}}
 
                                                             @elseif($row3->agency->agency_name=='ศูนย์ฝึกอบรม')
-                                                            {{$row3->Ename_receive}}/{{$row3->Department->Dpmname}}/{{$row3->branch->branche_name}}
+                                                            {{$row3->Ename_receive}}/{{$row3->agency->agency_name}}
                                                             @endif
                                                             </td>                                                            
                                                             <td>{{$row3->Enamereply}}</td>
@@ -1058,24 +1066,24 @@ function selectAll() {
                                                                 echo date("d $myMonth ",strtotime($myDate)).$myYearBuddhist;
                                                                 ?></td>
                                                             <td>{{$row4->Ebookeagency}}</td>
-                                                            <td>{{$row4->Esubject}}</td>
+                                                            <td class="story">{{$row4->Esubject}}</td>
                                                             <td>{{$row4->Ebook_receipt}}</td>
                                                             <td  class="dpmb">
                                                             @if($row4->agency->agency_name=='บริษัท ไอดีไดรฟ์ จำกัด (สำนักงานใหญ่)')
                                                             {{$row4->Ename_receive}}/{{$row4->Department->Dpmname}}
 
                                                             @elseif($row4->agency->agency_name=='โรงเรียนสอนขับรถไอดี ไดร์ฟเวอร์')
-                                                            {{$row4->Ename_receive}}/{{$row4->Department->Dpmname}}/{{$row4->branch->branche_name}}
+                                                            {{$row4->Ename_receive}}/{{$row4->branch->branche_name}}
 
                                                             @elseif($row4->agency->agency_name=='สถานตรวจสภาพรถ ศูนย์ตรอ.ไอดี')
                                                             {{$row4->Ename_receive}}/{{$row4->Department->Dpmname}}/{{$row4->branch->branche_name}}
 
                                                             @elseif($row4->agency->agency_name=='ศูนย์ฝึกอบรม')
-                                                            {{$row4->Ename_receive}}/{{$row4->Department->Dpmname}}/{{$row4->branch->branche_name}}
+                                                            {{$row4->Ename_receive}}/{{$row4->agency->agency_name}}
                                                             @endif
                                                             </td>                                                           
                                                              <td class="text-center"><button type="button" class="btn btn-danger disabled" style="border-radius: 20px; padding: .45rem .9rem">{{$row4->Status->Sname}}</button></td><!-- สถานะ -->
-                                                            <td>{{$row4->Enote}}</td>
+                                                            <td class="note">{{$row4->Enote}}</td>
                                                             <!-- แก้ไขหนังสือเข้า -->
                                                             @foreach($setallow as $edit)
                                                             @if($edit->id==15&&$edit->userstatus==1)

@@ -14,7 +14,8 @@
         border: solid 1px #ff0000;
     }
     .card {
-        margin: 2.5cm;
+        /* margin: 2.5cm; */
+        margin: 30mm 45mm 30mm 45mm;
         size: 21cm 29.7cm landscape;
     }
     #box1 {
@@ -47,7 +48,7 @@
              <!-- head-form -->
              @if($type=='โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')  
              <div class="d-flex justify-content-center"> 
-            <img src="{{ asset('dist/img/logoIDD.png') }}" width="158" height="90"> 
+            <img src="{{ asset('dist/img/logoIDD.png') }}" height="80"> 
             </div><br>
              <div class="d-flex justify-content-start" style="margin-left: 40px">
              <h5>โรงเรียนสอนขับรถไอดี ไดร์ฟเวอร์</h5>&nbsp;
@@ -59,13 +60,13 @@
            
              @elseif($type=='บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')
              <div class="d-flex">
-             <img src="{{ asset('dist/img/logoiddrives.png') }}"  width="166px">
+             <img src="{{ asset('dist/img/logoiddrives.png') }}" height="150">
              <div class="p-2 py-5 flex-fill">
              <h5> บริษัท ไอดีไดรฟ์ จำกัด (สำนักงานใหญ่) </h5>
              200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัดขอนแก่น เลขที่ผู้เสียภาษี 0405536000531 <br>
-             Tel : 043-228 899 www.iddrices.co.th Email : idofficer@iddrives.co. <br></div>
+             Tel : 043-228 899 www.iddrices.co.th Email : idofficer@iddrives.co. </div>
             </div>
-            <hr noshade="noshade" size="2"><br>
+            <hr noshade="noshade" size="2" style="margin-top:-10px"><br>
             
             @elseif($type=='สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')
             <div class="d-flex justify-content-center">
@@ -80,31 +81,443 @@
              <br></div><hr noshade="noshade" size="2"><br>
                       
              @elseif($type=='ศูนย์ฝึกอบรม')
-             <div class="d-flex">
-             <div class="p-2 py-3 flex-fill" style="margin-left:40px">
-             <h4><b> ศูนย์ฝึกอบรมไอดีไดรฟ์ สาขาแก่งคอย </b></h4>
-              บริหารโดยบริษัท ไอดีไดรฟ์ จำกัด เลขที่ผู้เสียภาษี 0405536000531
-            <p>ที่อยู่ 58/1 หมู่ 9 ตำบลทับกวาง อำเภอแก่งคอย จังหวัดสระบุรี 18260</p>    
-            <p style="margin-top:-15px;margin-bottom:-45px;"> Email: id.trainingcenter@iddrives.co.th  Tel: 082-7513888 <p>
-              </div>
-              <img src="{{ asset('dist/img/logotz.png') }}" style="margin-right:40px" width="166px"></div>
-              <hr noshade="noshade" size="2">
+             <div class="d-flex justify-content-center">
+              <img src="{{ asset('dist/img/logoIDD.png') }}"  height="50" style="margin-right:30px;margin-top:15px">
+             <img src="{{ asset('dist/img/logoiddrives.png') }}" height="100" style="margin-right:25px;">&nbsp;&nbsp;
+             <img src="{{ asset('dist/img/logoTZ2.png') }}"height="80">
+             </div><br>
+             <div class="d-flex justify-content-start" style="margin-left: 40px;font-size:16px">
+             <h5>ศูนย์ฝึกอบรมเทรนนิ่งเซนเตอร์</h5>&nbsp;
+             บริหารงานโดย บริษัท ไอดีไดรฟ์ จำกัด เลขที่ผู้เสียภาษี 0405536000531
+            </div>
+             <div class="d-flex justify-content-start" style="font-size:16px">
+             ที่อยู่ 200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัด Tel : 043-228 899   www.iddrices.co.th  Email : idofficer@iddrives.co.th           
+             <br></div><hr noshade="noshade" size="2"><br>
              @endif
               <!-- /head-form -->
 
            <!-- bodyform -->
             <div class="card-body" style="margin: 20px">
             <form action="{{url('/addsendbook')}}" method="post" enctype="multipart/form-data">
-             @csrf      
-            <div class="d-flex justify-content-end">
-            เลขที่หนังสือ&nbsp;{{$fdepartment}}/{{$dnumber}}/{{$cnumber}}/{{$year}} 
-            <input type="hidden" value="{{$fdepartment}}" class="form-control" style="width: 60px" name="fdepartment">  
-            <input type="hidden" value="{{$dnumber}}" class="form-control" style="width: 60px" name="dnumber">  
-            <input type="hidden" value="{{$cnumber}}" class="form-control" style="width: 60px" name="cnumber">  
-            <input type="hidden" value="{{$year}}" class="form-control" style="width: 60px" name="year">  
-                                </div><br><br>
-            
+             @csrf  
+             <div class="d-flex justify-content-end" style="margin-top: -40px">
+            @if($type=='โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')
+            เลขที่หนังสือ&nbsp; 
+            IDD/@if($idd==null){{ __('001') }}@elseif($idd<=8)00{{$idd+1}}@elseif($idd>=9)0{{$idd+1}}@elseif($idd>=99){{$idd+1}}@endif/@if($total<=8)00{{$total+1}}@elseif($total>=9)0{{$total+1}}@elseif($total>=99){{$total+1}}@endif/{{$year}}
 
+            <input type="hidden" value="IDD" class="form-control" style="width: 60px" name="fdepartment">
+                            @if($idd==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($idd<=8)
+                            <input type="hidden" value=<?php echo '00'.$idd+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($idd>=9)
+                            <input type="hidden" value=<?php echo '0'.$idd+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($idd>=99)
+                            <input type="hidden" value=<?php echo $idd+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @endif
+                            @if($total==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total<=8)
+                            <input type="hidden" value=<?php echo '00'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=9)
+                            <input type="hidden" value=<?php echo '0'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=99)
+                            <input type="hidden" value=<?php echo $total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @endif
+                            <input type="hidden" value=<?php echo $year;?> class="form-control" style="width: 50px" name="year">
+
+            @elseif($type=='บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')
+
+            เลขที่หนังสือ&nbsp; @if(Auth::user()->department->Dpmname=='ไอที')
+                              ITI/@if($iti==null){{ __('001') }}@elseif($iti<=8)00{{$iti+1}}@elseif($iti>=9)0{{$iti+1}}@elseif($iti>=99){{$iti+1}}@endif/@if($total<=8)00{{$total+1}}@elseif($total>=9)0{{$total+1}}@elseif($total>=99){{$total+1}}@endif/{{$year}}
+
+                              @elseif(Auth::user()->department->Dpmname=='บัญชี')
+                              ACC/@if($acc==null){{ __('001') }}@elseif($acc<=8)00{{$acc+1}}@elseif($acc>=9)0{{$acc+1}}@elseif($acc>=99){{$acc+1}}@endif/@if($total==null){{ __('001') }}@elseif($total<=8)00{{$total+1}}@elseif($total>=9)0{{$total+1}}@elseif($total>=99){{$total+1}}@endif/{{$year}}
+
+                              @elseif(Auth::user()->department->Dpmname=='จัดซื้อ')
+                              PUR/@if($pur==null){{ __('001') }}@elseif($pur<=8)00{{$pur+1}}@elseif($pur>=9)0{{$pur+1}}@elseif($pur>=99){{$pur+1}}@endif/@if($total==null){{ __('001') }}@elseif($total<=8)00{{$total+1}}@elseif($total>=9)0{{$total+1}}@elseif($total>=99){{$total+1}}@endif/{{$year}}
+
+                              @elseif(Auth::user()->department->Dpmname=='บุคคล')
+                              HR/@if($hr==null){{ __('001') }}@elseif($hr<=8)00{{$hr+1}}@elseif($hr>=9)0{{$hr+1}}@elseif($hr>=99){{$hr+1}}@endif/@if($total==null){{ __('001') }}@elseif($total<=8)00{{$total+1}}@elseif($total>=9)0{{$total+1}}@elseif($total>=99){{$total+1}}@endif/{{$year}}
+
+                              @elseif(Auth::user()->department->Dpmname=='ธุรการ')
+                              AD/@if($ad==null){{ __('001') }}@elseif($ad<=8)00{{$ad+1}}@elseif($ad>=9)0{{$ad+1}}@elseif($ad>=99){{$ad+1}}@endif/@if($total==null){{ __('001') }}@elseif($total<=8)00{{$total+1}}@elseif($total>=9)0{{$total+1}}@elseif($total>=99){{$total+1}}@endif/{{$year}}
+                              
+                              @elseif(Auth::user()->department->Dpmname=='การเงิน')
+                              FIN/@if($fin==null){{ __('001') }}@elseif($fin<=8)00{{$fin+1}}@elseif($fin>=9)0{{$fin+1}}@elseif($fin>=99){{$fin+1}}@endif/@if($total==null){{ __('001') }}@elseif($total<=8)00{{$total+1}}@elseif($total>=9)0{{$total+1}}@elseif($total>=99){{$total+1}}@endif/{{$year}}
+                              
+                              @elseif(Auth::user()->department->Dpmname=='มาร์เก็ตติ้ง')
+                              MKT/@if($mkt==null){{ __('001') }}@elseif($mkt<=8)00{{$mkt+1}}@elseif($mkt>=9)0{{$mkt+1}}@elseif($mkt>=99){{$mkt+1}}@endif/@if($total==null){{ __('001') }}@elseif($total<=8)00{{$total+1}}@elseif($total>=9)0{{$total+1}}@elseif($total>=99){{$total+1}}@endif/{{$year}}
+                              
+                              @elseif(Auth::user()->department->Dpmname=='บริหารงานพัฒนาผลิตภัณฑ์')
+                              ITD/@if($itd==null){{ __('001') }}@elseif($itd<=8)00{{$itd+1}}@elseif($itd>=9)0{{$itd+1}}@elseif($itd>=99){{$itd+1}}@endif/@if($total==null){{ __('001') }}@elseif($total<=8)00{{$total+1}}@elseif($total>=9)0{{$total+1}}@elseif($total>=99){{$total+1}}@endif/{{$year}}
+                              
+                              @elseif(Auth::user()->department->Dpmname=='เซลล์')
+                              SALE/@if($sale==null){{ __('001') }}@elseif($sale<=8)00{{$sale+1}}@elseif($sale>=9)0{{$sale+1}}@elseif($sale>=99){{$sale+1}}@endif/@if($total==null){{ __('001') }}@elseif($total<=8)00{{$total+1}}@elseif($total>=9)0{{$total+1}}@elseif($total>=99){{$total+1}}@endif/{{$year}}
+
+                              @elseif(Auth::user()->department->Dpmname=='กฎหมาย')
+                              LEG/@if($leg==null){{ __('001') }}@elseif($leg<=8)00{{$leg+1}}@elseif($leg>=9)0{{$leg+1}}@elseif($leg>=99){{$leg+1}}@endif/@if($total==null){{ __('001') }}@elseif($total<=8)00{{$total+1}}@elseif($total>=9)0{{$total+1}}@elseif($total>=99){{$total+1}}@endif/{{$year}}
+
+                              @elseif(Auth::user()->department->Dpmname=='ส่วนงานเลขานุการ')
+                              CS/@if($cs==null){{ __('001') }}@elseif($cs<=8)00{{$cs+1}}@elseif($cs>=9)0{{$cs+1}}@elseif($cs>=99){{$cs+1}}@endif/@if($total==null){{ __('001') }} @elseif($total<=8)00{{$total+1}}@elseif($total>=9)0{{$total+1}}@elseif($total>=99){{$total+1}}@endif/{{$year}}
+
+                              @elseif(Auth::user()->department->Dpmname=='ส่วนงานบริหารงานคุณภาพ')
+                              ISO/@if($iso==null){{ __('001') }}@elseif($iso<=8)00{{$iso+1}}@elseif($iso>=9)0{{$iso+1}}@elseif($iso>=99){{$iso+1}}@endif/@if($total==null){{ __('001') }}@elseif($total<=8)00{{$total+1}}@elseif($total>=9)0{{$total+1}}@elseif($total>=99){{$total+1}}@endif/{{$year}}
+
+                              @elseif(Auth::user()->department->Dpmname=='บริหารงานโครงการ')
+                              PM/@if($pm==null){{ __('001') }}@elseif($pm<=8)00{{$pm+1}}@elseif($pm>=9)0{{$pm+1}}@elseif($pm>=99){{$pm+1}}@endif/@if($total==null){{ __('001') }}@elseif($total<=8)00{{$total+1}}@elseif($total>=9)0{{$total+1}}@elseif($total>=99){{$total+1}}@endif/{{$year}}
+
+                              @endif
+
+                              @if(Auth::user()->department->Dpmname=='ไอที')
+                              <input type="hidden" value="ITI" class="form-control" style="width: 60px" name="fdepartment">
+                            @if($iti==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($iti<=8)
+                            <input type="hidden" value=<?php echo '00'.$iti+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($iti>=9)
+                            <input type="hidden" value=<?php echo '0'.$iti+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($iti>=99)
+                            <input type="hidden" value=<?php echo $iti+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @endif
+                            @if($total==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total<=8)
+                            <input type="hidden" value=<?php echo '00'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=9)
+                            <input type="hidden" value=<?php echo '0'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=99)
+                            <input type="hidden" value=<?php echo $total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @endif
+                            <input type="hidden" value=<?php echo $year;?> class="form-control" style="width: 50px" name="year">
+
+
+                            @elseif(Auth::user()->department->Dpmname=='บัญชี')
+                              <input type="hidden" value="ACC" class="form-control" style="width: 60px" name="fdepartment">
+                            @if($acc==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($acc<=8)
+                            <input type="hidden" value=<?php echo '00'.$acc+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($acc>=9)
+                            <input type="hidden" value=<?php echo '0'.$acc+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($acc>=99)
+                            <input type="hidden" value=<?php echo $acc+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @endif
+                            @if($total==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total<=8)
+                            <input type="hidden" value=<?php echo '00'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=9)
+                            <input type="hidden" value=<?php echo '0'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=99)
+                            <input type="hidden" value=<?php echo $total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @endif
+                            <input type="hidden" value=<?php echo $year;?> class="form-control" style="width: 50px" name="year">
+
+
+                            @elseif(Auth::user()->department->Dpmname=='จัดซื้อ')
+                            <input type="hidden" value="PUR" class="form-control" style="width: 60px" name="fdepartment">
+                            @if($pur==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($pur<=8)
+                            <input type="hidden" value=<?php echo '00'.$pur+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($pur>=9)
+                            <input type="hidden" value=<?php echo '0'.$pur+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($pur>=99)
+                            <input type="hidden" value=<?php echo $pur+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @endif
+                            @if($total==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total<=8)
+                            <input type="hidden" value=<?php echo '00'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=9)
+                            <input type="hidden" value=<?php echo '0'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=99)
+                            <input type="hidden" value=<?php echo $total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @endif
+                            <input type="hidden" value=<?php echo $year;?> class="form-control" style="width: 50px" name="year">
+
+                            @elseif(Auth::user()->department->Dpmname=='บุคคล')
+                            <input type="hidden" value="HR" class="form-control" style="width: 60px" name="fdepartment">
+                            @if($hr==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($hr<=8)
+                            <input type="hidden" value=<?php echo '00'.$hr+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($hr>=9)
+                            <input type="hidden" value=<?php echo '0'.$hr+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($hr>=99)
+                            <input type="hidden" value=<?php echo $hr+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @endif
+                            @if($total==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total<=8)
+                            <input type="hidden" value=<?php echo '00'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=9)
+                            <input type="hidden" value=<?php echo '0'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=99)
+                            <input type="hidden" value=<?php echo $total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @endif
+                            <input type="hidden" value=<?php echo $year;?> class="form-control" style="width: 50px" name="year">
+
+
+                            @elseif(Auth::user()->department->Dpmname=='ธุรการ')
+                            <input type="hidden" value="AD" class="form-control" style="width: 60px" name="fdepartment">
+                            @if($ad==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($ad<=8)
+                            <input type="hidden" value=<?php echo '00'.$ad+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($ad>=9)
+                            <input type="hidden" value=<?php echo '0'.$ad+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($ad>=99)
+                            <input type="hidden" value=<?php echo $ad+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @endif
+                            @if($total==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total<=8)
+                            <input type="hidden" value=<?php echo '00'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=9)
+                            <input type="hidden" value=<?php echo '0'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=99)
+                            <input type="hidden" value=<?php echo $total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @endif
+                            <input type="hidden" value=<?php echo $year;?> class="form-control" style="width: 50px" name="year">
+                            
+
+                            @elseif(Auth::user()->department->Dpmname=='การเงิน')
+                            <input type="hidden" value="FIN" class="form-control" style="width: 60px" name="fdepartment">
+                            @if($fin==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($fin<=8)
+                            <input type="hidden" value=<?php echo '00'.$fin+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($fin>=9)
+                            <input type="hidden" value=<?php echo '0'.$fin+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($fin>=99)
+                            <input type="hidden" value=<?php echo $fin+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @endif
+                            @if($total==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total<=8)
+                            <input type="hidden" value=<?php echo '00'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=9)
+                            <input type="hidden" value=<?php echo '0'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=99)
+                            <input type="hidden" value=<?php echo $total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @endif
+                            <input type="hidden" value=<?php echo $year;?> class="form-control" style="width: 50px" name="year">
+                            
+
+                            @elseif(Auth::user()->department->Dpmname=='มาร์เก็ตติ้ง')
+                            <input type="hidden" value="MKT" class="form-control" style="width: 60px" name="fdepartment">
+                            @if($mkt==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($mkt<=8)
+                            <input type="hidden" value=<?php echo '00'.$mkt+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($mkt>=9)
+                            <input type="hidden" value=<?php echo '0'.$mkt+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($mkt>=99)
+                            <input type="hidden" value=<?php echo $mkt+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @endif
+                            @if($total==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total<=8)
+                            <input type="hidden" value=<?php echo '00'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=9)
+                            <input type="hidden" value=<?php echo '0'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=99)
+                            <input type="hidden" value=<?php echo $total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @endif
+                            <input type="hidden" value=<?php echo $year;?> class="form-control" style="width: 50px" name="year">
+
+                            @elseif(Auth::user()->department->Dpmname=='บริหารงานพัฒนาผลิตภัณฑ์')
+                            <input type="hidden" value="ITD" class="form-control" style="width: 60px" name="fdepartment">
+                            @if($itd==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($itd<=8)
+                            <input type="hidden" value=<?php echo '00'.$itd+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($itd>=9)
+                            <input type="hidden" value=<?php echo '0'.$itd+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($itd>=99)
+                            <input type="hidden" value=<?php echo $itd+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @endif
+                            @if($total==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total<=8)
+                            <input type="hidden" value=<?php echo '00'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=9)
+                            <input type="hidden" value=<?php echo '0'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=99)
+                            <input type="hidden" value=<?php echo $total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @endif
+                            <input type="hidden" value=<?php echo $year;?> class="form-control" style="width: 50px" name="year">
+
+
+                            @elseif(Auth::user()->department->Dpmname=='เซลล์')
+                            <input type="hidden" value="SALE" class="form-control" style="width: 70px" name="fdepartment">
+                            @if($sale==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($sale<=8)
+                            <input type="hidden" value=<?php echo '00'.$sale+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($sale>=9)
+                            <input type="hidden" value=<?php echo '0'.$sale+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($sale>=99)
+                            <input type="hidden" value=<?php echo $sale+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @endif
+                            @if($total==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total<=8)
+                            <input type="hidden" value=<?php echo '00'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=9)
+                            <input type="hidden" value=<?php echo '0'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=99)
+                            <input type="hidden" value=<?php echo $total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @endif
+                            <input type="hidden" value=<?php echo $year;?> class="form-control" style="width: 50px" name="year">
+                          
+
+                            @elseif(Auth::user()->department->Dpmname=='กฎหมาย')
+                            <input type="hidden" value="LEG" class="form-control" style="width: 60px" name="fdepartment">
+                            @if($leg==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($leg<=8)
+                            <input type="hidden" value=<?php echo '00'.$leg+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($leg>=9)
+                            <input type="hidden" value=<?php echo '0'.$leg+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($leg>=99)
+                            <input type="hidden" value=<?php echo $leg+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @endif
+                            @if($total==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total<=8)
+                            <input type="hidden" value=<?php echo '00'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=9)
+                            <input type="hidden" value=<?php echo '0'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=99)
+                            <input type="hidden" value=<?php echo $total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @endif
+                            <input type="hidden" value=<?php echo $year;?> class="form-control" style="width: 50px" name="year">
+                          
+
+                            @elseif(Auth::user()->department->Dpmname=='ส่วนงานเลขานุการ')
+                            <input type="hidden" value="CS" class="form-control" style="width: 60px" name="fdepartment">
+                            @if($cs==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($cs<=8)
+                            <input type="hidden" value=<?php echo '00'.$cs+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($cs>=9)
+                            <input type="hidden" value=<?php echo '0'.$cs+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($cs>=99)
+                            <input type="hidden" value=<?php echo $cs+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @endif
+                            @if($total==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total<=8)
+                            <input type="hidden" value=<?php echo '00'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=9)
+                            <input type="hidden" value=<?php echo '0'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=99)
+                            <input type="hidden" value=<?php echo $total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @endif
+                            <input type="hidden" value=<?php echo $year;?> class="form-control" style="width: 50px" name="year">
+
+
+                            @elseif(Auth::user()->department->Dpmname=='ส่วนงานบริหารงานคุณภาพ')
+                            <input type="hidden" value="ISO" class="form-control" style="width: 60px" name="fdepartment">
+                            @if($iso==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($iso<=8)
+                            <input type="hidden" value=<?php echo '00'.$iso+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($iso>=9)
+                            <input type="hidden" value=<?php echo '0'.$iso+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($iso>=99)
+                            <input type="hidden" value=<?php echo $iso+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @endif
+                            @if($total==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total<=8)
+                            <input type="hidden" value=<?php echo '00'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=9)
+                            <input type="hidden" value=<?php echo '0'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=99)
+                            <input type="hidden" value=<?php echo $total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @endif
+                            <input type="hidden" value=<?php echo $year;?> class="form-control" style="width: 50px" name="year">
+                          
+
+                            @elseif(Auth::user()->department->Dpmname=='บริหารงานโครงการ')
+                            <input type="hidden" value="PM" class="form-control" style="width: 60px" name="fdepartment">
+                            @if($pm==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($pm<=8)
+                            <input type="hidden" value=<?php echo '00'.$pm+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($pm>=9)
+                            <input type="hidden" value=<?php echo '0'.$pm+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($pm>=99)
+                            <input type="hidden" value=<?php echo $pm+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @endif
+                            @if($total==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total<=8)
+                            <input type="hidden" value=<?php echo '00'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=9)
+                            <input type="hidden" value=<?php echo '0'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=99)
+                            <input type="hidden" value=<?php echo $total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @endif
+                            <input type="hidden" value=<?php echo $year;?> class="form-control" style="width: 50px" name="year">
+                            @endif
+            
+                            @elseif($type=='สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')
+                            เลขที่หนังสือ&nbsp; 
+                            
+                           INS/@if($ins==null){{ __('001') }}@elseif($ins<=8)00{{$ins+1}}@elseif($ins>=9)0{{$ins+1}}@elseif($ins>=99){{$ins+1}}@endif/@if($total<=8)00{{$total+1}}@elseif($total>=9)0{{$total+1}}@elseif($total>=99){{$total+1}}@endif/{{$year}}
+                           <input type="hidden" value="INS" class="form-control" style="width: 60px" name="fdepartment">
+                            @if($ins==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($ins<=8)
+                            <input type="hidden" value=<?php echo '00'.$ins+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($ins>=9)
+                            <input type="hidden" value=<?php echo '0'.$ins+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($ins>=99)
+                            <input type="hidden" value=<?php echo $ins+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @endif
+                            @if($total==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total<=8)
+                            <input type="hidden" value=<?php echo '00'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=9)
+                            <input type="hidden" value=<?php echo '0'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                           @elseif($total>=99)
+                            <input type="hidden" value=<?php echo $total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @endif
+                            <input type="hidden" value=<?php echo $year;?> class="form-control" style="width: 50px" name="year">
+                            
+                            
+                            @elseif($type=='ศูนย์ฝึกอบรม')
+                            เลขที่หนังสือ&nbsp;
+                             TZ/@if($tz==null){{ __('001') }}@elseif($tz<=8)00{{$tz+1}}@elseif($tz>=9)0{{$tz+1}}@elseif($tz>=99){{$tz+1}}@endif/@if($total<=8)00{{$total+1}}@elseif($total>=9)0{{$total+1}}@elseif($total>=99){{$total+1}}@endif/{{$year}}           
+                             <input type="hidden" value="TZ" class="form-control" style="width: 60px" name="fdepartment">
+                            @if($tz==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($tz<=8)
+                            <input type="hidden" value=<?php echo '00'.$tz+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($tz>=9)
+                            <input type="hidden" value=<?php echo '0'.$tz+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @elseif($tz>=99)
+                            <input type="hidden" value=<?php echo $tz+1;?> class="form-control" style="width: 60px" name="dnumber">
+                            @endif
+                            @if($total==null)
+                            <input type="hidden" value="001" class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total<=8)
+                            <input type="hidden" value=<?php echo '00'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=9)
+                            <input type="hidden" value=<?php echo '0'.$total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @elseif($total>=99)
+                            <input type="hidden" value=<?php echo $total+1;?> class="form-control" style="width: 60px" name="cnumber">
+                            @endif
+                            <input type="hidden" value=<?php echo $year;?> class="form-control" style="width: 50px" name="year">
+                             @endif
+                            </div><br><br>
+            
 
             <div class="d-flex justify-content-center">
             วันที่&nbsp;
@@ -223,7 +636,15 @@
 <!-- save cancel -->
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
   <button class="btn btn-primary" type="button" style="margin-right:10px" data-bs-toggle="modal" data-bs-target="#confirm">บันทึก</button>
-  <button class="btn btn-secondary" type="button">ยกเลิก</button>
+ @if($type=='โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์') 
+ <a href="{{ route('formIDD') }}" class="btn btn-secondary" type="button">ยกเลิก</a>
+ @elseif($type=='บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')
+ <a href="{{ route('formiddrives') }}" class="btn btn-secondary" type="button">ยกเลิก</a>
+ @elseif($type=='สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')
+ <a href="{{ route('formINS') }}" class="btn btn-secondary" type="button">ยกเลิก</a>
+ @elseif($type=='ศูนย์ฝึกอบรม')
+ <a href="{{ route('formTZ') }}" class="btn btn-secondary" type="button">ยกเลิก</a>
+ @endif
 </div>
 <!-- /save cancel -->
 

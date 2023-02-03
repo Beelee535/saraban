@@ -18,13 +18,7 @@
 
 @if($_GET['department']=='datadepartment')
 <br>
-<nav class="navbar navbar-light bg-light">
-  <h1 class="text-left">ชื่อแผนก</h1>
-    <form class="d-flex" action="add/department" method="GET">
-      <input class="form-control me-2" type="search" name="search" id ="serach" placeholder="ค้นหาแผนก">
-      <button class="btn btn-dark" type="submit"> <i class="bi bi-search"></i></button>
-    </form>
-</nav><br><br>
+  <h4 class="text-center">ชื่อแผนก</h4><br><br>
 
         <table class="table table-bordered table-hover">
                                 <thead class="text-center box">
@@ -61,6 +55,7 @@
                                     <td>ลำดับ</td>
                                     <td>ชื่อหน่วยงาน</td>
                                     <td>ชื่อสาขา</td>
+                                    <td>ชื่อแผนก</td>
                                     <td>ลบ</td>
                                 </thead>
                                 <tbody>
@@ -68,9 +63,10 @@
                                 @foreach($department as $rowdepartment)
                                      <tr>
                                         <td >{{$i++}}</td>
+                                        <td >{{$rowdepartment->agency_name}}</td>  
                                         <td >{{$rowdepartment->branche_name}}</td>  
                                         <td>{{$rowdepartment->Dpmname}}</td> 
-                                        <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletedepartment{{$rowdepartment->Dpmid}}">ลบ</button></td>    
+                                        <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletedepartment{{$rowdepartment->Dpmid}}"><i class="bi bi-trash"></i></button></td>    
                                                 <div class="modal fade" id="deletedepartment{{$rowdepartment->Dpmid}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
@@ -148,6 +144,17 @@
         <!-- /บรรทัดเดียวกัน -->
             </div>
             @endif
+            <br><br>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                
+                 @if(Auth::user()->role==0)
+                 <a href="{{route('agency')}}" class="btn btn-secondary" type="button">ย้อนกลับ</a>
+                 @elseif(Auth::user()->role==1)
+                 <a href="{{route('agency')}}" class="btn btn-secondary" type="button">ย้อนกลับ</a>
+                 @elseif(Auth::user()->role==2)
+                 <a href="{{route('agency')}}" class="btn btn-secondary" type="button">ย้อนกลับ</a>
+                 @endif      
+            </div>
 
        <!-- จบ -->
        </div>

@@ -87,7 +87,7 @@ public function transportuser(Request $request)
       $dpm=Auth::user()->Department;
 
         $transport = transport::Join('bookouts', 'transports.trbookout', '=', 'bookouts.id')
-        ->select('transports.*')->where('trdepartment','LIKE',Auth::user()->Department)
+        ->select('transports.*')->where('trbranch','LIKE',Auth::user()->Branch)->where('trdepartment','LIKE',Auth::user()->Department)
        ->Where(function($q) use ($request){
         if($request->get('searchdate')&&$request->get('searchend')){
             $q ->where('trdatesent','>=',$request->searchdate.'%')
@@ -101,7 +101,7 @@ public function transportuser(Request $request)
        else{}})
         // ->whereNotIn('trdepartment', ['ธุรการ','การเงิน','จัดซื้อ','บัญชี','บุคคล','ไอที','บริหารพัฒนาผลิตภัณฑ์','เซลล์','กฏหมาย','ส่วนงานเลขานุการ','ส่วนงานบริหารงานคุณภาพ','บริหารงานโครงการ'])
         ->orderby('id','DESC')->paginate(10);
-        $transportcount = transport::where('trdepartment','LIKE',Auth::user()->Department)->count();
+        $transportcount = transport::where('trbranch','LIKE',Auth::user()->Branch)->where('trdepartment','LIKE',Auth::user()->Department)->count();
         return view('user.transport.transport',compact('transport','service','depositor','transportcount','transportwaitcount','transportexecutedcount'));
     }
 
@@ -176,7 +176,7 @@ public function transportexport(Request $request)
                 $searchend = $request->input('searchend');
                 // ถ้าเป็น user
                 if($role=='0'){
-                $transport = transport::where('trdepartment','LIKE',Auth::user()->Department)->
+                $transport = transport::where('trbranch','LIKE',Auth::user()->Branch)->where('trdepartment','LIKE',Auth::user()->Department)->
                   Where(function($q) use ($request){
                     if($request->get('searchdate')&&$request->get('searchend')){
                       $q ->where('trdatesent','>=',$request->searchdate.'%')
@@ -204,7 +204,7 @@ public function transportexport(Request $request)
                 $searchend = $request->input('searchend');
                 // ถ้าเป็น user
                 if($role=='0'){
-                  $transport = transport::where('trdepartment','LIKE',Auth::user()->Department)->
+                  $transport = transport::where('trbranch','LIKE',Auth::user()->Branch)->where('trdepartment','LIKE',Auth::user()->Department)->
                     Where(function($q) use ($request){
                       if($request->get('searchdate')&&$request->get('searchend')){
                         $q ->where('trdatesent','>=',$request->searchdate.'%')
@@ -247,7 +247,7 @@ public function transportexport(Request $request)
           $method = $request->method();
           // ถ้าเป็น user
           if($role=='0'){
-            $transport = transport::where('trdepartment','LIKE',Auth::user()->Department)->
+            $transport = transport::where('trbranch','LIKE',Auth::user()->Branch)->where('trdepartment','LIKE',Auth::user()->Department)->
               Where(function($q) use ($request){
                 if($request->get('searchdate')&&$request->get('searchend')){
                   $q ->where('trdatesent','>=',$request->searchdate.'%')

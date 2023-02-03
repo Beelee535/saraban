@@ -72,15 +72,25 @@ class User extends Authenticatable
         return $this->hasOne(Prefix::class,'Preid','prefix');
     }
 
+    // public function Agency(){
+    //     return $this->hasOne(agency::class,'agency_name','Agency');
+    // }
+
+    // public function Branch(){
+    //     return $this->hasOne(branch::class,'branche_name','Branch');
+    // }
+    // public function Department(){
+    //     return $this->hasOne(Department::class,'Dpmname','Department');
+    // }
     public function Agency(){
-        return $this->hasOne(agency::class,'agency_name','Agency');
+        return $this->hasOne(agency::class,'agency_id','Agency');
     }
 
     public function Branch(){
-        return $this->hasOne(branch::class,'branche_name','Branch');
+        return $this->hasOne(branch::class,'branche_id','Branch');
     }
     public function Department(){
-        return $this->hasOne(Department::class,'Dpmname','Department');
+        return $this->hasOne(Department::class,'Dpmid','Department');
     }
     public function level(){
         return $this->hasOne(level::class,'id','role');

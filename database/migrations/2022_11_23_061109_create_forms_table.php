@@ -29,7 +29,10 @@ return new class extends Migration
             $table->string('ctname');   //เพิ่มเข้ามา                         
             $table->string('ctphone');   //เพิ่มเข้ามา                         
             $table->string('ctemail');   //เพิ่มเข้ามา      
-            $table->string('type');   //เพิ่มเข้ามา                       
+            $table->string('type');   //เพิ่มเข้ามา      
+            $table->string( 'formagency');
+            $table->string('formbranch');
+            $table->string('formdepartment');                 
             $table->timestamps();
         });
     }

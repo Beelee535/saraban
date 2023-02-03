@@ -99,6 +99,7 @@
                             วันที่ &nbsp;<input class="form-control form-control-sm" type="date" id="searchdate" style="width: 100px" name="searchdate" >&nbsp; 
                             <input class="form-control form-control-sm" type="date" id="searchend" style="width: 100px" name="searchend" >
                             </div>
+                            <p class="text-center text-gray" style="font-size:10px;margin-left:20px;">ค้นหาเลขหนังสือ/ผู้รับ</p> 
             </form><br>
             <div id="search_list"></div>
                 <div class="tab-pane fade show active" id="custom-tabs-five-normal" role="tabpanel" aria-labelledby="custom-tabs-five-normal-tab">

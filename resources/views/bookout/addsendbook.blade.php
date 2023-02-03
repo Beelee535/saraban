@@ -28,25 +28,32 @@
     <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">หน่วยงาน</div>
     <div class="col-sm-9">
-    <input class="form-control" name="Oagency" type="text"  value="{{Auth::user()->Agency}}" disabled>
+    <input class="form-control" name="Oagency" type="text"  value="{{Auth::user()->agency->agency_name}}" disabled>
     </div>
     </div>
 
 
+    @if(Auth::user()->Department==null)
+    <input class="form-control"  name="Odepartment" type="hidden">
+    @else
     <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">ฝ่าย</div>
     <div class="col-sm-9">
-    <input class="form-control"  name="Odepartment" type="text"  value="{{Auth::user()->Department}}" disabled>
+    <input class="form-control"  name="Odepartment" type="text"  value="{{Auth::user()->department->Dpmname}}" disabled>
     </div>
     </div>
+    @endif
     
+    @if(Auth::user()->Branch==null)
+    <input class="form-control"  name="Obranch" type="hidden">
+    @else
     <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">สาขา</div>
     <div class="col-sm-9">
-    <input class="form-control"  name="Obranch" type="text"  value="{{Auth::user()->Branch}}" disabled>
+    <input class="form-control"  name="Obranch" type="text"  value="{{Auth::user()->branch->branche_name}}" disabled>
     </div>
     </div>
-
+    @endif
     
             </div>
             </div>
@@ -183,7 +190,7 @@
         <div class="col-sm-2 col-form-label">ผู้ฝากส่งหนังสือ :</div>
             <div class="col-sm-9">
                 <select class="form-control" name="trdepositor" id="trdepositor" >
-                <option selected  disabled>กรุณาเลือกหน่วยงาน</option>
+                <option selected  disabled>กรุณาเลือกผู้ฝากส่ง</option>
 
                 </select>
             </div>
@@ -194,7 +201,7 @@
     <div class="col-sm-2 col-form-label">ประเภทการส่ง :</div>
     <div class="col-sm-9">
     <select class="form-control" name="trtaye" aria-label="Default select example" required>
-    <option selected disabled>กรุณาเลือกประเภทการส่ง</option>
+    <option selected disabled required>กรุณาเลือกประเภทการส่ง</option>
    @foreach($transport_type as $row)
     <option value="{{$row->transport_name}}">{{$row->transport_name}}</option>
    @endforeach
@@ -223,7 +230,7 @@
                                 </div>
                                 <div class="modal-body">
                                 <div class="mb-3 row">
-                                    <div class="col-sm-4 col-form-label">หนังสือจากหน่วยงาน</div>
+                                    <div class="col-sm-4 col-form-label">ผู้ฝากส่งหนังสือ</div>
                                         <div class="col-sm-8">
                                         <input class="form-control" name="depositor_name" id="depositor_name" type="text" placeholder="กรุณากรอกผู้ฝากส่ง" required>
                                         </div>

@@ -232,7 +232,7 @@
                 <div class="col-sm-4 border-right">
                     <div class="description-block">
                       <h5 class="description-header">หน่วยงาน</h5>
-                      <small class="description-text">{{Auth::user()->Agency}}</small>
+                      <small class="description-text">{{Auth::user()->agency->agency_name}}</small>
                     </div>
                     <!-- /.description-block -->
                 </div>
@@ -240,7 +240,7 @@
                 <div class="col-sm-4 border-right">
                     <div class="description-block">
                     <h5 class="description-header">สาขา</h5>
-                    <small class="description-text">{{Auth::user()->Branch}} </small>
+                    <small class="description-text">{{Auth::user()->branch->branche_name}} </small>
                     </div>
                     <!-- /.description-block -->
                 </div>
@@ -248,7 +248,7 @@
                 <div class="col-sm-4">
                     <div class="description-block">
                       <h5 class="description-header">แผนก</h5>
-                      <small class="description-text">{{Auth::user()->Department}}</small>
+                      <small class="description-text">{{Auth::user()->department->Dpmname}}</small>
                     </div>
                     <!-- /.description-block -->
                 </div>

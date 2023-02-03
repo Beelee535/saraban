@@ -14,7 +14,8 @@
         border: solid 1px #ff0000;
     }
     .card {
-        margin: 2.5cm;
+        /* margin: 2.5cm; */
+        margin: 30mm 45mm 30mm 45mm;
         size: 21cm 29.7cm landscape;
     }
     #box1 {
@@ -28,6 +29,7 @@
       body{
         font-size: 15px;
       }
+      
 
 </style>
 
@@ -40,9 +42,6 @@
      <div class="font1">
       <div class="card" >
           <div class="card-header">
-          <div class="d-flex justify-content-center">
-          
-             </div><br>
              @if($form->type=='โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')   
              <div class="d-flex justify-content-center">
              <img src="{{ asset('dist/img/logoIDD.png') }}" width="148" height="75"> 
@@ -57,13 +56,13 @@
            
              @elseif($form->type=='บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')
              <div class="d-flex">
-             <img src="{{ asset('dist/img/logoiddrives.png') }}"  width="166px">
+             <img src="{{ asset('dist/img/logoiddrives.png') }}"  height="150">
              <div class="p-2 py-5 flex-fill">
              <h5> บริษัท ไอดีไดรฟ์ จำกัด (สำนักงานใหญ่) </h5>
              200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัดขอนแก่น เลขที่ผู้เสียภาษี 0405536000531 <br>
-             Tel : 043-228 899 www.iddrices.co.th Email : idofficer@iddrives.co. <br></div>
+             Tel : 043-228 899 www.iddrices.co.th Email : idofficer@iddrives.co.</div>
             </div>
-            <hr noshade="noshade" size="2"><br>
+            <hr noshade="noshade" size="2" style="margin-top:-10px">
             
             @elseif($form->type=='สถานตรวจสภาพรถ ศูนย์ตรอ.ไอดี')
             <div class="d-flex justify-content-center">
@@ -78,15 +77,18 @@
              <br></div><hr noshade="noshade" size="2"><br>
                       
              @elseif($form->type=='ศูนย์ฝึกอบรม')
-             <div class="d-flex">
-             <div class="p-2 py-4 flex-fill" style="margin-left:40px">
-             <h4><b> ศูนย์ฝึกอบรมไอดีไดรฟ์ สาขาแก่งคอย </b></h4>
-              บริหารโดยบริษัท ไอดีไดรฟ์ จำกัด เลขที่ผู้เสียภาษี 0405536000531
-            <p>ที่อยู่ 58/1 หมู่ 9 ตำบลทับกวาง อำเภอแก่งคอย จังหวัดสระบุรี 18260</p>    
-            <p style="margin-top:-15px;margin-bottom:-65px;"> Email: id.trainingcenter@iddrives.co.th  Tel: 082-7513888 <p>
-              </div>
-              <img src="{{ asset('dist/img/logotz.png') }}" style="margin-right:40px" width="166px"></div>
-              <hr noshade="noshade" size="2">
+             <div class="d-flex justify-content-center">
+              <img src="{{ asset('dist/img/logoIDD.png') }}"  height="50" style="margin-right:30px;margin-top:15px">
+             <img src="{{ asset('dist/img/logoiddrives.png') }}" height="100" style="margin-right:25px;">&nbsp;&nbsp;
+             <img src="{{ asset('dist/img/logoTZ2.png') }}"height="80">
+             </div><br>
+             <div class="d-flex justify-content-start" style="margin-left: 40px;font-size:16px">
+             <h5>ศูนย์ฝึกอบรมเทรนนิ่งเซนเตอร์</h5>&nbsp;
+             บริหารงานโดย บริษัท ไอดีไดรฟ์ จำกัด เลขที่ผู้เสียภาษี 0405536000531
+            </div>
+             <div class="d-flex justify-content-start" style="font-size:16px">
+             ที่อยู่ 200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัด Tel : 043-228 899   www.iddrices.co.th  Email : idofficer@iddrives.co.th           
+             <br></div><hr noshade="noshade" size="2"><br>
              @endif
               <!-- /head-form -->
 
@@ -134,25 +136,25 @@
             <div class="flex-shrink-0">
             สิ่งที่ส่งมาด้วย&nbsp;&nbsp;
             </div>
-            <div class="flex-grow-1 ms-3">
+            <!-- <div class="flex-grow-1 ms-3" > -->
             <textarea id="txtMessage" name="enclosure"><?php echo $form->enclosure; ?> </textarea>
-            </div>
+            <!-- </div> -->
             </div><br><br>
 
-            <div class="d-flex flex-column" style="margin-left: 40px">
+            <!-- <div class="d-flex flex-column" > -->
             <textarea  id="txtMessage1" name="details"> <?= $form->details; ?></textarea>
-            </div>
+            <!-- </div> -->
             
                <!-- teaxareasize -->
             <!-- สิ่งที่ส่งมาด้วย -->
             <script>CKEDITOR.replace( 'txtMessage',{
                         height : 150,
-                        width : 800
+                        width : 630
                         } )
             // รายละเอียด
                         CKEDITOR.replace( 'txtMessage1',{
                         height : 150,
-                        width : 950
+                        width : 830
                         } );
                         //]]>
                         </script>

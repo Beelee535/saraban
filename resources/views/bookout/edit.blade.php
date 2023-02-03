@@ -27,7 +27,7 @@
                 <div class="mb-3 row">
                 <div class="col-sm-2 col-form-label">หน่วยงาน</div>
                 <div class="col-sm-9">
-                <input class="form-control" name="Oagency" type="text"  value="{{$bookout->Oagency}}" disabled>
+                <input class="form-control" name="Oagency" type="text"  value="{{$bookout->agency->agency_name}}" disabled>
                 </div>
                 </div>
 
@@ -35,14 +35,14 @@
                 <div class="mb-3 row">
                 <div class="col-sm-2 col-form-label">ฝ่าย</div>
                 <div class="col-sm-9">
-                <input class="form-control"  name="Odepartment" type="text"  value="{{$bookout->Odepartment}}" disabled>
+                <input class="form-control"  name="Odepartment" type="text"  value="{{$bookout->department->Dpmname}}" disabled>
                 </div>
                 </div>
                 
                 <div class="mb-3 row">
                 <div class="col-sm-2 col-form-label">สาขา</div>
                 <div class="col-sm-9">
-                <input class="form-control"  name="Obranch" type="text"  value="{{$bookout->Obranch}}" disabled>
+                <input class="form-control"  name="Obranch" type="text"  value="{{$bookout->branch->branche_name}}" disabled>
                 </div>
                 </div>
 

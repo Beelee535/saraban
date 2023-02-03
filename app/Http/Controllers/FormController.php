@@ -65,26 +65,32 @@ class FormController extends Controller
         $user = User::all();
         $form = Form::all();
         // $ad = Form::where('	fdepartment','AD'&&'','')->count();//เงื่อนไขแบบสองข้อ
-        $ad = Form::where('fdepartment','AD')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//ธุรการ
-        $pur = Form::where('fdepartment','PUR')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//จัดซื้อ
-        $fin = Form::where('fdepartment','FIN')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//การเงิน
-        $acc = Form::where('fdepartment','AC')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//บัญชี
-        $hr = Form::where('fdepartment','HR')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//บุคคล
-        $iti = Form::where('fdepartment','ITI')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//ไอที
-        $mkt = Form::where('fdepartment','MKT')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//มาร์เก็ตติ้ง
-        $itd = Form::where('fdepartment','ID')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//บริหารงานพัฒนาผลิตภัณฑ์
-        $sale = Form::where('fdepartment','SALE')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//เซลล์
-        $leg = Form::where('fdepartment','LEG')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//กฎหมาย
-        $cs = Form::where('fdepartment','CS')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//ส่วนงานเลขานุการ
-        $iso = Form::where('fdepartment','ISO')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//ส่วนงานบริหารงานคุณภาพ
-        $pm = Form::where('fdepartment','PM')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//บริหารงานโครงการ
+
+        $idd = Form::where('formagency','LIKE',Auth::user()->Agency)
+        ->where('formbranch','LIKE',Auth::user()->Branch)
+        ->where('formdepartment','LIKE',Auth::user()->Department)->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();
+        // $ad = Form::where('fdepartment','AD')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//ธุรการ
+        // $pur = Form::where('fdepartment','PUR')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//จัดซื้อ
+        // $fin = Form::where('fdepartment','FIN')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//การเงิน
+        // $acc = Form::where('fdepartment','AC')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//บัญชี
+        // $hr = Form::where('fdepartment','HR')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//บุคคล
+        // $iti = Form::where('fdepartment','ITI')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//ไอที
+        // $mkt = Form::where('fdepartment','MKT')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//มาร์เก็ตติ้ง
+        // $itd = Form::where('fdepartment','ID')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//บริหารงานพัฒนาผลิตภัณฑ์
+        // $sale = Form::where('fdepartment','SALE')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//เซลล์
+        // $leg = Form::where('fdepartment','LEG')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//กฎหมาย
+        // $cs = Form::where('fdepartment','CS')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//ส่วนงานเลขานุการ
+        // $iso = Form::where('fdepartment','ISO')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//ส่วนงานบริหารงานคุณภาพ
+        // $pm = Form::where('fdepartment','PM')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//บริหารงานโครงการ
+       
         // $total = Form::where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();
         $total = Form::count();
         $data10 = date("y-m-d");
         $ec1 = explode("-", $data10);
         $years = $ec1[0];
         $year =mb_strimwidth($years+543 , -2, 2);
-        return view('form.formidd',compact('user','form','ad','pur','fin','acc','hr','iti','mkt','itd','total','year','sale','leg','cs','iso','pm'));
+        return view('form.formidd',compact('user','form','total','year','idd'));
+        // return view('form.formidd',compact('user','form','ad','pur','fin','acc','hr','iti','mkt','itd','total','year','sale','leg','cs','iso','pm'));
     }
 
     public function formINS()
@@ -92,26 +98,32 @@ class FormController extends Controller
         $user = User::all();
         $form = Form::all();
         // $ad = Form::where('	fdepartment','AD'&&'','')->count();//เงื่อนไขแบบสองข้อ
-        $ad = Form::where('fdepartment','AD')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//ธุรการ
-        $pur = Form::where('fdepartment','PUR')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//จัดซื้อ
-        $fin = Form::where('fdepartment','FIN')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//การเงิน
-        $acc = Form::where('fdepartment','AC')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//บัญชี
-        $hr = Form::where('fdepartment','HR')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//บุคคล
-        $iti = Form::where('fdepartment','ITI')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//ไอที
-        $mkt = Form::where('fdepartment','MKT')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//มาร์เก็ตติ้ง
-        $itd = Form::where('fdepartment','ID')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//บริหารงานพัฒนาผลิตภัณฑ์
-        $sale = Form::where('fdepartment','SALE')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//เซลล์
-        $leg = Form::where('fdepartment','LEG')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//กฎหมาย
-        $cs = Form::where('fdepartment','CS')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//ส่วนงานเลขานุการ
-        $iso = Form::where('fdepartment','ISO')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//ส่วนงานบริหารงานคุณภาพ
-        $pm = Form::where('fdepartment','PM')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//บริหารงานโครงการ
+
+        $ins = Form::where('formagency','LIKE',Auth::user()->Agency)
+        ->where('formbranch','LIKE',Auth::user()->Branch)
+        ->where('formdepartment','LIKE',Auth::user()->Department)->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();
+        // $ad = Form::where('fdepartment','AD')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//ธุรการ
+        // $pur = Form::where('fdepartment','PUR')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//จัดซื้อ
+        // $fin = Form::where('fdepartment','FIN')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//การเงิน
+        // $acc = Form::where('fdepartment','AC')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//บัญชี
+        // $hr = Form::where('fdepartment','HR')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//บุคคล
+        // $iti = Form::where('fdepartment','ITI')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//ไอที
+        // $mkt = Form::where('fdepartment','MKT')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//มาร์เก็ตติ้ง
+        // $itd = Form::where('fdepartment','ID')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//บริหารงานพัฒนาผลิตภัณฑ์
+        // $sale = Form::where('fdepartment','SALE')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//เซลล์
+        // $leg = Form::where('fdepartment','LEG')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//กฎหมาย
+        // $cs = Form::where('fdepartment','CS')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//ส่วนงานเลขานุการ
+        // $iso = Form::where('fdepartment','ISO')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//ส่วนงานบริหารงานคุณภาพ
+        // $pm = Form::where('fdepartment','PM')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//บริหารงานโครงการ
+        
         // $total = Form::where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();
         $total = Form::count();
         $data10 = date("y-m-d");
         $ec1 = explode("-", $data10);
         $years = $ec1[0];
         $year =mb_strimwidth($years+543 , -2, 2);
-        return view('form.formins',compact('user','form','ad','pur','fin','acc','hr','iti','mkt','itd','total','year','sale','leg','cs','iso','pm'));
+        return view('form.formins',compact('user','form','ins','total','year'));
+        // return view('form.formins',compact('user','form','ad','pur','fin','acc','hr','iti','mkt','itd','total','year','sale','leg','cs','iso','pm'));
     }
 
     public function formTZ()
@@ -119,26 +131,31 @@ class FormController extends Controller
         $user = User::all();
         $form = Form::all();
         // $ad = Form::where('	fdepartment','AD'&&'','')->count();//เงื่อนไขแบบสองข้อ
-        $ad = Form::where('fdepartment','AD')->where('type','ศูนย์ฝึกอบรม')->count();//ธุรการ
-        $pur = Form::where('fdepartment','PUR')->where('type','ศูนย์ฝึกอบรม')->count();//จัดซื้อ
-        $fin = Form::where('fdepartment','FIN')->where('type','ศูนย์ฝึกอบรม')->count();//การเงิน
-        $acc = Form::where('fdepartment','AC')->where('type','ศูนย์ฝึกอบรม')->count();//บัญชี
-        $hr = Form::where('fdepartment','HR')->where('type','ศูนย์ฝึกอบรม')->count();//บุคคล
-        $iti = Form::where('fdepartment','ITI')->where('type','ศูนย์ฝึกอบรม')->count();//ไอที
-        $mkt = Form::where('fdepartment','MKT')->where('type','ศูนย์ฝึกอบรม')->count();//มาร์เก็ตติ้ง
-        $itd = Form::where('fdepartment','ID')->where('type','ศูนย์ฝึกอบรม')->count();//บริหารงานพัฒนาผลิตภัณฑ์
-        $sale = Form::where('fdepartment','SALE')->where('type','ศูนย์ฝึกอบรม')->count();//เซลล์
-        $leg = Form::where('fdepartment','LEG')->where('type','ศูนย์ฝึกอบรม')->count();//กฎหมาย
-        $cs = Form::where('fdepartment','CS')->where('type','ศูนย์ฝึกอบรม')->count();//ส่วนงานเลขานุการ
-        $iso = Form::where('fdepartment','ISO')->where('type','ศูนย์ฝึกอบรม')->count();//ส่วนงานบริหารงานคุณภาพ
-        $pm = Form::where('fdepartment','PM')->where('type','ศูนย์ฝึกอบรม')->count();//บริหารงานโครงการ
+
+        $tz = Form::where('formagency','LIKE',Auth::user()->Agency)
+        ->where('formbranch','LIKE',Auth::user()->Branch)
+        ->where('formdepartment','LIKE',Auth::user()->Department)->where('type','ศูนย์ฝึกอบรม')->count();//ธุรการ
+        // $ad = Form::where('fdepartment','AD')->where('type','ศูนย์ฝึกอบรม')->count();//ธุรการ
+        // $pur = Form::where('fdepartment','PUR')->where('type','ศูนย์ฝึกอบรม')->count();//จัดซื้อ
+        // $fin = Form::where('fdepartment','FIN')->where('type','ศูนย์ฝึกอบรม')->count();//การเงิน
+        // $acc = Form::where('fdepartment','AC')->where('type','ศูนย์ฝึกอบรม')->count();//บัญชี
+        // $hr = Form::where('fdepartment','HR')->where('type','ศูนย์ฝึกอบรม')->count();//บุคคล
+        // $iti = Form::where('fdepartment','ITI')->where('type','ศูนย์ฝึกอบรม')->count();//ไอที
+        // $mkt = Form::where('fdepartment','MKT')->where('type','ศูนย์ฝึกอบรม')->count();//มาร์เก็ตติ้ง
+        // $itd = Form::where('fdepartment','ID')->where('type','ศูนย์ฝึกอบรม')->count();//บริหารงานพัฒนาผลิตภัณฑ์
+        // $sale = Form::where('fdepartment','SALE')->where('type','ศูนย์ฝึกอบรม')->count();//เซลล์
+        // $leg = Form::where('fdepartment','LEG')->where('type','ศูนย์ฝึกอบรม')->count();//กฎหมาย
+        // $cs = Form::where('fdepartment','CS')->where('type','ศูนย์ฝึกอบรม')->count();//ส่วนงานเลขานุการ
+        // $iso = Form::where('fdepartment','ISO')->where('type','ศูนย์ฝึกอบรม')->count();//ส่วนงานบริหารงานคุณภาพ
+        // $pm = Form::where('fdepartment','PM')->where('type','ศูนย์ฝึกอบรม')->count();//บริหารงานโครงการ
         // $total = Form::where('type','ศูนย์ฝึกอบรม')->count();
         $total = Form::count();
         $data10 = date("y-m-d");
         $ec1 = explode("-", $data10);
         $years = $ec1[0];
         $year =mb_strimwidth($years+543 , -2, 2);
-        return view('form.formtz',compact('user','form','ad','pur','fin','acc','hr','iti','mkt','itd','total','year','sale','leg','cs','iso','pm'));
+        return view('form.formtz',compact('user','form','tz','total','year'));
+        // return view('form.formtz',compact('user','form','ad','pur','fin','acc','hr','iti','mkt','itd','total','year','sale','leg','cs','iso','pm'));
     }
 
 public function preview()
@@ -149,7 +166,8 @@ public function preview()
         $ec1 = explode("-", $data10);
         $years = $ec1[0];
         $year =mb_strimwidth($years+543 , -2, 2);
-        return view('form.preview',compact('user','ad','pur','fin','acc','hr','iti','mkt','itd','total','year','sale','leg','cs','iso','pm','form'));
+        return view('form.preview',compact('user','year','form'));
+        // return view('form.preview',compact('user','ad','pur','fin','acc','hr','iti','mkt','itd','total','year','sale','leg','cs','iso','pm','form'));
     }
 
 public function viewpdfform(Request $request,$id)
@@ -200,9 +218,122 @@ public function add(Request $request)
         $forms1 = new Form;
         $forms = new Form;
         $forms->user_id = Auth::user()->id;
-        $forms->fdepartment = $request->fdepartment;
-        $forms->dnumber = $request->dnumber;
-        $forms->cnumber = $request->cnumber;
+        
+        if($request->type=='โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์'){
+            $fdepartment = $request->fdepartment;
+            $dnumber = Form::where('formagency','LIKE',Auth::user()->Agency)
+            ->where('formbranch','LIKE',Auth::user()->Branch)
+            ->where('formdepartment','LIKE',Auth::user()->Department)->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count()+1;
+            $cnumber = Form::count()+1;
+            $forms->fdepartment = $fdepartment;
+            // แยกแผนก
+            if($dnumber<=9){
+                $forms->dnumber = '00'.$dnumber;
+            }
+            elseif($dnumber>=9){
+                $forms->dnumber = '0'.$dnumber;
+            }
+            elseif($dnumber>=99){
+                $forms->dnumber = $dnumber;
+            }
+            // ทั้งหมด
+            if($cnumber<=9){
+                $forms->cnumber = '00'.$cnumber;
+            }
+            elseif($cnumber>=9){
+                $forms->cnumber = '0'.$cnumber;
+            }
+            elseif($cnumber>=99){
+                $forms->cnumber = $cnumber;
+            }
+        }
+        elseif($request->type=='บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)'){
+            $fdepartment = $request->fdepartment;
+            $dnumber = Form::where('formagency','LIKE',Auth::user()->Agency)
+            ->where('formbranch','LIKE',Auth::user()->Branch)
+            ->where('formdepartment','LIKE',Auth::user()->Department)->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count()+1;
+            $cnumber = Form::count()+1;
+            $forms->fdepartment = $fdepartment;
+            // แยกแผนก
+            if($dnumber<=9){
+                $forms->dnumber = '00'.$dnumber;
+            }
+            elseif($dnumber>=9){
+                $forms->dnumber = '0'.$dnumber;
+            }
+            elseif($dnumber>=99){
+                $forms->dnumber = $dnumber;
+            }
+            // ทั้งหมด
+            if($cnumber<=9){
+                $forms->cnumber = '00'.$cnumber;
+            }
+            elseif($cnumber>9){
+                $forms->cnumber = '0'.$cnumber;
+            }
+            elseif($cnumber>=99){
+                $forms->cnumber = $cnumber;
+            }
+        }
+        elseif($request->type=='สถานตรวจสภาพรถศูนย์ตรอ.ไอดี'){
+            $fdepartment = $request->fdepartment;
+            $dnumber = Form::where('formagency','LIKE',Auth::user()->Agency)
+            ->where('formbranch','LIKE',Auth::user()->Branch)
+            ->where('formdepartment','LIKE',Auth::user()->Department)->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count()+1;
+            $cnumber = Form::count()+1;
+            $forms->fdepartment = $fdepartment;
+             // แยกแผนก
+             if($dnumber<=9){
+                $forms->dnumber = '00'.$dnumber;
+            }
+            elseif($dnumber>=9){
+                $forms->dnumber = '0'.$dnumber;
+            }
+            elseif($dnumber>=99){
+                $forms->dnumber = $dnumber;
+            }
+            // ทั้งหมด
+            if($cnumber<=9){
+                $forms->cnumber = '00'.$cnumber;
+            }
+            elseif($cnumber>=9){
+                $forms->cnumber = '0'.$cnumber;
+            }
+            elseif($cnumber>=99){
+                $forms->cnumber = $cnumber;
+            }
+        }
+        elseif($request->type=='ศูนย์ฝึกอบรม'){
+            $fdepartment = $request->fdepartment;
+            $dnumber = Form::where('formagency','LIKE',Auth::user()->Agency)
+            ->where('formbranch','LIKE',Auth::user()->Branch)
+            ->where('formdepartment','LIKE',Auth::user()->Department)->where('type','ศูนย์ฝึกอบรม')->count()+1;
+            $cnumber = Form::count()+1;
+            $forms->fdepartment = $fdepartment;
+             // แยกแผนก
+             if($dnumber<=9){
+                $forms->dnumber = '00'.$dnumber;
+            }
+            elseif($dnumber>=9){
+                $forms->dnumber = '0'.$dnumber;
+            }
+            elseif($dnumber>=99){
+                $forms->dnumber = $dnumber;
+            }
+            // ทั้งหมด
+            if($cnumber<=9){
+                $forms->cnumber = '00'.$cnumber;
+            }
+            elseif($cnumber>=9){
+                $forms->cnumber = '0'.$cnumber;
+            }
+            elseif($cnumber>=99){
+                $forms->cnumber = $cnumber;
+            }
+        }
+        // $forms->fdepartment = $request->fdepartment;
+        // $forms->dnumber = $request->dnumber;
+        // $forms->cnumber = $request->cnumber;
         $forms->year = $request->year;
         $forms->date = $request->date;
         $forms->story = $request->story;
@@ -214,14 +345,16 @@ public function add(Request $request)
         $forms->ctphone = $request->ctphone;
         $forms->ctemail = $request->ctemail;
         $forms->type = $request->type;
+        $forms->formagency = Auth::user()->Agency;
+        $forms->formbranch = Auth::user()->Branch;
+        $forms->formdepartment = Auth::user()->Department;
         $forms ->save();
-
         $data = [
         'id' => $forms->id,
         'user_id' => Auth::user()->id,
         'fdepartment' => $request->fdepartment,
-        'dnumber' => $request->dnumber,
-        'cnumber' => $request->cnumber,
+        'dnumber' => $forms->dnumber,
+        'cnumber' => $forms->cnumber,
         'year' => $request->year,
         'date' => $request->date,
         'story' => $request->story,
@@ -249,30 +382,74 @@ public function add(Request $request)
 public function store(Request $request)
     {
         $data = [
-        // 'id' => $forms->id,
-        'user_id' => Auth::user()->id,
-        'fdepartment' => $request->fdepartment,
-        'dnumber' => $request->dnumber,
-        'cnumber' => $request->cnumber,
-        'year' => $request->year,
-        'date' => $request->date,
-        'story' => $request->story,
-        'learn' => $request->learn,
-        'quote' => $request->quote,
-        'enclosure' => $request->enclosure,
-        'details' => $request->details,
-        'ctname' => $request->ctname,
-        'ctphone' => $request->ctphone,
-        'ctemail' => $request->ctemail,
-        'type' => $request->type
-        ];
+            // 'id' => $forms->id,
+            'user_id' => Auth::user()->id,
+            // 'fdepartment' => $request->fdepartment,
+            // 'dnumber' => $request->dnumber,
+            // 'cnumber' => $request->cnumber,
+            // 'year' => $request->year,
+            'date' => $request->date,
+            'story' => $request->story,
+            'learn' => $request->learn,
+            'quote' => $request->quote,
+            'enclosure' => $request->enclosure,
+            'details' => $request->details,
+            'ctname' => $request->ctname,
+            'ctphone' => $request->ctphone,
+            'ctemail' => $request->ctemail,
+            'type' => $request->type
+            ];
+            
         $transport_type = Transport_type::all();
         $department = Department::all();
         $agency = agency::all();
         $abd=  agency_branch_department::all();
         $branch= branch::all();
         $depositor = depositor::all();
-        return view('form.preview',compact('transport_type','department','agency','abd','branch','depositor'))->with($data,'abd',$abd,$agency,'agency');
+
+        $total = Form::count();
+        $data10 = date("y-m-d");
+        $ec1 = explode("-", $data10);
+        $years = $ec1[0];
+        $form = Form::all();
+        $year =mb_strimwidth($years+543 , -2, 2);
+        if($request->type=='โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์'){
+            $idd = Form::where('formagency','LIKE',Auth::user()->Agency)
+            ->where('formbranch','LIKE',Auth::user()->Branch)
+            ->where('formdepartment','LIKE',Auth::user()->Department)->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();
+            return view('form.preview',compact('transport_type','department','agency','abd','branch','depositor','year','form','idd','total','year'))->with($data,'abd',$abd,$agency,'agency');
+
+        }
+        elseif($request->type=='บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)'){
+            $ad = Form::where('fdepartment','AD')->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();//ธุรการ
+            $pur = Form::where('fdepartment','PUR')->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();//จัดซื้อ
+            $fin = Form::where('fdepartment','FIN')->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();//การเงิน
+            $acc = Form::where('fdepartment','AC')->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();//บัญชี
+            $hr = Form::where('fdepartment','HR')->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();//บุคคล
+            $iti = Form::where('fdepartment','ITI')->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();//ไอที
+            $mkt = Form::where('fdepartment','MKT')->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();//มาร์เก็ตติ้ง
+            $itd = Form::where('fdepartment','ITD')->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();//บริหารงานพัฒนาผลิตภัณฑ์
+            $sale = Form::where('fdepartment','SALE')->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();//เซลล์
+            $leg = Form::where('fdepartment','LEG')->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();//กฎหมาย
+            $cs = Form::where('fdepartment','CS')->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();//ส่วนงานเลขานุการ
+            $iso = Form::where('fdepartment','ISO')->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();//ส่วนงานบริหารงานคุณภาพ
+            $pm = Form::where('fdepartment','PM')->where('type','บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')->count();//บริหารงานโครงการ
+            return view('form.preview',compact('transport_type','department','agency','abd','branch','depositor','year','form','total','year','ad','pur','fin','acc','hr','iti','mkt','itd','sale','leg','cs','iso','pm'))->with($data,'abd',$abd,$agency,'agency');
+
+        }
+        elseif($request->type=='สถานตรวจสภาพรถศูนย์ตรอ.ไอดี'){
+            $ins = Form::where('formagency','LIKE',Auth::user()->Agency)
+            ->where('formbranch','LIKE',Auth::user()->Branch)
+            ->where('formdepartment','LIKE',Auth::user()->Department)->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();
+            return view('form.preview',compact('transport_type','department','agency','abd','branch','depositor','year','form','ins','total','year'))->with($data,'abd',$abd,$agency,'agency');
+
+        }
+        elseif($request->type=='ศูนย์ฝึกอบรม'){
+            $tz = Form::where('type','ศูนย์ฝึกอบรม')->count();
+            return view('form.preview',compact('transport_type','department','agency','abd','branch','depositor','year','form','tz','total','year'))->with($data,'abd',$abd,$agency,'agency');
+
+        }
+               // return view('form.preview',compact('transport_type','department','agency','abd','branch','depositor'))->with($data,'abd',$abd,$agency,'agency');
         // return view('user.bookout.addsendbook',compact('forms','transport_type','department','agency','abd','branch','depositor'))->with($data,'abd',$abd,$agency,'agency');
    
 }

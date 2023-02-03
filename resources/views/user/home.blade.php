@@ -225,32 +225,55 @@
               <img class="img-circle elevation-2" src="/files/file/{{ Auth::user()->Image }}"  alt="User Avatar">
               </div>
               <div class="card-footer">
-              @endif
-                <div class="row">
+              @endif  
+              <div class="row">
+              @if(Auth::user()->Branch==null&&Auth::user()->Department==null)
+                  <div class="col-sm-12 border-right">
+                    <div class="description-block">
+                      <h5 class="description-header">หน่วยงาน</h5>
+                      <small class="description-text">{{Auth::user()->agency->agency_name}}</small>
+                    </div>
+                </div>
+
+                @elseif(Auth::user()->Department==null)
+                <div class="col-sm-6 border-right">
+                    <div class="description-block">
+                      <h5 class="description-header">หน่วยงาน</h5>
+                      <small class="description-text">{{Auth::user()->agency->agency_name}}</small>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 border-right">
+                    <div class="description-block">
+                    <h5 class="description-header">สาขา</h5>
+                    <small class="description-text">{{Auth::user()->branch->branche_name}} </small>
+                    </div>
+                </div>
+
+                @else
                 <div class="col-sm-4 border-right">
                     <div class="description-block">
                       <h5 class="description-header">หน่วยงาน</h5>
-                      <small class="description-text">{{Auth::user()->Agency}}</small>
+                      <small class="description-text">{{Auth::user()->agency->agency_name}}</small>
                     </div>
-                    <!-- /.description-block -->
                 </div>
-                <!-- /.col -->
                 <div class="col-sm-4 border-right">
                     <div class="description-block">
                     <h5 class="description-header">สาขา</h5>
-                    <small class="description-text">{{Auth::user()->Branch}} </small>
+                    <small class="description-text">{{Auth::user()->branch->branche_name}} </small>
                     </div>
                     <!-- /.description-block -->
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4">
                     <div class="description-block">
-                      <h5 class="description-header">แผนก</h5>
-                      <small class="description-text">{{Auth::user()->Department}}</small>
+                      <h5 class="description-header">แผนก</h5>         
+                       <small class="description-text">{{Auth::user()->department->Dpmname}}</small>
                     </div>
                     <!-- /.description-block -->
                 </div>
                 <!-- /.col -->
+                @endif
                 </div>
                 <!-- /.row -->
             </div>

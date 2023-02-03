@@ -95,9 +95,7 @@
                         </div>
                         </form>
 
-                            <div class=" container input-group mb-3" style="width: 18rem;">
-                                วันที่ &nbsp; <input class="form-control form-control-sm" type="date" value="<?php echo date("Y-m-d"); ?>"  >
-                            </div>
+                           
                             <!-- /search date -->
                             <br>
                             <!-- search date -->
@@ -151,9 +149,25 @@
                                                                 <td><a class="text-danger" href="{{url('/user/information/'.$row1->id)}}"><i class="bi bi-trash-fill"></i></a></td>
                                                                 <td>{{$tb3->firstItem()+$loop->index}}</td>
                                                                 <td>{{$row1->name}}&nbsp;&nbsp;{{$row1->Lastname}}</td>
-                                                                <td><?php echo mb_substr($row1->Agency, 0, 20, 'utf-8'). "...";  ?></td>
-                                                                <td>{{$row1->Branch}}</td>
-                                                                <td>{{$row1->Department}}</td>
+                                                                <!-- หน่วยงาน 4=ศูนย์ฝึกอบรม -->
+                                                                @if($row1->Agency==4)
+                                                                <td>{{$row1->agency->agency_name}}</td>
+                                                                @else
+                                                                <td><?php echo mb_substr($row1->agency->agency_name, 0, 20, 'utf-8'). "...";  ?></td>
+                                                                @endif
+                                                                <!-- สาขา -->
+                                                                @if($row1->Branch==null)
+                                                                <td>-</td>
+                                                                @else
+                                                                <td>{{$row1->branch->branche_name}}</td>
+                                                                @endif
+                                                                <!-- แผนก -->
+                                                                @if($row1->Department==null)
+                                                                <td>-</td>
+                                                                @else
+                                                                <td>{{$row1->department->Dpmname}}</td>
+                                                                @endif
+
                                                                 <td>{{$row1->Tel}}</td>
                                                                 <td>{{$row1->email}}</td>
                                                             </tr>
@@ -192,9 +206,24 @@
                                                                 <td><a class="text-danger" href="{{url('/user/information/'.$row2->id)}}"><i class="bi bi-trash-fill"></i></a></td>
                                                                 <td >{{$tb2->firstItem()+$loop->index}}</td>
                                                                 <td>{{$row2->name}}&nbsp;&nbsp;{{$row2->Lastname}}</td>
-                                                                <td><?php echo mb_substr($row2->Agency, 0, 20, 'utf-8'). "...";  ?></td>
-                                                                <td>{{$row2->Branch}}</td>
-                                                                <td>{{$row2->Department}}</td>
+                                                                <!-- หน่วยงาน 4=ศูนย์ฝึกอบรม -->
+                                                                @if($row2->Agency==4)
+                                                                <td>{{$row2->agency->agency_name}}</td>
+                                                                @else
+                                                                <td><?php echo mb_substr($row2->agency->agency_name, 0, 20, 'utf-8'). "...";  ?></td>
+                                                                @endif
+                                                                <!-- สาขา -->
+                                                                @if($row2->Branch==null)
+                                                                <td>-</td>
+                                                                @else
+                                                                <td>{{$row2->branch->branche_name}}</td>
+                                                                @endif
+                                                                <!-- แผนก -->
+                                                                @if($row2->Department==null)
+                                                                <td>-</td>
+                                                                @else
+                                                                <td>{{$row2->department->Dpmname}}</td>
+                                                                @endif
                                                                 <td>{{$row2->Tel}}</td>
                                                                 <td>{{$row2->email}}</td>
                                                             </tr>
@@ -231,9 +260,24 @@
                                                                         <td><a class="text-danger" href="{{url('/user/information/'.$row3->id)}}"><i class="bi bi-trash-fill"></i></a></td>
                                                                         <td >{{$tb1->firstItem()+$loop->index}}</td>
                                                                         <td>{{$row3->name}}&nbsp;&nbsp;{{$row3->Lastname}}</td>
-                                                                        <td><?php echo mb_substr($row3->Agency, 0, 20, 'utf-8'). "...";  ?></td>
-                                                                        <td>{{$row3->Branch}}</td>
-                                                                        <td>{{$row3->Department}}</td>
+                                                                        <!-- หน่วยงาน 4=ศูนย์ฝึกอบรม -->
+                                                                        @if($row3->Agency==4)
+                                                                        <td>{{$row3->agency->agency_name}}</td>
+                                                                        @else
+                                                                        <td><?php echo mb_substr($row3->agency->agency_name, 0, 20, 'utf-8'). "...";  ?></td>
+                                                                        @endif
+                                                                        <!-- สาขา -->
+                                                                        @if($row3->Branch==null)
+                                                                        <td>-</td>
+                                                                        @else
+                                                                        <td>{{$row3->branch->branche_name}}</td>
+                                                                        @endif
+                                                                        <!-- แผนก -->
+                                                                        @if($row3->Department==null)
+                                                                        <td>-</td>
+                                                                        @else
+                                                                        <td>{{$row3->department->Dpmname}}</td>
+                                                                        @endif
                                                                         <td>{{$row3->Tel}}</td>
                                                                         <td>{{$row3->email}}</td>
                                                                     </tr>

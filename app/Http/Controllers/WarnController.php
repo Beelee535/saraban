@@ -22,22 +22,28 @@ class WarnController extends Controller
         // user
         if($role=='0')
         {
-        $admit = admit::where('Edepartment_receive','LIKE',Auth::user()->department->Dpmid)
+        $admit = admit::where('Eagency_receive','LIKE',Auth::user()->Agency)
+        ->where('Ebranch_receive','LIKE',Auth::user()->Branch)
+        ->where('Edepartment_receive','LIKE',Auth::user()->Department)
         ->Where(function($q) {
                 $q ->where('Estatus','1')
                  ->orwhere('Estatus','4') ;
             })->orderby('Edate_out','DESC')->get();
-        $admitcount = admit::where('Edepartment_receive','LIKE',Auth::user()->department->Dpmid)
+        $admitcount = admit::where('Eagency_receive','LIKE',Auth::user()->Agency)->
+        where('Ebranch_receive','LIKE',Auth::user()->Branch)->
+        where('Edepartment_receive','LIKE',Auth::user()->Department)
         ->Where(function($q) {
             $q ->where('Estatus','1')
              ->orwhere('Estatus','4') ;
         })->count();
         $bookout = Bookout::Join('forms', 'bookouts.formid', '=', 'forms.id')->Join('transports', 'bookouts.id', '=', 'transports.trbookout')
-        ->where('Odepartment','LIKE',Auth::user()->Department)->where('trsid','1')->orderby('date','DESC')->get();
-        $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('Odepartment','LIKE',Auth::user()->Department)
-        ->where('trsid','1')->count();
-        $transport = transport::where('trdepartment','LIKE',Auth::user()->Department)->where('trsid','1')->orderby('trdate','DESC')->get();
-        $transportcount = transport::where('trdepartment','LIKE',Auth::user()->Department)->where('trsid','1')->count();
+        ->where('Oagency','LIKE',Auth::user()->Agency)->where('Obranch','LIKE',Auth::user()->Branch)->where('Odepartment','LIKE',Auth::user()->Department)
+        ->where('Ostatus','ต้องการหนังสือตอบกลับ')->where('Oupload',null)->orderby('date','DESC')->get();
+        $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')
+        ->where('Oagency','LIKE',Auth::user()->Agency)->where('Obranch','LIKE',Auth::user()->Branch)->where('Odepartment','LIKE',Auth::user()->Department)
+        ->where('Ostatus','ต้องการหนังสือตอบกลับ')->where('Oupload',null)->count();
+        $transport = transport::where('trbranch','LIKE',Auth::user()->Branch)->where('trdepartment','LIKE',Auth::user()->Department)->where('trsid','1')->orderby('trdate','DESC')->get();
+        $transportcount = transport::where('trbranch','LIKE',Auth::user()->Branch)->where('trdepartment','LIKE',Auth::user()->Department)->where('trsid','1')->count();
         }
         // staff admin
         else
@@ -50,8 +56,10 @@ class WarnController extends Controller
             $q ->where('Estatus','1')
              ->orwhere('Estatus','4') ;
         })->count();
-        $bookout = Bookout::Join('forms', 'bookouts.formid', '=', 'forms.id')->Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('trsid','1')->orderby('date','DESC')->get();
-        $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('trsid','1')->count();
+        $bookout = Bookout::Join('forms', 'bookouts.formid', '=', 'forms.id')->Join('transports', 'bookouts.id', '=', 'transports.trbookout')
+        ->where('Ostatus','ต้องการหนังสือตอบกลับ')->where('Oupload',null)->orderby('date','DESC')->get();
+        $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')
+        ->where('Ostatus','ต้องการหนังสือตอบกลับ')->where('Oupload',null)->count();
         $transport = transport::where('trsid','1')->orderby('trdate','DESC')->get();
         $transportcount = transport::where('trsid','1')->count();
         }

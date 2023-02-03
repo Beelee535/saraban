@@ -26,9 +26,12 @@ public function editprofile($id){
     $user = User::find($id);
     $prefix = Prefix::all();
     $level = level::all();
-    $agency = agency::where('agency_name','บริษัท ไอดีไดรฟ์ จำกัด (สำนักงานใหญ่)')->get();
-    $branch  = branch::where('branche_name','สำนักงานใหญ่')->get();
-    $department = Department::where('agency','1')->get();
+    $agency = agency::all();
+    $branch  = branch::orderby('agency','ASC')->get();
+    $department = Department::orderby('branch','DESC')->orderby('Dpmname','ASC')->groupBy('Dpmname')->selectRaw('count(*) as total, Dpmname')->get();
+    // $agency = agency::where('agency_name','บริษัท ไอดีไดรฟ์ จำกัด (สำนักงานใหญ่)')->get();
+    // $branch  = branch::where('branche_name','สำนักงานใหญ่')->get();
+    // $department = Department::where('branch','12')->get();
     $role=Auth::user()->role;
     return view('profilesystem.editprofile',compact('user','prefix','agency','branch','department','level'));
   }
@@ -76,10 +79,12 @@ public function updateImage(Request $request,$id)
         }
 
 public function claim(Request $request){
-                    $tb1 = User::Join('agencies', 'users.Agency', '=', 'agencies.agency_name')
-                    ->Join('branches', 'users.branch', '=', 'branches.branche_name')
-                    ->Join('departments', 'users.department', '=', 'departments.Dpmname')
-                    ->select('users.*')->where('role','2')
+                    $tb1 = User::
+                    // Join('agencies', 'users.Agency', '=', 'agencies.agency_name')
+                    // ->Join('branches', 'users.branch', '=', 'branches.branche_name')
+                    // ->Join('departments', 'users.department', '=', 'departments.Dpmname')
+                    // ->select('users.*')->
+                    where('role','2')
                     ->where('name','LIKE','%'.$request->search.'%')
                     ->Where(function($q) use ($request){
                     $q->orwhere('Lastname', 'LIKE', '%' . $request->search . '%')
@@ -87,10 +92,12 @@ public function claim(Request $request){
                     }) 
                     ->orderby('id','DESC')->paginate(15, ['*'], 'tb1');
         
-                    $tb2 = User::Join('agencies', 'users.Agency', '=', 'agencies.agency_name')
-                    ->Join('branches', 'users.branch', '=', 'branches.branche_name')
-                    ->Join('departments', 'users.department', '=', 'departments.Dpmname')
-                    ->select('users.*')->where('role','1')
+                    $tb2 = User::
+                    // Join('agencies', 'users.Agency', '=', 'agencies.agency_name')
+                    // ->Join('branches', 'users.branch', '=', 'branches.branche_name')
+                    // ->Join('departments', 'users.department', '=', 'departments.Dpmname')
+                    // ->select('users.*')->
+                    where('role','1')
                     ->where('name','LIKE','%'.$request->search.'%')
                     ->Where(function($q) use ($request){
                     $q->orwhere('Lastname', 'LIKE', '%' . $request->search . '%')
@@ -99,10 +106,12 @@ public function claim(Request $request){
                     ->orderby('id','DESC')->paginate(15, ['*'], 'tb2');
                     
                     // user
-                    $tb3 =User::Join('agencies', 'users.Agency', '=', 'agencies.agency_name')
-                    ->Join('branches', 'users.branch', '=', 'branches.branche_name')
-                    ->Join('departments', 'users.department', '=', 'departments.Dpmname')
-                    ->select('users.*')->where('role','0') 
+                    $tb3 =User::
+                    // Join('agencies', 'users.Agency', '=', 'agencies.agency_name')
+                    // ->Join('branches', 'users.branch', '=', 'branches.branche_name')
+                    // ->Join('departments', 'users.department', '=', 'departments.Dpmname')
+                    // ->select('users.*')->
+                    where('role','0') 
                     ->where('name','LIKE','%'.$request->search.'%')
                     ->Where(function($q) use ($request){
                     $q->orwhere('Lastname', 'LIKE', '%' . $request->search . '%')
@@ -117,9 +126,15 @@ public function claim(Request $request){
 public function addclaim()
                 {
                     $prefix = Prefix::all();
-                    $agency = agency::where('agency_name','บริษัท ไอดีไดรฟ์ จำกัด (สำนักงานใหญ่)')->get();
-                    $branch  = branch::where('branche_name','สำนักงานใหญ่')->get();
-                    $department = Department::where('agency','1')->get();
+                    $agency = agency::all();
+                    $branch  = branch::orderby('agency','ASC')->get();
+                    $department = Department::orderby('branch','DESC')->orderby('Dpmname','ASC')->groupBy('Dpmname')->selectRaw('count(*) as total, Dpmname')->get();
+                    // $department = Department::all()->orderby('branch','DESC')->groupBy('Dpmname');
+
+                    // $agency = agency::where('agency_name','บริษัท ไอดีไดรฟ์ จำกัด (สำนักงานใหญ่)')->get();
+                    // $branch  = branch::where('branche_name','สำนักงานใหญ่')->get();
+                    // $department = Department::where('branch','12')->get();
+                    // return view('claim.addclaim',compact('prefix','agency'));
                     return view('claim.addclaim',compact('prefix','agency','branch','department'));
                 }
         
@@ -146,16 +161,21 @@ public function addclaimuser(Request $request){
 //edit ข้อมูลผู้ใช้ claim staff
 public function editclaim(Request $request , $id){
                     $user = User::find($id);
-                    $agency = agency::where('agency_name','บริษัท ไอดีไดรฟ์ จำกัด (สำนักงานใหญ่)')->get();
-                    $branch  = branch::where('branche_name','สำนักงานใหญ่')->get();
-                    $department = Department::where('agency','1')->get();
+                    $prefix = Prefix::all();
+                    // $agency = agency::where('agency_name','บริษัท ไอดีไดรฟ์ จำกัด (สำนักงานใหญ่)')->get();
+                    // $branch  = branch::where('branche_name','สำนักงานใหญ่')->get();
+                    // $department = Department::where('branch','12')->get();
+                    $agency = agency::all();
+                    $branch  = branch::orderby('agency','ASC')->get();
+                    $department = Department::orderby('branch','DESC')->orderby('Dpmname','ASC')->groupBy('Dpmname')->selectRaw('count(*) as total, Dpmname')->get();
                     // $department = Department::all();
-                    return view('claim.editclaim',compact('user','agency','branch','department'));
+                    return view('claim.editclaim',compact('user','agency','branch','department','prefix'));
                 }
         
 // อัปเดตข้อมูลผู้ใช้ claim staff tb3
 public function updateclaim(Request $request , $id){
                     $update = User::find($id)->update([
+                        'Prefix'=>$request->Prefix,
                         'name'=>$request->name,
                         'Lastname'=>$request->Lastname,
                         'Tel'=>$request->Tel,
@@ -191,7 +211,7 @@ public function changepassword($id){
 
 // อัปเดรตรหัสผ่าน
 public function updatepassword(Request $request, $id)
-{
+ {
     # Validation
     $request->validate([
         'old_password' => 'required',
@@ -211,7 +231,50 @@ public function updatepassword(Request $request, $id)
 
     // dd($update);
     return back()->with("status", "อัปเดตรหัสผ่านเรียบร้อย");
-}
+ }
 
         
+public function getbranch(Request $request)
+ {
+ $cid=$request->post('cid');
+  $branch= branch::where('agency',$cid)->get();
+  $html='<option value="">กรุณาเลือกสาขา</option>';
+  foreach($branch as $list){
+  $html.='<option value="'.$list->branche_id.'">'.$list->branche_name.'</option>';
+  }
+  echo  $html;
+ }
+
+public function getdepartment(Request $request)
+ {
+  $sid=$request->post('sid');
+  $department= Department::where('branch',$sid)->get();
+  $html='<option value="" >กรุณาเลือกฝ่าย</option>';
+  foreach($department as $list){
+  $html.='<option value="'.$list->Dpmid.'">'.$list->Dpmname.'</option>';
+  }
+  echo  $html;
+ }
+public function getbranch1(Request $request)
+ {
+
+ $cid=$request->post('cid');
+  $branch= branch::where('agency',$cid)->get();
+  $html='<option value="" >กรุณาเลือกสาขา</option>';
+  foreach($branch as $list){
+  $html.='<option value="'.$list->branche_id.'">'.$list->branche_name.'</option>';
+  }
+  echo  $html;
+ }
+
+public function getdepartment1(Request $request)
+ {
+  $sid=$request->post('sid');
+  $department= Department::where('branch',$sid)->get();
+  $html='<option value="" >กรุณาเลือกฝ่าย</option>';
+  foreach($department as $list){
+  $html.='<option value="'.$list->Dpmid.'">'.$list->Dpmname.'</option>';
+  }
+  echo  $html;
+}
 }

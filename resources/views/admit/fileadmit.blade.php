@@ -25,6 +25,9 @@
                 <input type="file" class = "form-control" name="File" placeholder="File"value="{{$admit->Efile}}">
                 </div>
                 </div>     
+                @error('File')
+                    <div class="text-danger text-center">{{$message}}</div>
+                @enderror
                 <br>     
               </div>   
             </div>

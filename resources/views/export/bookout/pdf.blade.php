@@ -136,7 +136,15 @@
                                         $myMonth = $thaimonth[date(" m ", strtotime($myDate))-1];
                                         echo date("d $myMonth ",strtotime($myDate)).$myYearBuddhist;
                                         ?></td>
-                                        <td class="db">ฝ่าย{{$row->Odepartment}}/{{$row->Obranch}}</td>
+                                        <td class="db">
+                                        @if($row->branch->branche_name=='-')
+                                        {{$row->agency->agency_name}}
+                                        @elseif($row->Department->Dpmname=='-')
+                                        {{$row->agency->agency_name}}/{{$row->branch->branche_name}}
+                                        @else
+                                        {{$row->department->Dpmname}}/{{$row->branch->branche_name}}
+                                        @endif  
+                                        </td>
                                         <td class="number">{{$row->Onumber}}</td>
                                         <td class="agency">{{$row->Oag_receive}}</td>
                                         <!-- <td class="story">{{$row->Ostory}} </td> -->

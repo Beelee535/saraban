@@ -34,7 +34,7 @@
                                         <div class="col-sm-2 col-form-label" >หน่วยงาน : </div>
                                             <div class="col-sm-9">
                                                 <select class="form-control"  value="{{$admit->Eagency}}"  name="Eagency"  disabled>
-                                                    <option selected>{{Auth::user()->Agency}}</option>
+                                                    <option selected>{{Auth::user()->agency->agency_name}}</option>
                                                 </select>
                                             </div>
                                     </div>
@@ -43,7 +43,7 @@
                                         <div class="col-sm-2 col-form-label">ฝ่าย/สาขา : </div>
                                             <div class="col-sm-9">
                                                 <select class="form-control"  value="{{$admit->Edepartmentbranch}}" name="Edepartmentbranch"   disabled>
-                                                    <option selected>{{Auth::user()->Department}}/{{Auth::user()->Branch}}</option>
+                                                    <option selected>{{Auth::user()->department->Dpmname}}/{{Auth::user()->branch->branche_name}}</option>
                                                 </select>
                                             </div>
                                     </div>
@@ -72,7 +72,7 @@
                                 <div class="col-sm-9">
                                 <select class="form-control" name="Eagency_receive" id="agency"  required>
                                 <!-- <option selected="" disabled>กรุณาเลือกหน่วยงาน</option> -->
-                                <option selected  value="{{$admit->Eagency_receive}}" >กรุณาเลือกหน่วยงาน</option>
+                                <option selected  value="{{$admit->Eagency_receive}}" >{{$admit->agency->agency_name}}</option>
                                 @foreach($agency as $rowabs)
                                 <option value="{{ $rowabs->agency_id}}">{{ $rowabs->agency_name}}</option>
                                 @endforeach
@@ -84,7 +84,7 @@
                                 <div class="col-sm-2 col-form-label">สาขางาน ผู้รับ</div>
                                 <div class="col-sm-9">
                                 <select class="form-control" name="Ebranch_receive" id="branch"  required>
-                                <option value="{{$admit->Ebranch_receive}}">กรุณาเลือกสาขา</option>
+                                <option value="{{$admit->Ebranch_receive}}">{{$admit->branch->branche_name}}</option>
                                 </select>
                                 </div>
                             </div>
@@ -93,7 +93,7 @@
                                 <div class="col-sm-2 col-form-label">ฝ่าย ผู้รับ</div>
                                 <div class="col-sm-9">
                                 <select class="form-control input-lg" name="Edepartment_receive" id="department"  required>
-                                <option value="{{$admit->Edepartment_receive}}">กรุณาเลือกฝ่าย</option>
+                                <option value="{{$admit->Edepartment_receive}}">{{$admit->department->Dpmname}}</option>
                                 </select>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                                     <div class="col-sm-9">
                                         <div class="row">
                                             <div class="col">
-                                                <input type="text" class="form-control" placeholder="ชื่อ" value="{{$admit->Ename_receive}}"  name="Ename_receive" >
+                                                <input type="text" class="form-control" placeholder="ชื่อ" value="{{$admit->Ename_receive}}"  name="Ename_receive" required>
                                             </div>
                                         </div>
                                     </div>
@@ -112,14 +112,14 @@
                             <div class="mb-3 row">
                                 <div class="col-sm-2 col-form-label">วันที่รับ :</div>
                                     <div class="col-sm-9">
-                                        <input class="form-control" type="date" value="{{$admit->Edate_receive}}" name="Edate_receive" >
+                                        <input class="form-control" type="date" value="{{$admit->Edate_receive}}" name="Edate_receive" required>
                                     </div>
                             </div>
 
                             <div class="mb-3 row">
                                 <div class="col-sm-2 col-form-label">วันที่ส่งออก :</div>
                                     <div class="col-sm-9">
-                                        <input class="form-control" type="date"  name="Edate_out"  value="{{$admit->Edate_out}}">
+                                        <input class="form-control" type="date"  name="Edate_out"  value="{{$admit->Edate_out}}" required>
                                     </div>
                             </div>
 
@@ -149,7 +149,7 @@
                             <div class="mb-3 row">
                                 <div class="col-sm-2 col-form-label">เลขที่รับหนังสือ :</div>
                                     <div class="col-sm-9">
-                                        <input class="form-control" type="text" placeholder="กรุณากรอกเลขหนังสือ"value="{{$admit->Ebook_receipt}}" aria-label="default input example"  name="Ebook_receipt"  >
+                                        <input class="form-control" type="text" placeholder="กรุณากรอกเลขหนังสือ"value="{{$admit->Ebook_receipt}}" aria-label="default input example"  name="Ebook_receipt"  required>
                                     </div>
                             </div>
                                     </div>

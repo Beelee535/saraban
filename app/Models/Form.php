@@ -22,7 +22,10 @@ class Form extends Model
         'ctname',
         'ctphone',
         'ctemail',
-        'type'
+        'type',
+        'formagency',
+        'formbranch',
+        'formdepartment'
     ];
    
 }

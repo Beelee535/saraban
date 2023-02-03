@@ -75,10 +75,26 @@
                         ?>
                     </div>
                     <div class="col-4">
-                    {{$rowadmit->Ebookeagency}}<span class="text-warning"> (ส่งถึงฝ่าย{{$rowadmit->Department->Dpmname}})</span>
+                    @if($rowadmit->branch->branche_name=='-')
+                    {{$rowadmit->Ebookeagency}}<span class="text-gray" style="font-size:13px;"> ({{$rowadmit->agency->agency_name}})</span>
+                    @elseif($rowadmit->Department->Dpmname=='-')
+                    {{$rowadmit->Ebookeagency}}<span class="text-gray" style="font-size:13px;"> ({{$rowadmit->branch->branche_name}})</span>
+                    @else
+                    {{$rowadmit->Ebookeagency}}<span class="text-gray" style="font-size:13px;"> ({{$rowadmit->Department->Dpmname}}/{{$rowadmit->branch->branche_name}})</span>
+                    @endif     
                     </div>
                      <div class="col-4">
-                      {{$rowadmit->Esubject}} <span class="text-warning">({{$rowadmit->Status->Sname}})</span>
+                      {{$rowadmit->Esubject}}
+                      @if($rowadmit->Status->Sname=="ไม่ตอบรับ")
+                      <span class="text-danger" style="font-size:13px;">
+                      ({{$rowadmit->Status->Sname}})
+
+                      @elseif($rowadmit->Status->Sname=="รอดำเนินการ")
+                      <span class="text-warning" style="font-size:13px;">
+                      ({{$rowadmit->Status->Sname}})
+                      
+                      @endif
+                    </span>
                     </div>
                 </div><hr></a>
            @endforeach  
@@ -112,10 +128,16 @@
                         ?>
                     </div>
                     <div class="col-4">
-                    ฝ่าย{{$rowbookout->Odepartment}}/{{$rowbookout->Obranch}}
+                    @if($rowbookout->branch->branche_name=='-')
+                    {{$rowbookout->agency->agency_name}}
+                    @elseif($rowbookout->Department->Dpmname=='-')
+                    {{$rowbookout->agency->agency_name}}/{{$rowbookout->branch->branche_name}}
+                    @else
+                    {{$rowbookout->department->Dpmname}}/{{$rowbookout->branch->branche_name}}
+                    @endif  
                     </div>
                     <div class="col-4">
-                      {{$rowbookout->form->story}} <span class="text-warning"></span>
+                      {{$rowbookout->form->story}} <span class="text-warning"style="font-size:13px;">({{$rowbookout->Ostatus}})</span>
                     </div>
                 </div> <hr></a>
           @endforeach  
@@ -147,10 +169,17 @@
                         ?>
                     </div>
                     <div class="col-4">
-                    ฝ่าย{{$rowtr->trdepartment}}/{{$rowtr->trbranch}}
+                    @if($rowtr->branch->branche_name=='-')
+                    {{$rowtr->agency->agency_name}}
+                    @elseif($rowtr->Department->Dpmname=='-')
+                    {{$rowtr->agency->agency_name}}/{{$rowtr->branch->branche_name}}
+                    @else
+                    {{$rowtr->department->Dpmname}}/{{$rowtr->branch->branche_name}}
+                    @endif  
                     </div>
                     <div class="col-4">
-                      {{$rowtr->form->story}} <span class="text-warning">({{$rowtr->Status->Sname}})</span>
+                    <!-- <span class="right badge badge-warning" style="font-size:7px;">{{$rowtr->Status->Sname}}</span> -->
+                      {{$rowtr->form->story}} <span class="text-warning" style="font-size:13px;">({{$rowtr->Status->Sname}})</span>
                     </div>
                 </div> <hr></a>
           @endforeach  

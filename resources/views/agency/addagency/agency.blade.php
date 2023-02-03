@@ -55,7 +55,7 @@
                                      <tr>
                                         <td >{{$i++}}</td>  
                                         <td>{{$rowagency->agency_name}}</td> 
-                                        <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteagency{{$rowagency->agency_id}}">ลบ</button></td>    
+                                        <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteagency{{$rowagency->agency_id}}"><i class="bi bi-trash"></i></button></td>    
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="deleteagency{{$rowagency->agency_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -107,7 +107,17 @@
         @else
 
         @endif
-            
+ <br><br>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">    
+                 @if(Auth::user()->role==0)
+                 <a href="{{route('agency')}}" class="btn btn-secondary" type="button">ย้อนกลับ</a>
+                 @elseif(Auth::user()->role==1)
+                 <a href="{{route('agency')}}" class="btn btn-secondary" type="button">ย้อนกลับ</a>
+                 @elseif(Auth::user()->role==2)
+                 <a href="{{route('agency')}}" class="btn btn-secondary" type="button">ย้อนกลับ</a>
+                 @endif      
+        </div>
+
 
        <!-- จบ -->
        </div>

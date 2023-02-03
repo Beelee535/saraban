@@ -36,7 +36,7 @@
                                         <div class="col-sm-2 col-form-label" >หน่วยงาน : </div>
                                             <div class="col-sm-9">
                                                 <select class="form-control" name="Eagency"  disabled>
-                                                    <option selected>{{Auth::user()->Agency}}</option>
+                                                    <option selected>{{Auth::user()->agency->agency_name}}</option>
                                                 </select>
                                             </div>
                                     </div>
@@ -45,7 +45,7 @@
                                         <div class="col-sm-2 col-form-label">ฝ่าย/สาขา : </div>
                                             <div class="col-sm-9">
                                                 <select class="form-control" name="Edepartmentbranch"   disabled>
-                                                    <option selected>{{Auth::user()->Department}}/{{Auth::user()->Branch}}</option>
+                                                    <option selected>{{Auth::user()->department->Dpmname}}/{{Auth::user()->branch->branche_name}}</option>
                                                 </select>
                                             </div>
                                     </div>

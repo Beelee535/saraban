@@ -67,8 +67,18 @@
     color: gray;
     border:none;
 }
-
-
+.story{
+    width: 9em; 
+    word-wrap: break-word;
+}
+.agency1{
+    width: 9em; 
+    word-wrap: break-word;
+}
+.dpmb{
+    width: 13em; 
+    word-wrap: break-word;
+}
 
 </style>
 <div class="content-wrapper">
@@ -187,7 +197,7 @@
                                 <td >{{$bookoutrowyes->firstItem()+$loop->index}}</td>
                                         <td>{{$rowyes->Onumber}}</td>
                                          <!-- ถึงหน่วยงาน -->
-                                         <td>
+                                         <td class="agency1">
                                         <?php 
                                         if(strlen($rowyes->Oag_receive) > 30){
                                         echo mb_substr($rowyes->Oag_receive, 0, 30).'...';
@@ -198,7 +208,7 @@
                                         ?>
                                         </td>
                                         <!-- เรื่อง -->
-                                        <td><?php 
+                                        <td class="story"><?php 
                                         if(strlen($rowyes->form->story) > 30){
                                         echo mb_substr($rowyes->form->story, 0, 30).'...';
                                         }
@@ -214,7 +224,13 @@
                                         $myMonth = $thaimonth[date(" m ", strtotime($myDate))-1];
                                         echo date("d $myMonth ",strtotime($myDate)).$myYearBuddhist;
                                         ?></td>
-                                        <td>ฝ่าย{{$rowyes->Odepartment}}/{{$rowyes->Obranch}}</td>
+                                        @if($rowyes->branch->branche_name=='-')
+                                        <td class="dpmb">{{$rowyes->agency->agency_name}}</td>                                                            
+                                        @elseif($rowyes->Department->Dpmname=='-')
+                                        <td class="dpmb">{{$rowyes->agency->agency_name}}/{{$rowyes->branch->branche_name}}</td>
+                                        @else
+                                        <td class="dpmb">{{$rowyes->Department->Dpmname}}/{{$rowyes->branch->branche_name}}</td>                                                            
+                                        @endif   
                                         <td>{{$rowyes->Oname}}</td>
                                          <!-- หนังสือตอบกลับ -->
                                          @foreach($setallow as $reply)
@@ -367,12 +383,20 @@
 
                                 <div class="d-flex justify-content-center text-dark" >
                                 <div class="col-4" >หน่วยงานผู้บันทึก : </div>
-                                <div class="col-7"  style="margin-left:50px">{{$rowyes->Oagency}}</div>
+                                <div class="col-7"  style="margin-left:50px">{{$rowyes->agency->agency_name}}</div>
                                 </div>
 
                                 <div class="d-flex justify-content-center text-dark" >
                                 <div class="col-4" >ฝ่าย/สาขาผู้บันทึก : </div>
-                                <div class="col-7"  style="margin-left:50px">{{$rowyes->Odepartment}}/{{$rowyes->Obranch}}</div>
+                                <div class="col-7"  style="margin-left:50px">
+                                @if($rowyes->branch->branche_name=='-')
+                                       -                                                           
+                                        @elseif($rowyes->Department->Dpmname=='-')
+                                        {{$rowyes->branch->branche_name}}
+                                        @else
+                                        {{$rowyes->Department->Dpmname}}/{{$rowyes->branch->branche_name}}                                                            
+                                        @endif     
+                            </div>
                                 </div>
 
                                 <div class="d-flex justify-content-center text-dark">
@@ -477,7 +501,7 @@
                                 <td >{{$bookoutrowno->firstItem()+$loop->index}}</td>
                                         <td>{{$rowno->Onumber}}</td>
                                          <!-- ถึงหน่วยงาน -->
-                                         <td>
+                                         <td class="agency1">
                                         <?php 
                                         if(strlen($rowno->Oag_receive) > 30){
                                         echo mb_substr($rowno->Oag_receive, 0, 30).'...';
@@ -488,7 +512,7 @@
                                         ?>
                                         </td>
                                         <!-- เรื่อง -->
-                                        <td><?php 
+                                        <td class="story"><?php 
                                         if(strlen($rowno->form->story) > 30){
                                         echo mb_substr($rowno->form->story, 0, 30).'...';
                                         }
@@ -504,7 +528,13 @@
                                         $myMonth = $thaimonth[date(" m ", strtotime($myDate))-1];
                                         echo date("d $myMonth ",strtotime($myDate)).$myYearBuddhist;
                                         ?></td>
-                                        <td>ฝ่าย{{$rowno->Odepartment}}/{{$rowno->Obranch}}</td>
+                                        @if($rowno->branch->branche_name=='-')
+                                        <td class="dpmb">{{$rowno->agency->agency_name}}</td>                                                            
+                                        @elseif($rowno->Department->Dpmname=='-')
+                                        <td class="dpmb">{{$rowno->agency->agency_name}}/{{$rowno->branch->branche_name}}</td>
+                                        @else
+                                        <td class="dpmb">{{$rowno->Department->Dpmname}}/{{$rowno->branch->branche_name}}</td>                                                            
+                                        @endif 
                                         <td>{{$rowno->Oname}}</td>
                                          <!-- แก้ไขฟอร์ม -->
                                          @foreach($setallow as $editform)
@@ -574,12 +604,20 @@
 
                                 <div class="d-flex justify-content-center text-dark" >
                                 <div class="col-4" >หน่วยงานผู้บันทึก : </div>
-                                <div class="col-7"  style="margin-left:50px">{{$rowno->Oagency}}</div>
+                                <div class="col-7"  style="margin-left:50px">{{$rowno->agency->agency_name}}</div>
                                 </div>
 
                                 <div class="d-flex justify-content-center text-dark" >
                                 <div class="col-4" >ฝ่าย/สาขาผู้บันทึก : </div>
-                                <div class="col-7"  style="margin-left:50px">{{$rowno->Odepartment}}/{{$rowno->Obranch}}</div>
+                                <div class="col-7"  style="margin-left:50px">
+                                @if($rowno->branch->branche_name=='-')
+                                        -                                                       
+                                        @elseif($rowno->Department->Dpmname=='-')
+                                        {{$rowno->branch->branche_name}}
+                                        @else
+                                        {{$rowno->Department->Dpmname}}/{{$rowno->branch->branche_name}}                                                            
+                                        @endif     
+                            </div>
                                 </div>
 
                                 <div class="d-flex justify-content-center text-dark">
@@ -690,7 +728,7 @@
                                         <td >{{$bookoutrow->firstItem()+$loop->index}}</td>
                                         <td>{{$row->Onumber}}</td>
                                          <!-- ถึงหน่วยงาน -->
-                                         <td>
+                                         <td class="agency1">
                                         <?php 
                                         if(strlen($row->Oag_receive) > 30){
                                         echo mb_substr($row->Oag_receive, 0, 30).'...';
@@ -701,7 +739,7 @@
                                         ?>
                                         </td>
                                         <!-- เรื่อง -->
-                                        <td><?php 
+                                        <td class="story"><?php 
                                         if(strlen($row->form->story) > 30){
                                         // echo strlen($row->Ostory);
                                         echo mb_substr($row->form->story, 0, 30).'...';
@@ -720,7 +758,13 @@
                                         $myMonth = $thaimonth[date(" m ", strtotime($myDate))-1];
                                         echo date("d $myMonth ",strtotime($myDate)).$myYearBuddhist;
                                         ?></td>
-                                        <td>{{$row->Odepartment}}/{{$row->Obranch}}</td>
+                                        @if($row->branch->branche_name=='-')
+                                        <td class="dpmb">{{$row->agency->agency_name}}</td>                                                            
+                                        @elseif($row->Department->Dpmname=='-')
+                                        <td class="dpmb">{{$row->agency->agency_name}}/{{$row->branch->branche_name}}</td>
+                                        @else
+                                        <td class="dpmb">{{$row->Department->Dpmname}}/{{$row->branch->branche_name}}</td>                                                            
+                                        @endif     
                                         <td>{{$row->Oname}} </td>
                                          <!-- หนังสือตอบกลับ -->
                                          @foreach($setallow as $editform)
@@ -901,12 +945,20 @@
 
                                 <div class="d-flex justify-content-center text-dark" >
                                 <div class="col-4" >หน่วยงานผู้บันทึก : </div>
-                                <div class="col-7"  style="margin-left:50px">{{$row->Oagency}}</div>
+                                <div class="col-7"  style="margin-left:50px">{{$row->agency->agency_name}}</div>
                                 </div>
 
                                 <div class="d-flex justify-content-center text-dark" >
                                 <div class="col-4" >ฝ่าย/สาขาผู้บันทึก : </div>
-                                <div class="col-7"  style="margin-left:50px">{{$row->Odepartment}}/{{$row->Obranch}}</div>
+                                <div class="col-7"  style="margin-left:50px">
+                                @if($row->branch->branche_name=='-')
+                                        -                                                           
+                                        @elseif($row->Department->Dpmname=='-')
+                                        {{$row->branch->branche_name}}
+                                        @else
+                                        {{$row->Department->Dpmname}}/{{$row->branch->branche_name}}                                                            
+                                        @endif     
+                            </div>
                                 </div>
 
                                 <div class="d-flex justify-content-center text-dark">
@@ -971,5 +1023,17 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+  var url = document.location.toString();
+  if (url.match('#')) {
+    $('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
+  } 
 
+  $('.nav-tabs a').on('shown.bs.tab', function (e) {
+    window.location.hash = e.target.hash;
+    if(e.target.hash == "#activity"){
+      $('.nano').nanoScroller();
+    }
+  })
+</script>
 @endsection

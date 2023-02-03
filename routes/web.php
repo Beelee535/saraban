@@ -129,6 +129,10 @@ Route::get('/user/information/{id}',[ProfileController::class,'destroy']);
 Route::get('/editpassword',[ProfileController::class,'editepassword'])->name('editepassword');
 Route::get('/changepassword/{id}',[ProfileController::class,'changepassword'])->name('changepassword');
 Route::post('/changepassword/update/{id}',[ProfileController::class,'updatepassword'])->name('updatepassword');
+Route::post('/claim/getbranch',[ProfileController::class,'getbranch']); //สาขา
+Route::post('/claim/getdepartment',[ProfileController::class,'getdepartment']); //ฝ่าย
+Route::post('/profile/getbranch',[ProfileController::class,'getbranch1']); //สาขา
+Route::post('/profile/getdepartment',[ProfileController::class,'getdepartment1']); //ฝ่าย
 
 //การอนุญาต
 Route::get('/allow',[AllowController::class,'allow'])->name('allow');

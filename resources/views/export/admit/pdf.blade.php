@@ -103,7 +103,13 @@
                                         <td>{{$row->Ebookeagency}}</td>
                                         <td>{{$row->Esubject}}</td>
                                         <td>{{$row->Ebook_receipt}}</td>
+                                        @if($row->branch->branche_name=='-')
+                                        <td>{{$row->agency->agency_name}}</td>                                                            
+                                        @elseif($row->Department->Dpmname=='-')
+                                        <td>{{$row->agency->agency_name}}/{{$row->branch->branche_name}}</td>
+                                        @else
                                         <td>{{$row->Department->Dpmname}}/{{$row->branch->branche_name}}</td>                                                            
+                                        @endif                                   
                                         <td>{{$row->Enamereply}}</td>
                                         <td><?php
                                             $myDate= $row->Edate_out;

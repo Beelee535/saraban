@@ -50,6 +50,10 @@ class admit extends Model
         return $this->hasOne(Department::class,'Dpmid','Edepartment_receive');
         //thisคือตัวแทนของdepartmentไปเชื่อมกับuserแบบ 1ต่อ1 id=user user_id=department
     }
+    public function Edepartmentbranch(){
+        return $this->hasOne(Department::class,'Dpmid','Edepartmentbranch');
+        //thisคือตัวแทนของdepartmentไปเชื่อมกับuserแบบ 1ต่อ1 id=user user_id=department
+    }
 
     public function admitstory(){
         return $this->hasOne(admitstory::class,'amstory_name','Esubject');

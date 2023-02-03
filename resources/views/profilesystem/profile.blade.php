@@ -207,13 +207,15 @@
                                             <p><span>นามสกุล : </span>{{Auth::user()->Lastname}} </p>
                                         </div>
                                         <div class="bio-row">
-                                            <p><span>หน่วยงาน :</span> {{Auth::user()->Agency}} </p>
+                                            <p><span>หน่วยงาน :</span> {{Auth::user()->agency->agency_name}} </p>
                                         </div>
+
                                         <div class="bio-row">
-                                            <p><span>สาขา : </span>{{Auth::user()->Branch}} </p>
+                                            <p><span>สาขา : </span>{{Auth::user()->branch->branche_name}} </p>
                                         </div>
+
                                         <div class="bio-row">
-                                            <p><span>แผนก : </span>ฝ่าย{{Auth::user()->Department}} </p>
+                                            <p><span>แผนก : </span>{{Auth::user()->department->Dpmname}} </p>
                                         </div>
                                         <div class="bio-row">
                                             <p><span>ระดับผู้ใช้ : </span>{{Auth::user()->level->levelname}}</p>

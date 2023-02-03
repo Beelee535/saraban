@@ -108,7 +108,7 @@
               <p style="font-size:18px;margin-top:-25px;">Tel : 043-228 899 www.iddrices.co.th Email : idofficer@iddrives.co.</p>
               <div style="border: 0.5px solid #B4B4B4;margin:10px;margin-top:-10px;"></div>
             
-            @elseif($form->type=='สถานตรวจสภาพรถ ศูนย์ตรอ.ไอดี')
+            @elseif($form->type=='สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')
             <div class="text-center">
             <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('dist/img/logoINS.png'))) }}" style="margin-top:-25px;" width="93"/>
              </div>
@@ -120,14 +120,18 @@
              </p><div style="border: 0.5px solid #B4B4B4;margin:10px;margin-top:-5px;"></div>
                       
              @elseif($form->type=='ศูนย์ฝึกอบรม')
-              <p style="margin-top:-30px;margin-left:10px;"><b style="font-size:22px;" >  ศูนย์ฝึกอบรมไอดีไดรฟ์ สาขาแก่งคอย </b></p>
-              <p style="font-size:18px;margin-top:-40px;margin-left:10px;">บริหารโดยบริษัท ไอดีไดรฟ์ จำกัด เลขที่ผู้เสียภาษี 0405536000531</p>
-              <p style="font-size:18px;margin-top:-25px;margin-left:10px;">ที่อยู่ 58/1 หมู่ 9 ตำบลทับกวาง อำเภอแก่งคอย จังหวัดสระบุรี 18260</p>
-              <p style="font-size:18px;margin-top:-25px;margin-left:10px;">Email: id.trainingcenter@iddrives.co.th  Tel: 082-7513888</p>
-              <div class="box4"  style="margin-top:-100px;margin-right:85px;">
-              <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('dist/img/logotz1.png'))) }}" style="margin-left:10px;margin-top:-25px;" width="106px"/>
-              </div>
-              <div style="border: 0.5px solid #B4B4B4;margin:10px;margin-top:-10px;"></div>
+             <div class="text-center">
+             <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('dist/img/logoIDD.png'))) }}" style="margin-top:-30px;margin-right:15px;"  height="35"/>
+             <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('dist/img/logoiddrives.png'))) }}" style="margin-top:-30px;margin-right:15px;"  height="70"/>
+             <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('dist/img/logoTZ2.png'))) }}" style="margin-top:-30px;"  height="53"/>
+             </div>
+             <div class="d-flex justify-content-start" style="margin-left:40px;margin-bottom:3px;margin-top:-10px;">
+             <b style="font-size:22px;">ศูนย์ฝึกอบรมเทรนนิ่งเซนเตอร์</b>&nbsp;
+             <b style="font-size:18px;">บริหารงานโดย บริษัท ไอดีไดรฟ์ จำกัด เลขที่ผู้เสียภาษี 0405536000531</b>
+            </div><p style="font-size:16px;">
+            ที่อยู่ 200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัด Tel : 043-228 899   www.iddrices.co.th  Email : idofficer@iddrives.co.th           
+             </p>
+             <div style="border: 0.5px solid #B4B4B4;margin:10px;margin-top:-5px;"></div>
              @endif
 
             <div class="text-end" style="font-size:18px;">
@@ -185,7 +189,7 @@
             (...........................................................)
             </div>
 
-            <div class="footer">
+            <div class="footer" style="margin-bottom:-30px">
             <div style="border: 1px solid #000000; overflow: auto; width: 280px; height:auto;">
             <div class="d-flex justify-content-start"  style="margin-left: 10px;font-size:16px;">
             สอบถามได้ที่

@@ -26,7 +26,7 @@
                 <div class="mb-3 row">
                 <div class="col-sm-2 col-form-label">หน่วยงาน</div>
                 <div class="col-sm-9">
-                <input class="form-control"  type="text"  value="{{$transport->bookout->Oagency}}" disabled>
+                <input class="form-control"  type="text"  value="{{$transport->agency->agency_name}}" disabled>
                 </div>
                 </div>
 
@@ -34,14 +34,14 @@
                 <div class="mb-3 row">
                 <div class="col-sm-2 col-form-label">ฝ่าย</div>
                 <div class="col-sm-9">
-                <input class="form-control"   type="text"  value="{{$transport->bookout->Odepartment}}" disabled>
+                <input class="form-control"   type="text"  value="{{$transport->department->Dpmname}}" disabled>
                 </div>
                 </div>
                 
                 <div class="mb-3 row">
                 <div class="col-sm-2 col-form-label">สาขา</div>
                 <div class="col-sm-9">
-                <input class="form-control"   type="text"  value="{{$transport->bookout->Obranch}}" disabled>
+                <input class="form-control"   type="text"  value="{{$transport->branch->branche_name}}" disabled>
                 </div>
                 </div>
 
@@ -64,19 +64,6 @@
         <input class="form-control" name="trdate" type="date" value="{{$transport->trdate}}" required>
         </div>
         </div>
-
-        <!-- <div class="mb-3 row">
-        <div class="col-sm-2 col-form-label">ผู้ฝากส่งหนังสือ :</div>
-        <div class="col-sm-9">
-        <select class="form-control" name="trdepositor" aria-label="Default select example" >
-        <option selected="" value="{{$transport->trdepositor}}" >{{$transport->depositor->depositor_name}}</option>
-        @foreach($depositor as $rowdepositor)
-        <option value="{{ $rowdepositor->depositor_name}}">{{ $rowdepositor->depositor_name}}</option>
-        @endforeach
-        </select>  
-        </div>
-        <button type="button" class="btn btn-light" style ="border-radius: 100px; padding: .25rem 0.8rem" data-bs-toggle="modal" data-bs-target="#adddepositor"><i class="bi bi-plus-circle" style="font-size:20px;"></i></button>
-        </div> -->
 
         <div class="mb-3 row">
         <div class="col-sm-2 col-form-label">ผู้ฝากส่งหนังสือ :</div>
@@ -117,36 +104,7 @@
         </div>
         <!-- /บันทึก -->
         </form>
-
-                  <!-- Modal เพิ่มผู้ฝากส่งselect-->
-                  <!-- <div class="modal fade" id="adddepositor" tabindex="-1" aria-labelledby="adddepositorLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title fs-5" id="adddepositorLabel">บันทึกข้อมูลผู้ฝากส่ง</h4>
-                                        <i class="bi bi-x-circle" type="button" data-bs-dismiss="modal" aria-label="Close" style='font-size:25px'></i>
-                                    </div>
-                    <form action="{{url('/transport/edit/depositor')}}" method="post" enctype="multipart/form-data">
-                    @csrf 
-                                    <div class="modal-body">
-                                    <div class="mb-3 row">
-                                    <div class="col-sm-2 col-form-label">เรื่อง </div>
-                                        <div class="col-sm-10">
-                                     <input class="form-control" name="depositor_name" type="text" placeholder="กรุณากรอกผู้ฝากส่ง" required>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                                        <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </form> -->
-                            <!-- /เพิ่มผู้ฝากส่งselectmodal -->
-
-                           <!-- Modal เพิ่มหนังสือจากในselect-->
+                           <!-- Modal เพิ่มผู้ฝากส่งในselect-->
                            <div class="modal fade" id="adddepositor" tabindex="-1" aria-labelledby="adddepositorLabel" aria-hidden="true">                            
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -156,7 +114,7 @@
                                 </div>
                                 <div class="modal-body">
                                 <div class="mb-3 row">
-                                    <div class="col-sm-4 col-form-label">หนังสือจากหน่วยงาน</div>
+                                    <div class="col-sm-4 col-form-label">ผู้ฝากส่งหนังสือ</div>
                                         <div class="col-sm-8">
                                         <input class="form-control" name="depositor_name" id="depositor_name" type="text" placeholder="กรุณากรอกผู้ฝากส่ง" required>
                                         </div>

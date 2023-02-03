@@ -22,8 +22,8 @@ class HomeController extends Controller
 
        if($role=='0')
        {
-        $admitcount = admit::where('Edepartment_receive','LIKE',Auth::user()->department->Dpmid)->where('Estatus','1')->orderby('Edate_out','DESC')->count();
-        $admit = admit::where('Edepartment_receive','LIKE',Auth::user()->department->Dpmid)->where('Estatus','1')->orderby('Edate_out','DESC')->limit(1)->get();
+        $admitcount = admit::where('Edepartment_receive','LIKE',Auth::user()->Department)->where('Estatus','1')->orderby('Edate_out','DESC')->count();
+        $admit = admit::where('Edepartment_receive','LIKE',Auth::user()->Department)->where('Estatus','1')->orderby('Edate_out','DESC')->limit(1)->get();
         $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('Odepartment','LIKE',Auth::user()->Department)->where('trsid','1')->count();
         $bookout = Bookout::Join('forms', 'bookouts.formid', '=', 'forms.id')->Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('Odepartment','LIKE',Auth::user()->Department)
         ->where('trsid','1')->orderby('date','DESC')->limit(1)->get();
@@ -65,12 +65,12 @@ class HomeController extends Controller
 
         if($role=='0')
         {
-        $admitcount = admit::where('Edepartment_receive','LIKE',Auth::user()->department->Dpmid)
+        $admitcount = admit::where('Edepartment_receive','LIKE',Auth::user()->Department)
         ->Where(function($q) {
             $q ->where('Estatus','1')
              ->orwhere('Estatus','4') ;
         })->orderby('Edate_out','DESC')->count();
-        $admit = admit::where('Edepartment_receive','LIKE',Auth::user()->department->Dpmid)
+        $admit = admit::where('Edepartment_receive','LIKE',Auth::user()->Department)
         ->Where(function($q) {
             $q ->where('Estatus','1')
              ->orwhere('Estatus','4') ;

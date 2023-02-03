@@ -81,9 +81,17 @@
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <h4 class="text-right">แก้ไขข้อมูลผู้ใช้</h4>
                                 </div>
-                                <div class="row mt-2">
-                                    <div class="col-md-6"><label class="labels">ชื่อ</label><input type="text" class="form-control" placeholder="กรุณากรอกชื่อ" name="name" value="{{$user->name}}" ></div>
-                                    <div class="col-md-6"><label class="labels">นามสกุล</label><input type="text" class="form-control" placeholder="กรุณากรอกนามสกุล" name="Lastname" value="{{$user->Lastname}}"></div>
+                                <div class="row mt-3">
+                                <div class="col-md-4"><label class="labels">คำนำหน้า</label>
+                                    <select class="form-control" name="Prefix"   aria-label="Default select example"  required>
+                                     <option value="{{$user->Prefix}}">{{$user->Prefix}}</option>
+                                            @foreach($prefix as $row)
+                                                <option value="{{$row->Prename}}">{{ $row->Prename}}</option>
+                                            @endforeach
+                                    </select>
+                                    </div>
+                                    <div class="col-md-4"><label class="labels">ชื่อ</label><input type="text" class="form-control" placeholder="กรุณากรอกชื่อ" name="name" value="{{$user->name}}" ></div>
+                                    <div class="col-md-4"><label class="labels">นามสกุล</label><input type="text" class="form-control" placeholder="กรุณากรอกนามสกุล" name="Lastname" value="{{$user->Lastname}}"></div>
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-12"><label class="labels">เบอร์โทรศัพท์</label><input type="text" class="form-control" placeholder="กรุณากรอกเบอร์โทรศัพท์" name="Tel" value="{{$user->Tel}}"></div>
@@ -98,30 +106,34 @@
                         <div class="col-md-4">
                             <div class="p-3 py-5">
                                 <div class="col-md-12"><label class="labels">หน่วยงาน</label>
-                                <select name="Agency" id="input"  class="form-control" required="required" >
-                                <option  disabled>{{$user->agency->agency_name}}</option>
-                                @foreach($agency as $rowa)
-                                    <option value="{{$rowa->agency_name}}"  <?php if ($user->Agency =$rowa->agency_name) {echo "{{$user->agency->agency_name}}";} ?>>{{$rowa->agency_name }}</option>
-                                @endforeach 
-                                </select>
-                                
+                                <select class="form-control" name="Agency"  id="agency" required>
+                                            <option selected="" value="{{$user->Agency}}">{{$user->agency->agency_name}}</option>
+                                                @foreach($agency as $row)
+                                                    <option value="{{$row->agency_id}}">{{ $row->agency_name}}</option>
+                                                @endforeach
+                                        </select>
+                                        </div>
+
                                 <div class="col-md-12"><label class="labels">สาขา</label>
-                                <select name="Branch" id="input"  class="form-control" required="required" >
-                                <option  disabled>{{$user->branch->branche_name}}</option>
-                                @foreach($branch as $rowb)
-                                    <option value="{{$rowb->branche_name}}"  <?php if ($user->Branch =$rowb->branche_name) {echo "{{$user->branch->branche_name}}";} ?>>{{$rowb->branche_name }}</option>
-                                @endforeach 
-                                </select>
+                                <select class="form-control" name="Branch"  id="branch">
+                                    @if($user->Branch==null)
+                                    <option value="">กรุณาเลือกสาขา</option>
+                                    @else
+                                        <option value="{{$user->Branch}}">{{$user->branch->branche_name}}</option>
+                                    @endif
+                                               
+                                    </select>
                                 </div>
 
-                                <div class="col-md-12"><label class="labels">แผนก</label>
-                                <select name="Department" id="input"  value="{{$user->department->Dpmname}}" class="form-control" required="required" >
-                                <option value="{{$user->department->Dpmname}}" selected>{{$user->department->Dpmname}}</option>
-                                @foreach ($department as $rowd)
-                                    <option value="{{ $rowd->Dpmname }}" <?php ( $user->Department ==$rowd->Dpmname) ? 'selected' : '' ?>> {{ $rowd->Dpmname }} </option>
-                                @endforeach  
-                                </select>
-                                </div>
+                                 <div class="col-md-12"><label class="labels">แผนก</label>
+                                 <select class="form-control" name="Department" id="department">
+                                   @if($user->Department==null)
+                                   <option value="">กรุณาเลือกแผนก</option>
+                                    @else
+                                        <option value="{{$user->Department}}" >{{$user->department->Dpmname}}</option>
+                                    @endif         
+                                    </select>
+                                 </div>
 
                                 @if(Auth::user()->role==2)
                                 <br><div class="col-md-12">
@@ -157,5 +169,35 @@
     </div>
 </div>
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script>
+    jQuery(document).ready(function(){
+    jQuery('#agency').change(function(){
+       let cid=jQuery(this).val();
+       jQuery.ajax({
+        url:'/claim/getbranch',
+        type:'post',
+        data:'cid='+cid+'&_token={{csrf_token()}}',
+        success:function(result){
+            jQuery('#branch').html(result)
+        }
+       })
+    });
+
+    jQuery('#branch').change(function(){
+       let sid=jQuery(this).val();
+       jQuery.ajax({
+        url:'/claim/getdepartment',
+        type:'post',
+        data:'sid='+sid+'&_token={{csrf_token()}}',
+        success:function(result){
+            jQuery('#department').html(result)
+        }
+       })
+    });
+    })
+ </script>
 @endsection
 

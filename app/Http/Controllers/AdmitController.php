@@ -33,7 +33,9 @@ public function admituser(Request $request)
         $search = $request->input('search');
 
         $tb1 = admit::Join('statuses', 'admits.Estatus', '=', 'statuses.Sid')
-        ->select('admits.*')->where('Edepartment_receive','LIKE',Auth::user()->department->Dpmid)->where('Estatus','1')
+        ->select('admits.*')->where('Eagency_receive','LIKE',Auth::user()->Agency)
+        ->where('Ebranch_receive','LIKE',Auth::user()->Branch)
+        ->where('Edepartment_receive','LIKE',Auth::user()->Department)->where('Estatus','1')
         ->Where(function($q) use ($request){
             if($request->get('searchdate')&&$request->get('searchend')){
                 $q ->where('Edate_out','>=',$request->searchdate.'%')
@@ -48,10 +50,14 @@ public function admituser(Request $request)
         ->whereNotIn('Estatus', [2,3,4])
         ->orderby('id','DESC')->paginate(15, ['*'], 'tb1');
         $tb1count = admit::Join('statuses', 'admits.Estatus', '=', 'statuses.Sid')
-        ->select('admits.*')->where('Edepartment_receive','LIKE',Auth::user()->department->Dpmid)->where('Estatus','1')->count();
+        ->select('admits.*')->where('Eagency_receive','LIKE',Auth::user()->Agency)
+        ->where('Ebranch_receive','LIKE',Auth::user()->Branch)
+        ->where('Edepartment_receive','LIKE',Auth::user()->Department)->where('Estatus','1')->count();
 
         $tb2 = admit::Join('statuses', 'admits.Estatus', '=', 'statuses.Sid')
-        ->select('admits.*')->where('Edepartment_receive','LIKE',Auth::user()->department->Dpmid)->where('Estatus','2')
+        ->select('admits.*')->where('Eagency_receive','LIKE',Auth::user()->Agency)
+        ->where('Ebranch_receive','LIKE',Auth::user()->Branch)
+        ->where('Edepartment_receive','LIKE',Auth::user()->Department)->where('Estatus','2')
         ->Where(function($q) use ($request){
             if($request->get('searchdate')&&$request->get('searchend')){
                 $q ->where('Edate_out','>=',$request->searchdate.'%')
@@ -66,10 +72,14 @@ public function admituser(Request $request)
         ->whereNotIn('Estatus', [1,3,4])
         ->orderby('id','DESC')->paginate(15, ['*'], 'tb2');
         $tb2count = admit::Join('statuses', 'admits.Estatus', '=', 'statuses.Sid')
-        ->select('admits.*')->where('Edepartment_receive','LIKE',Auth::user()->department->Dpmid)->where('Estatus','2')->count();
+        ->select('admits.*')->where('Eagency_receive','LIKE',Auth::user()->Agency)
+        ->where('Ebranch_receive','LIKE',Auth::user()->Branch)
+        ->where('Edepartment_receive','LIKE',Auth::user()->Department)->where('Estatus','2')->count();
 
         $tb3 = admit::Join('statuses', 'admits.Estatus', '=', 'statuses.Sid')
-        ->select('admits.*')->where('Edepartment_receive','LIKE',Auth::user()->department->Dpmid)->where('Estatus','3')
+        ->select('admits.*')->where('Eagency_receive','LIKE',Auth::user()->Agency)
+        ->where('Ebranch_receive','LIKE',Auth::user()->Branch)
+        ->where('Edepartment_receive','LIKE',Auth::user()->Department)->where('Estatus','3')
         ->Where(function($q) use ($request){
             if($request->get('searchdate')&&$request->get('searchend')){
                 $q ->where('Edate_out','>=',$request->searchdate.'%')
@@ -84,10 +94,14 @@ public function admituser(Request $request)
         ->whereNotIn('Estatus', [1,2,4])
         ->orderby('id','DESC')->paginate(15, ['*'], 'tb3');
         $tb3count = admit::Join('statuses', 'admits.Estatus', '=', 'statuses.Sid')
-        ->select('admits.*')->where('Edepartment_receive','LIKE',Auth::user()->department->Dpmid)->where('Estatus','3')->count();
+        ->select('admits.*')->where('Eagency_receive','LIKE',Auth::user()->Agency)
+        ->where('Ebranch_receive','LIKE',Auth::user()->Branch)
+        ->where('Edepartment_receive','LIKE',Auth::user()->Department)->where('Estatus','3')->count();
 
         $tb4 = admit::Join('statuses', 'admits.Estatus', '=', 'statuses.Sid')
-        ->select('admits.*')->where('Edepartment_receive','LIKE',Auth::user()->department->Dpmid)->where('Estatus','4')
+        ->select('admits.*')->where('Eagency_receive','LIKE',Auth::user()->Agency)
+        ->where('Ebranch_receive','LIKE',Auth::user()->Branch)
+        ->where('Edepartment_receive','LIKE',Auth::user()->Department)->where('Estatus','4')
         ->Where(function($q) use ($request){
             if($request->get('searchdate')&&$request->get('searchend')){
                 $q ->where('Edate_out','>=',$request->searchdate.'%')
@@ -102,7 +116,9 @@ public function admituser(Request $request)
         ->whereNotIn('Estatus', [1,2,3])
         ->orderby('id','DESC')->paginate(15, ['*'], 'tb4');
         $tb4count = admit::Join('statuses', 'admits.Estatus', '=', 'statuses.Sid')
-        ->select('admits.*')->where('Edepartment_receive','LIKE',Auth::user()->department->Dpmid)->where('Estatus','4')->count();
+        ->select('admits.*')->where('Eagency_receive','LIKE',Auth::user()->Agency)
+        ->where('Ebranch_receive','LIKE',Auth::user()->Branch)
+        ->where('Edepartment_receive','LIKE',Auth::user()->Department)->where('Estatus','4')->count();
         return view('user.admit.admit',compact('admit','tb1','tb2','tb3','tb4','tb1count','tb2count','tb3count','tb4count','agency','admitstory','admitagency'));
     }
 public function statuswait(Request $request , $id)
@@ -205,7 +221,9 @@ public function admitexport(Request $request)
 
                 if($role=='0'){
                 $admit = admit::Join('statuses', 'admits.Estatus', '=', 'statuses.Sid')
-                ->select('admits.*')->where('Edepartment_receive','LIKE',Auth::user()->department->Dpmid)->where('Estatus','3')
+                ->select('admits.*')->where('Eagency_receive','LIKE',Auth::user()->Agency)
+        ->where('Ebranch_receive','LIKE',Auth::user()->Branch)
+        ->where('Edepartment_receive','LIKE',Auth::user()->Department)->where('Estatus','3')
                 ->Where(function($q) use ($request){
                     if($request->get('searchdate')&&$request->get('searchend')){
                         $q ->where('Edate_out','>=',$request->searchdate.'%')
@@ -277,7 +295,9 @@ public function admitexport(Request $request)
           $searchend = $request->input('searchend');
           if($role=='0'){
             $admit = admit::Join('statuses', 'admits.Estatus', '=', 'statuses.Sid')
-            ->select('admits.*')->where('Edepartment_receive','LIKE',Auth::user()->department->Dpmid)->where('Estatus','3')
+            ->select('admits.*')->where('Eagency_receive','LIKE',Auth::user()->Agency)
+        ->where('Ebranch_receive','LIKE',Auth::user()->Branch)
+        ->where('Edepartment_receive','LIKE',Auth::user()->Department)->where('Estatus','3')
            ->Where(function($q) use ($request){
                if($request->get('searchdate')&&$request->get('searchend')){
                    $q ->where('Edate_out','>=',$request->searchdate.'%')
@@ -494,6 +514,8 @@ public function editadmit(Request $request , $id)
     {
         $role=Auth::user()->role;
         $update = admit::find($id)->update([
+            'Eagency'=>Auth::user()->agency->agency_name,
+            'Edepartmentbranch'=>Auth::user()->department->Dpmname.'/'.Auth::user()->branch->branche_name,
             'Eagency_receive'=>$request->Eagency_receive,
             'Ebranch_receive'=>$request->Ebranch_receive,
             'Edepartment_receive'=>$request->Edepartment_receive,
@@ -595,9 +617,9 @@ public function story(Request $request)
 
 public function savestory(Request $request)
     {
-$amagency = new admitstory();
-$amagency-> amstory_name = $request->amstory_name;
-$amagency ->save();
+ $amagency = new admitstory();
+ $amagency-> amstory_name = $request->amstory_name;
+ $amagency ->save();
         return response()->json('success');
      //   $story = admitstory::all();
      //   return response()->json($story);
@@ -614,11 +636,7 @@ public function saveadmitagency(Request $request)
 
     }
 
-
-
-
-
-    public function admitagency(Request $request)
+public function admitagency(Request $request)
     {
         $admitagency = admitagency::all();
         return response()->json($admitagency);
@@ -633,8 +651,8 @@ public function store(Request $request){
         //บันทึกข้อมูล
         $data = array();
         $data["Ename"] = Auth::user()->name.' '.Auth::user()->Lastname;
-        $data["Eagency"] = Auth::user()->Agency;
-        $data["Edepartmentbranch"] = Auth::user()->Department.'/'.Auth::user()->Branch;
+        $data["Eagency"] = Auth::user()->agency->agency_name;
+        $data["Edepartmentbranch"] = Auth::user()->department->Dpmname.'/'.Auth::user()->branch->branche_name;
         $data["Edate_receive"] = $request->Edate_receive;
         $data["Edate_out"] = $request->Edate_out;
         $data["Eagency_receive"] = $request->Eagency_receive;

@@ -31,6 +31,18 @@ class transport extends Model
         return $this->hasOne(Bookout::class,'id','trbookout');
         //thisคือตัวแทนของdepartmentไปเชื่อมกับuserแบบ 1ต่อ1 id=user user_id=department
     }
+    public function agency(){
+        return $this->hasOne(agency::class,'agency_id','tragency');
+        //thisคือตัวแทนของdepartmentไปเชื่อมกับuserแบบ 1ต่อ1 id=user user_id=department
+    }
+    public function branch(){
+        return $this->hasOne(branch::class,'branche_id','trbranch');
+        //thisคือตัวแทนของdepartmentไปเชื่อมกับuserแบบ 1ต่อ1 id=user user_id=department
+    }
+    public function department(){
+        return $this->hasOne(department::class,'Dpmid','trdepartment');
+        //thisคือตัวแทนของdepartmentไปเชื่อมกับuserแบบ 1ต่อ1 id=user user_id=department
+    }
 
     public function Status(){
         return $this->hasOne(Status::class,'Sid','trsid');

@@ -65,7 +65,7 @@
                                         <td >{{$i++}}</td>
                                         <td >{{$rowbranch->agency_name}}</td>  
                                         <td>{{$rowbranch->branche_name}}</td> 
-                                        <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletebranch{{$rowbranch->branche_id}}">ลบ</button></td>    
+                                        <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletebranch{{$rowbranch->branche_id}}"><i class="bi bi-trash"></i></button></td>    
                                                 <div class="modal fade" id="deletebranch{{$rowbranch->branche_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
@@ -142,8 +142,17 @@
 
         <!-- /บรรทัดเดียวกัน -->
  </div>
-
  @endif
+<br><br>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">  
+                 @if(Auth::user()->role==0)
+                 <a href="{{route('agency')}}" class="btn btn-secondary" type="button">ย้อนกลับ</a>
+                 @elseif(Auth::user()->role==1)
+                 <a href="{{route('agency')}}" class="btn btn-secondary" type="button">ย้อนกลับ</a>
+                 @elseif(Auth::user()->role==2)
+                 <a href="{{route('agency')}}" class="btn btn-secondary" type="button">ย้อนกลับ</a>
+                 @endif      
+            </div>
 
        <!-- จบ -->
        </div>
