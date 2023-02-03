@@ -82,6 +82,10 @@
     width: 20px;
     text-align: center;
 }
+.agency1{
+    width: 7em; 
+    word-wrap: break-word;
+}
 </style>
 
 <div class="content-wrapper">
@@ -223,7 +227,7 @@ function selectAll() {
                                                                 $myMonth = $thaimonth[date(" m ", strtotime($myDate))-1];
                                                                 echo date("d $myMonth ",strtotime($myDate)).$myYearBuddhist;
                                                                 ?></td>
-                                                            <td>{{$row->Ebookeagency}}</td>
+                                                            <td class="agency1">{{$row->Ebookeagency}}</td>
                                                             <td class="story">{{$row->Esubject}}</td>
                                                             <td>{{$row->Ebook_receipt}}</td>
                                                             <td><?php
@@ -503,8 +507,8 @@ function selectAll() {
                                                                 $myMonth = $thaimonth[date(" m ", strtotime($myDate))-1];
                                                                 echo date("d $myMonth ",strtotime($myDate)).$myYearBuddhist;
                                                                 ?></td>
-                                                            <td>{{$row2->Ebookeagency}}</td>
-                                                            <td>{{$row2->Esubject}}</td>
+                                                            <td class="agency1">{{$row2->Ebookeagency}}</td>
+                                                            <td class="story">{{$row2->Esubject}}</td>
                                                             <td>{{$row2->Ebook_receipt}}</td>
                                                             <td><?php
                                                                 $myDate= $row2->Edate_out;

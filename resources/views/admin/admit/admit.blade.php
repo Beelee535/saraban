@@ -83,7 +83,7 @@
     word-wrap: break-word;
 }
 .agency1{
-    width: 8em; 
+    width: 7em; 
     word-wrap: break-word;
 }
 </style>
@@ -512,8 +512,8 @@ function selectAll() {
                                                                 $myMonth = $thaimonth[date(" m ", strtotime($myDate))-1];
                                                                 echo date("d $myMonth ",strtotime($myDate)).$myYearBuddhist;
                                                                 ?></td>
-                                                            <td>{{$row2->Ebookeagency}}</td>
-                                                            <td>{{$row2->Esubject}}</td>
+                                                            <td class="agency1">{{$row2->Ebookeagency}}</td>
+                                                            <td class="story">{{$row2->Esubject}}</td>
                                                             <td>{{$row2->Ebook_receipt}}</td>
                                                             <td><?php
                                                                 $myDate= $row2->Edate_out;
