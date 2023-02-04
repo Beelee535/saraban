@@ -26,6 +26,7 @@ use Illuminate\Support\Str;
 
 
 
+
 class FormController extends Controller
 {
     public function form()
