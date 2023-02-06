@@ -666,7 +666,7 @@ public function store(Request $request){
         $data["Estatus"] = $request->Estatus;
 
         //query builderEbook_receipt
-   DB::table('admits')->insert($data);
+        admit::create($data);
         // dd($data);
         if($role=='0'){
             return redirect()->route('admituser')->with('success',"อัพเดตข้อมูลเรียบร้อย") ;

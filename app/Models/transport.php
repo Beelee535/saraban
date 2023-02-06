@@ -40,7 +40,7 @@ class transport extends Model
         //thisคือตัวแทนของdepartmentไปเชื่อมกับuserแบบ 1ต่อ1 id=user user_id=department
     }
     public function department(){
-        return $this->hasOne(department::class,'Dpmid','trdepartment');
+        return $this->hasOne(Department::class,'Dpmid','trdepartment');
         //thisคือตัวแทนของdepartmentไปเชื่อมกับuserแบบ 1ต่อ1 id=user user_id=department
     }
 

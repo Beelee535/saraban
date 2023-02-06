@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Form;
 use App\Models\branch;
 use Illuminate\support\Facades\DB; 
-use App\Models\Transport_type;
+use App\Models\transport_type;
 use App\Models\agency;
 use Illuminate\Support\Facades\Auth;
 use App\Models\depositor;
@@ -368,7 +368,7 @@ public function add(Request $request)
         'ctemail' => $request->ctemaily,
         'type' => $request->type
         ];
-        $transport_type = Transport_type::all();
+        $transport_type = transport_type::all();
         $department = Department::all();
         $agency = agency::all();
         $abd=  agency_branch_department::all();
@@ -401,7 +401,7 @@ public function store(Request $request)
             'type' => $request->type
             ];
             
-        $transport_type = Transport_type::all();
+        $transport_type = transport_type::all();
         $department = Department::all();
         $agency = agency::all();
         $abd=  agency_branch_department::all();

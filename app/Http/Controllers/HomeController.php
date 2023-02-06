@@ -24,9 +24,9 @@ class HomeController extends Controller
        {
         $admitcount = admit::where('Edepartment_receive','LIKE',Auth::user()->Department)->where('Estatus','1')->orderby('Edate_out','DESC')->count();
         $admit = admit::where('Edepartment_receive','LIKE',Auth::user()->Department)->where('Estatus','1')->orderby('Edate_out','DESC')->limit(1)->get();
-        $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('Odepartment','LIKE',Auth::user()->Department)->where('trsid','1')->count();
+        $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('Odepartment','LIKE',Auth::user()->Department)->where('Ostatus','ต้องการหนังสือตอบกลับ')->where('Oupload',null)->count();
         $bookout = Bookout::Join('forms', 'bookouts.formid', '=', 'forms.id')->Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('Odepartment','LIKE',Auth::user()->Department)
-        ->where('trsid','1')->orderby('date','DESC')->limit(1)->get();
+        ->where('Ostatus','ต้องการหนังสือตอบกลับ')->where('Oupload',null)->orderby('date','DESC')->limit(1)->get();
         $transportcount = transport::where('trdepartment','LIKE',Auth::user()->Department)->where('trsid','1')->count();
         $transport = transport::where('trdepartment','LIKE',Auth::user()->Department)->where('trsid','1')->orderby('trdate','DESC')->limit(1)->get();
         return view('user.home',compact('admitcount','bookoutcount','transportcount','admit','bookout','transport'));
@@ -36,9 +36,9 @@ class HomeController extends Controller
        {
         $admitcount = admit::where('Estatus','1')->orderby('Edate_out','DESC')->count();
         $admit = admit::where('Estatus','1')->orderby('Edate_out','DESC')->limit(1)->get();
-        $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('trsid','1')->count();
+        $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('Ostatus','ต้องการหนังสือตอบกลับ')->where('Oupload',null)->count();
         $bookout = Bookout::Join('forms', 'bookouts.formid', '=', 'forms.id')->Join('transports', 'bookouts.id', '=', 'transports.trbookout')
-        ->where('trsid','1')->orderby('date','DESC')->limit(1)->get();
+        ->where('Ostatus','ต้องการหนังสือตอบกลับ')->where('Oupload',null)->orderby('date','DESC')->limit(1)->get();
         $transportcount = transport::where('trsid','1')->count();
         $transport = transport::where('trsid','1')->orderby('trdate','DESC')->limit(1)->get();
         return view('staff.home',compact('admitcount','bookoutcount','transportcount','admit','bookout','transport'));
@@ -49,9 +49,9 @@ class HomeController extends Controller
         
         $admitcount = admit::where('Estatus','1')->orderby('Edate_out','DESC')->count();
         $admit = admit::where('Estatus','1')->orderby('Edate_out','DESC')->limit(1)->get();
-        $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('trsid','1')->count();
+        $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('Ostatus','ต้องการหนังสือตอบกลับ')->where('Oupload',null)->count();
         $bookout = Bookout::Join('forms', 'bookouts.formid', '=', 'forms.id')->Join('transports', 'bookouts.id', '=', 'transports.trbookout')
-        ->where('trsid','1')->orderby('date','DESC')->limit(1)->get();
+        ->where('Ostatus','ต้องการหนังสือตอบกลับ')->where('Oupload',null)->orderby('date','DESC')->limit(1)->get();
         $transportcount = transport::where('trsid','1')->count();
         $transport = transport::where('trsid','1')->orderby('trdate','DESC')->limit(1)->get();
        return view('admin.home',compact('admitcount','bookoutcount','transportcount','admit','bookout','transport'));
@@ -75,9 +75,9 @@ class HomeController extends Controller
             $q ->where('Estatus','1')
              ->orwhere('Estatus','4') ;
         })->orderby('Edate_out','DESC')->limit(1)->get();
-        $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('Odepartment','LIKE',Auth::user()->Department)->where('trsid','1')->count();
+        $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('Odepartment','LIKE',Auth::user()->Department)->where('Ostatus','ต้องการหนังสือตอบกลับ')->where('Oupload',null)->count();
         $bookout = Bookout::Join('forms', 'bookouts.formid', '=', 'forms.id')->Join('transports', 'bookouts.id', '=', 'transports.trbookout')
-        ->where('Odepartment','LIKE',Auth::user()->Department)->where('trsid','1')->orderby('date','DESC')->limit(1)->get();
+        ->where('Odepartment','LIKE',Auth::user()->Department)->where('Ostatus','ต้องการหนังสือตอบกลับ')->where('Oupload',null)->orderby('date','DESC')->limit(1)->get();
         $transportcount = transport::where('trdepartment','LIKE',Auth::user()->Department)->where('trsid','1')->count();
         $transport = transport::where('trdepartment','LIKE',Auth::user()->Department)->where('trsid','1')->orderby('trdate','DESC')->limit(1)->get();
             return view('user.home',compact('admitcount','bookoutcount','transportcount','admit','bookout','transport'));
@@ -93,9 +93,9 @@ class HomeController extends Controller
                 $q ->where('Estatus','1')
                  ->orwhere('Estatus','4') ;
             })->orderby('Edate_out','DESC')->limit(1)->get();
-            $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('trsid','1')->count();
+            $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('Ostatus','ต้องการหนังสือตอบกลับ')->where('Oupload',null)->count();
             $bookout = Bookout::Join('forms', 'bookouts.formid', '=', 'forms.id')->Join('transports', 'bookouts.id', '=', 'transports.trbookout')
-            ->where('trsid','1')->orderby('date','DESC')->limit(1)->get();
+            ->where('Ostatus','ต้องการหนังสือตอบกลับ')->where('Oupload',null)->orderby('date','DESC')->limit(1)->get();
             $transportcount = transport::where('trsid','1')->count();
             $transport = transport::where('trsid','1')->orderby('trdate','DESC')->limit(1)->get();
          return view('staff.home',compact('admitcount','bookoutcount','transportcount','admit','bookout','transport'));
@@ -111,9 +111,9 @@ class HomeController extends Controller
                 $q ->where('Estatus','1')
                  ->orwhere('Estatus','4') ;
             })->orderby('Edate_out','DESC')->limit(1)->get();
-            $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('trsid','1')->count();
+            $bookoutcount = Bookout::Join('transports', 'bookouts.id', '=', 'transports.trbookout')->where('Ostatus','ต้องการหนังสือตอบกลับ')->where('Oupload',null)->count();
             $bookout = Bookout::Join('forms', 'bookouts.formid', '=', 'forms.id')->Join('transports', 'bookouts.id', '=', 'transports.trbookout')
-            ->where('trsid','1')->orderby('date','DESC')->limit(1)->get();
+            ->where('Ostatus','ต้องการหนังสือตอบกลับ')->where('Oupload',null)->orderby('date','DESC')->limit(1)->get();
             $transportcount = transport::where('trsid','1')->count();
             $transport = transport::where('trsid','1')->orderby('trdate','DESC')->limit(1)->get();
         return view('admin.home',compact('admitcount','bookoutcount','transportcount','admit','bookout','transport'));
