@@ -215,8 +215,8 @@
                                                 <div class="mb-3 row">           
                                                     <div class="col-sm-3 col-form-label">ผู้นำส่ง</div>
                                                         <div class="col-sm-9">
-                                                        <select class="form-control" name="trdelivery" aria-label="Default select example" required>
-                                                        <option selected disabled>กรุณาเลือกผู้นำส่ง</option>
+                                                        <select class="form-control" name="trdelivery" aria-label="Default select example" required="">
+                                                        <option selected disabled value="">กรุณาเลือกผู้นำส่ง</option>
                                                         @foreach($depositor as $rowde)
                                                         <option value="{{$rowde->depositor_name}}">{{$rowde->depositor_name}}</option>
                                                         @endforeach
@@ -226,8 +226,8 @@
                                                 <div class="mb-3 row">
                                                     <div class="col-sm-3 col-form-label">ผู้ให้บริการ</div>
                                                         <div class="col-sm-9">
-                                                        <select class="form-control" name="trservice" aria-label="Default select example" required>
-                                                        <option selected disabled>กรุณาเลือกประเภทการส่ง</option>
+                                                        <select class="form-control" name="trservice" aria-label="Default select example" required="">
+                                                        <option selected disabled value="">กรุณาเลือกประเภทการส่ง</option>
                                                         @foreach($service as $rowse)
                                                         <option value="{{$rowse->service_name}}">{{$rowse->service_name}}</option>
                                                         @endforeach
@@ -537,8 +537,8 @@
                                                 <div class="mb-3 row">           
                                                     <div class="col-sm-3 col-form-label">ผู้นำส่ง</div>
                                                         <div class="col-sm-9">
-                                                        <select class="form-control" name="trdelivery" aria-label="Default select example" required>
-                                                        <option selected disabled>กรุณาเลือกผู้นำส่ง</option>
+                                                        <select class="form-control" name="trdelivery" aria-label="Default select example" required="">
+                                                        <option selected value="" disabled>กรุณาเลือกผู้นำส่ง</option>
                                                         @foreach($depositor as $rowde1)
                                                         <option value="{{$rowde1->depositor_name}}">{{$rowde1->depositor_name}}</option>
                                                         @endforeach
@@ -548,8 +548,8 @@
                                                 <div class="mb-3 row">
                                                     <div class="col-sm-3 col-form-label">ผู้ให้บริการ</div>
                                                         <div class="col-sm-9">
-                                                        <select class="form-control" name="trservice" aria-label="Default select example" required>
-                                                        <option selected disabled>กรุณาเลือกประเภทการส่ง</option>
+                                                        <select class="form-control" name="trservice" aria-label="Default select example" required="">
+                                                        <option selected value="" disabled>กรุณาเลือกประเภทการส่ง</option>
                                                         @foreach($service as $rowse1)
                                                         <option value="{{$rowse1->service_name}}">{{$rowse1->service_name}}</option>
                                                         @endforeach

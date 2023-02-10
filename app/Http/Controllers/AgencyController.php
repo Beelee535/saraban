@@ -15,6 +15,8 @@ class AgencyController extends Controller
 
     public function addagency(){
         $agency = agency::all();
+        // $agency = agency::whereBetween('agency_id', [1, 4])->get();
+        // $agency1 = agency::whereNotIn('agency_id', [1,2,3,4])->get();
         $branch = branch::all();
         $department = department::all();
         return view('agency.addagency.agency',compact('agency','branch','department'));

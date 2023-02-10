@@ -55,7 +55,7 @@
              บริหารงานโดย บริษัท ไอดีไดรฟ์ จำกัด เลขที่ผู้เสียภาษี 0405536000531
             </div>
              <div class="d-flex justify-content-start">
-             ที่อยู่ 200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัดขอนแก่น Tel : 043-228 899 www.iddrices.co.th Email : idofficer@iddrives.co.th
+             ที่อยู่ 200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัดขอนแก่น Tel : 043-228 899 www.iddrives.co.th Email : idofficer@iddrives.co.th
              <br></div><hr noshade="noshade" size="2"><br>
            
              @elseif($type=='บริษัทไอดีไดรฟ์จำกัด(สำนักงานใหญ่)')
@@ -64,7 +64,7 @@
              <div class="p-2 py-5 flex-fill">
              <h5> บริษัท ไอดีไดรฟ์ จำกัด (สำนักงานใหญ่) </h5>
              200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัดขอนแก่น เลขที่ผู้เสียภาษี 0405536000531 <br>
-             Tel : 043-228 899 www.iddrices.co.th Email : idofficer@iddrives.co. </div>
+             Tel : 043-228 899 www.iddrives.co.th Email : idofficer@iddrives.co. </div>
             </div>
             <hr noshade="noshade" size="2" style="margin-top:-10px"><br>
             
@@ -77,7 +77,7 @@
              บริหารงานโดย บริษัท ไอดีไดรฟ์ จำกัด เลขที่ผู้เสียภาษี 0405536000531
             </div>
              <div class="d-flex justify-content-start">
-             ที่อยู่ 200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัดขอนแก่น Tel : 043-228 899 www.iddrices.co.th Email : idofficer@iddrives.co.th
+             ที่อยู่ 200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัดขอนแก่น Tel : 043-228 899 www.iddrives.co.th Email : idofficer@iddrives.co.th
              <br></div><hr noshade="noshade" size="2"><br>
                       
              @elseif($type=='ศูนย์ฝึกอบรม')
@@ -91,7 +91,7 @@
              บริหารงานโดย บริษัท ไอดีไดรฟ์ จำกัด เลขที่ผู้เสียภาษี 0405536000531
             </div>
              <div class="d-flex justify-content-start" style="font-size:16px">
-             ที่อยู่ 200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัด Tel : 043-228 899   www.iddrices.co.th  Email : idofficer@iddrives.co.th           
+             ที่อยู่ 200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัด Tel : 043-228 899   www.iddrives.co.th  Email : idofficer@iddrives.co.th           
              <br></div><hr noshade="noshade" size="2"><br>
              @endif
               <!-- /head-form -->
@@ -567,7 +567,7 @@
             <input type="hidden" value="{{$enclosure}}" class="form-control" style="width: 150px" name="enclosure">  
             </div>
             </div>
-            @endif
+            @endif <br>
             
             <div class="d-flex flex-column" style="margin-left: 40px">
             <?= $details; ?> 

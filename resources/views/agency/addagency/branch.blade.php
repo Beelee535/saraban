@@ -16,8 +16,6 @@
       <div class="container-fluid py-4">
         <!--  เริ่ม  -->
 
-      
-
         @if($_GET['branch']=='databranch')
 
         <br>

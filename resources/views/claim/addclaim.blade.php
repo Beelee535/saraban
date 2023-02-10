@@ -69,8 +69,8 @@
                                 </div>
                                 <div class="row mt-3">
                                     <div class="col-md-4"><label class="labels">คำนำหน้า</label>
-                                    <select class="form-control" name="Prefix"   aria-label="Default select example"  required>
-                                        <option class="text-secondary" >คำนำหน้า </option>
+                                    <select class="form-control" name="Prefix"   aria-label="Default select example"  required="">
+                                        <option class="text-secondary" value="">คำนำหน้า </option>
                                             @foreach($prefix as $row)
                                                 <option value="{{$row->Prename}}">{{ $row->Prename}}</option>
                                             @endforeach
@@ -84,8 +84,8 @@
                                     <div class="col-md-12"><label class="labels">ที่อยู่</label><input type="text" id="address"class="form-control" placeholder="กรุณากรอกที่อยู่" name="address"></div>
 
                                     <div class="col-md-12"><label class="labels">หน่วยงาน</label>
-                                        <select class="form-control" name="Agency"  id="agency" required>
-                                            <option selected="" disabled>กรุณาเลือกหน่วยงาน</option>
+                                        <select class="form-control" name="Agency"  id="agency" required="">
+                                            <option selected="" value="" disabled>กรุณาเลือกหน่วยงาน</option>
                                                 @foreach($agency as $row)
                                                     <option value="{{$row->agency_id}}">{{ $row->agency_name}}</option>
                                                 @endforeach
@@ -116,7 +116,11 @@
                               <div class="col-md-12"><label class="labels">เบอร์โทรศัพท์</label>
                               <input type="text" id="Tel" class="form-control" placeholder="กรุณากรอกเบอร์โทรศัพท์" name="Tel" ></div>
                               <div class="col-md-12"><label class="labels">อีเมล</label>
-                              <input type="text" id="email" class="form-control" placeholder="กรุณากรอกอีเมล" name="email" required></div>
+                              <input type="text" id="email" class="form-control" placeholder="กรุณากรอกอีเมล" name="email" required>
+                                @error('email')
+                                    <small class="text-danger text-center">{{$message}}</small>
+                                @enderror
+                              </div>
                               <div class="col-md-12"><label class="labels">รหัสผ่าน</label>
                               <input type="password" id="password" class="form-control" placeholder="กรุณากรอกรหัสผ่าน" name="password" required autocomplete="new-password"   ></div>
                               <div class="col-md-12"><label class="labels">รหัสผ่านใหม่</label>

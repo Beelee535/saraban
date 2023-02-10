@@ -250,8 +250,8 @@
                             <div class="mb-3 row">
                                 <div class="col-sm-2 col-form-label">หน่วยงาน ผู้รับ</div>
                                 <div class="col-sm-9">
-                                <select class="form-control" name="Eagency_receive" id="agency"  required>
-                                <option selected="" value="{{$admit->Eagency_receive}}" >กรุณาเลือกหน่วยงาน</option>
+                                <select class="form-control" name="Eagency_receive" id="agency"  required="">
+                                <option selected="" value="" >กรุณาเลือกหน่วยงาน</option>
                                 @foreach($agency as $rowabs)
                                 <option value="{{ $rowabs->agency_id}}">{{ $rowabs->agency_name}}</option>
                                 @endforeach
@@ -262,8 +262,8 @@
                             <div class="mb-3 row">
                                 <div class="col-sm-2 col-form-label">สาขางาน ผู้รับ</div>
                                 <div class="col-sm-9">
-                                <select class="form-control" name="Ebranch_receive" id="branch"  required>
-                                <option value="{{$admit->Edepartment_receive}}">กรุณาเลือกสาขา</option>
+                                <select class="form-control" name="Ebranch_receive" id="branch"  required="">
+                                <option value="">กรุณาเลือกสาขา</option>
                                 </select>
                                 </div>
                             </div>
@@ -271,8 +271,8 @@
                             <div class="mb-3 row">
                                 <div class="col-sm-2 col-form-label">ฝ่าย ผู้รับ</div>
                                 <div class="col-sm-9">
-                                <select class="form-control input-lg" name="Edepartment_receive" id="department"  required>
-                                <option value="{{$admit->Edepartment_receive}}">กรุณาเลือกฝ่าย</option>
+                                <select class="form-control input-lg" name="Edepartment_receive" id="department"  required="">
+                                <option value="">กรุณาเลือกฝ่าย</option>
                                 </select>
                                 </div>
                             </div>
@@ -305,8 +305,8 @@
                             <div class="mb-3 row">
                                 <div class="col-sm-2 col-form-label">เรื่อง :</div>
                                     <div class="col-sm-9">
-                                    <select class="form-control" name="Esubject" id="Esubject"  >
-                                    <option selected  disabled>กรุณาเลือกเรื่อง</option>
+                                    <select class="form-control" name="Esubject" id="Esubject"  required="">
+                                    <option selected  disabled value="">กรุณาเลือกเรื่อง</option>
                                    
                                     </select>
                                     </div>
@@ -317,8 +317,8 @@
                             <div class="mb-3 row">
                              <div class="col-sm-2 col-form-label">หนังสือจากหน่วยงาน :</div>
                                     <div class="col-sm-9">
-                                    <select class="form-control" name="Ebookeagency" id="Ebookeagency" >
-                                    <option selected  disabled>กรุณาเลือกหน่วยงาน</option>
+                                    <select class="form-control" name="Ebookeagency" id="Ebookeagency" required="">
+                                    <option selected  disabled value="">กรุณาเลือกหน่วยงาน</option>
 
                                     </select>
                                     </div>

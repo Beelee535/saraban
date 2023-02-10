@@ -67,9 +67,9 @@
                             <div class="mb-3 row">
                                 <div class="col-sm-2 col-form-label">หน่วยงาน ผู้รับ</div>
                                 <div class="col-sm-9">
-                                <select class="form-control" name="Eagency_receive" id="agency" aria-label="Default select example" required>
+                                <select class="form-control" name="Eagency_receive" id="agency" aria-label="Default select example" required="">
                                 <!-- <option selected="" disabled>กรุณาเลือกหน่วยงาน</option> -->
-                                <option selected="" disabled>กรุณาเลือกหน่วยงาน</option>
+                                <option selected="" value="" disabled>กรุณาเลือกหน่วยงาน</option>
                                 @foreach($agency as $rowabs)
                                 <option value="{{ $rowabs->agency_id}}">{{ $rowabs->agency_name}}</option>
                                 @endforeach
@@ -121,12 +121,12 @@
                                     </div>
                             </div>
 
-
+ 
                             <div class="mb-3 row">
                                 <div class="col-sm-2 col-form-label">เรื่อง :</div>
                                     <div class="col-sm-9">
-                                    <select class="form-control" name="Esubject" id="Esubject"  required>
-                                    <option selected disabled>กรุณาเลือกเรื่อง</option>
+                                    <select class="form-control" name="Esubject" id="Esubject" required="">
+                                    <option selected disabled value="">กรุณาเลือกเรื่อง</option>
                                     {{-- @foreach($story as $rowstory)
                                     <option value="{{$rowstory->amstory_name}}">{{$rowstory->amstory_name}}</option>
                                     @endforeach --}}
@@ -139,8 +139,8 @@
                             <div class="mb-3 row">
                              <div class="col-sm-2 col-form-label">หนังสือจากหน่วยงาน :</div>
                                     <div class="col-sm-9">
-                                    <select class="form-control" name="Ebookeagency" id="Ebookeagency" required>
-                                    <option selected disabled>กรุณาเลือกหน่วยงาน</option>
+                                    <select class="form-control" name="Ebookeagency" id="Ebookeagency" required="">
+                                    <option selected disabled value="">กรุณาเลือกหน่วยงาน</option>
 
                                     </select>
                                     </div>

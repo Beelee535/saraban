@@ -66,40 +66,7 @@
     </div>
     <div class="card-body" style="margin: 20px">
 
-    <!-- <div class="d-flex justify-content-end">
-วันที่&nbsp;&nbsp; 
-<input type="date" name="ini_signname" style="width: 250px" class="form-control"  value="<?php echo date("Y-m-d"); ?>"></div> <br> -->
-
-   <!-- <div class="mb-3 row">
-    <div class="col-sm-2 col-form-label">หน่วยงาน ผู้รับ</div>
-    <div class="col-sm-9">
-    <select class="form-control" name="Oag_receive" id="agency" aria-label="Default select example" required>
-    <option selected="" disabled>กรุณาเลือกหน่วยงาน</option>
-    @foreach($agency as $rowabs)
-    <option value="{{ $rowabs->agency_id}}">{{ $rowabs->agency_name}}</option>
-    @endforeach
-    </select>
-    </div>
-    </div>
-
-    <div class="mb-3 row">
-    <div class="col-sm-2 col-form-label">สาขางาน ผู้รับ</div>
-    <div class="col-sm-9">
-    <select class="form-control" name="Obr_receive" id="branch" aria-label="Default select example" required>
-    <option value="">กรุณาเลือกสาขา</option>
-    </select>
-    </div>
-    </div>
-
-    <div class="mb-3 row">
-    <div class="col-sm-2 col-form-label">ฝ่าย ผู้รับ</div>
-    <div class="col-sm-9">
-    <select class="form-control input-lg" name="Odpm_receive" id="department" aria-label="Default select example" required>
-    <option value="">กรุณาเลือกฝ่าย</option>
-    </select>
-    </div>
-    </div> -->
-
+   
     <div class="mb-3 row">
       <div class="col-sm-2 col-form-label">ถึงหน่วยงาน</div>
         <div class="col-sm-9">
@@ -189,8 +156,8 @@
     <div class="mb-3 row">
         <div class="col-sm-2 col-form-label">ผู้ฝากส่งหนังสือ :</div>
             <div class="col-sm-9">
-                <select class="form-control" name="trdepositor" id="trdepositor" >
-                <option selected  disabled>กรุณาเลือกผู้ฝากส่ง</option>
+                <select class="form-control" name="trdepositor" id="trdepositor" require="" >
+                <option selected disabled value="">กรุณาเลือกผู้ฝากส่ง</option>
 
                 </select>
             </div>
@@ -200,8 +167,8 @@
     <div class="mb-3 row">
     <div class="col-sm-2 col-form-label">ประเภทการส่ง :</div>
     <div class="col-sm-9">
-    <select class="form-control" name="trtaye" aria-label="Default select example" required>
-    <option selected disabled required>กรุณาเลือกประเภทการส่ง</option>
+    <select class="form-control" name="trtaye" aria-label="Default select example" required="">
+    <option selected disabled value="">กรุณาเลือกประเภทการส่ง</option>
    @foreach($transport_type as $row)
     <option value="{{$row->transport_name}}">{{$row->transport_name}}</option>
    @endforeach

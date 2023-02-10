@@ -96,7 +96,11 @@
                                 <div class="row mt-3">
                                     <div class="col-md-12"><label class="labels">เบอร์โทรศัพท์</label><input type="text" class="form-control" placeholder="กรุณากรอกเบอร์โทรศัพท์" name="Tel" value="{{$user->Tel}}"></div>
                                     <div class="col-md-12"><label class="labels">ที่อยู่</label><input type="text" class="form-control" placeholder="กรุณากรอกที่อยู่" name="address" value="{{$user->address}}"></div>
-                                    <div class="col-md-12"><label class="labels">อีเมล</label><input type="text" class="form-control" placeholder="กรุณากรอกอีเมล" name="email" value="{{$user->email}}" ></div>
+                                    <div class="col-md-12"><label class="labels">อีเมล</label><input type="text" class="form-control" placeholder="กรุณากรอกอีเมล" name="email" value="{{$user->email}}" >
+                                    @error('email')
+                                    <small class="text-danger text-center">{{$message}}</small>
+                                    @enderror
+                                </div>
                                 </div>
                                 <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">บันทึกข้อมูล</button>
                                 <a href="{{ route('claim') }}" class="btn btn-secondary" type="button">ย้อนกลับ</a></div>

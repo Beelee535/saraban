@@ -80,41 +80,29 @@ public function updateImage(Request $request,$id)
 
 public function claim(Request $request){
                     $tb1 = User::
-                    // Join('agencies', 'users.Agency', '=', 'agencies.agency_name')
-                    // ->Join('branches', 'users.branch', '=', 'branches.branche_name')
-                    // ->Join('departments', 'users.department', '=', 'departments.Dpmname')
-                    // ->select('users.*')->
                     where('role','2')
-                    ->where('name','LIKE','%'.$request->search.'%')
                     ->Where(function($q) use ($request){
-                    $q->orwhere('Lastname', 'LIKE', '%' . $request->search . '%')
+                    $q->where('name','LIKE','%'.$request->search.'%')
+                        ->orwhere('Lastname', 'LIKE', '%' . $request->search . '%')
                         ->orwhere('email','LIKE','%'.$request->search.'%');
                     }) 
                     ->orderby('id','DESC')->paginate(15, ['*'], 'tb1');
         
                     $tb2 = User::
-                    // Join('agencies', 'users.Agency', '=', 'agencies.agency_name')
-                    // ->Join('branches', 'users.branch', '=', 'branches.branche_name')
-                    // ->Join('departments', 'users.department', '=', 'departments.Dpmname')
-                    // ->select('users.*')->
                     where('role','1')
-                    ->where('name','LIKE','%'.$request->search.'%')
                     ->Where(function($q) use ($request){
-                    $q->orwhere('Lastname', 'LIKE', '%' . $request->search . '%')
+                    $q ->where('name','LIKE','%'.$request->search.'%')
+                    ->orwhere('Lastname', 'LIKE', '%' . $request->search . '%')
                         ->orwhere('email','LIKE','%'.$request->search.'%');
                     }) 
                     ->orderby('id','DESC')->paginate(15, ['*'], 'tb2');
                     
                     // user
                     $tb3 =User::
-                    // Join('agencies', 'users.Agency', '=', 'agencies.agency_name')
-                    // ->Join('branches', 'users.branch', '=', 'branches.branche_name')
-                    // ->Join('departments', 'users.department', '=', 'departments.Dpmname')
-                    // ->select('users.*')->
                     where('role','0') 
-                    ->where('name','LIKE','%'.$request->search.'%')
                     ->Where(function($q) use ($request){
-                    $q->orwhere('Lastname', 'LIKE', '%' . $request->search . '%')
+                    $q ->where('name','LIKE','%'.$request->search.'%')
+                    ->orwhere('Lastname', 'LIKE', '%' . $request->search . '%')
                         ->orwhere('email','LIKE','%'.$request->search.'%');
                     }) 
                     ->orderby('id','DESC')->paginate(15, ['*'], 'tb3');
@@ -140,6 +128,17 @@ public function addclaim()
         
 //บันทึกอมูลผู้ใช้
 public function addclaimuser(Request $request){
+
+                //ตรวจสอบข้อมูล
+                $request->validate(
+                    [
+                        'email'=>'required|unique:users',
+                    ],
+                    [
+                        'email.unique'=>'You have already entered this information.'
+                    ]
+                );
+
                     //บันทึกข้อมูล
                     $data = array();
                     $data["Prefix"] = $request->Prefix;
@@ -160,6 +159,8 @@ public function addclaimuser(Request $request){
         
 //edit ข้อมูลผู้ใช้ claim staff
 public function editclaim(Request $request , $id){
+
+                   
                     $user = User::find($id);
                     $prefix = Prefix::all();
                     // $agency = agency::where('agency_name','บริษัท ไอดีไดรฟ์ จำกัด (สำนักงานใหญ่)')->get();
@@ -174,6 +175,15 @@ public function editclaim(Request $request , $id){
         
 // อัปเดตข้อมูลผู้ใช้ claim staff tb3
 public function updateclaim(Request $request , $id){
+                    //ตรวจสอบข้อมูล
+                    $request->validate(
+                        [
+                            'email'=>'required|unique:users',
+                        ],
+                        [
+                            'email.unique'=>'You have already entered this information.'
+                        ]
+                    );
                     $update = User::find($id)->update([
                         'Prefix'=>$request->Prefix,
                         'name'=>$request->name,

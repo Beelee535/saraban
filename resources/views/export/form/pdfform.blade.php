@@ -97,7 +97,7 @@
              <b style="font-size:22px;">โรงเรียนสอนขับรถไอดี ไดร์ฟเวอร์</b>&nbsp;
              <b style="font-size:18px;">บริหารงานโดย บริษัท ไอดีไดรฟ์ จำกัด เลขที่ผู้เสียภาษี 0405536000531</b>
             </div><p style="font-size:16px;">
-             ที่อยู่ 200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัดขอนแก่น Tel : 043-228 899 www.iddrices.co.th Email : idofficer@iddrives.co.th
+             ที่อยู่ 200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัดขอนแก่น Tel : 043-228 899 www.iddrives.co.th Email : idofficer@iddrives.co.th
              </p>
              <div style="border: 0.5px solid #B4B4B4;margin:10px;margin-top:-5px;"></div>
            
@@ -105,7 +105,7 @@
              <div class="box2"  style="margin-top:-20px;"><img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('dist/img/logoiddrives.png'))) }}" style="margin-left:10px;margin-top:-10px;" width="86px"/></div>
               <p style="margin-top:-25px;"><b style="font-size:20px;" > บริษัท ไอดีไดรฟ์ จำกัด (สำนักงานใหญ่) </b></p>
               <p style="font-size:18px;margin-top:-45px;">200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัดขอนแก่น เลขที่ผู้เสียภาษี 0405536000531</p>
-              <p style="font-size:18px;margin-top:-25px;">Tel : 043-228 899 www.iddrices.co.th Email : idofficer@iddrives.co.</p>
+              <p style="font-size:18px;margin-top:-25px;">Tel : 043-228 899 www.iddrives.co.th Email : idofficer@iddrives.co.th</p>
               <div style="border: 0.5px solid #B4B4B4;margin:10px;margin-top:-10px;"></div>
             
             @elseif($form->type=='สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')
@@ -116,7 +116,7 @@
              <b style="font-size:22px;">สถานตรวจสภาพรถ ศูนย์ตรอ.ไอดี</b>&nbsp;
              <b style="font-size:18px;">บริหารงานโดย บริษัท ไอดีไดรฟ์ จำกัด เลขที่ผู้เสียภาษี 0405536000531</b>
             </div> <p style="font-size:16px;">
-            ที่อยู่ 200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัดขอนแก่น Tel : 043-228 899 www.iddrices.co.th Email : idofficer@iddrives.co.th
+            ที่อยู่ 200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัดขอนแก่น Tel : 043-228 899 www.iddrives.co.th Email : idofficer@iddrives.co.th
              </p><div style="border: 0.5px solid #B4B4B4;margin:10px;margin-top:-5px;"></div>
                       
              @elseif($form->type=='ศูนย์ฝึกอบรม')
@@ -128,8 +128,8 @@
              <div class="d-flex justify-content-start" style="margin-left:40px;margin-bottom:3px;margin-top:-10px;">
              <b style="font-size:22px;">ศูนย์ฝึกอบรมเทรนนิ่งเซนเตอร์</b>&nbsp;
              <b style="font-size:18px;">บริหารงานโดย บริษัท ไอดีไดรฟ์ จำกัด เลขที่ผู้เสียภาษี 0405536000531</b>
-            </div><p style="font-size:16px;">
-            ที่อยู่ 200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัด Tel : 043-228 899   www.iddrices.co.th  Email : idofficer@iddrives.co.th           
+            </div><p style="font-size:16px;" style="margin-left:5px;">
+            ที่อยู่ 200/222 หมู่2 ถนนชัยพฤกษ์ อำเภอเมืองขอนแก่น จังหวัด Tel : 043-228 899   www.iddrives.co.th  Email : idofficer@iddrives.co.th           
              </p>
              <div style="border: 0.5px solid #B4B4B4;margin:10px;margin-top:-5px;"></div>
              @endif
@@ -183,13 +183,16 @@
             <?php echo $form->details ?>
             </div>
 
-            <div class="text-center" style="font-size:18px;">
+
+
+            <div class="footer" style="margin-bottom:-30px">
+            <div class="text-center" style="font-size:18px;"  style="margin-left:100px">
             ขอแสดงความนับถือ
             <p>.......................................................</p>
             (...........................................................)
-            </div>
+            </div> <br>
 
-            <div class="footer" style="margin-bottom:-30px">
+
             <div style="border: 1px solid #000000; overflow: auto; width: 280px; height:auto;">
             <div class="d-flex justify-content-start"  style="margin-left: 10px;font-size:16px;">
             สอบถามได้ที่
