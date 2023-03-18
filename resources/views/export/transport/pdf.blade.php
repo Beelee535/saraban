@@ -77,7 +77,6 @@
                                         <th>ลำดับ</th>
                                         <th>วันที่ฝากส่ง</th>
                                         <th>ผู้ฝากส่ง</th>
-                                        <th>ผู้รับ</th>
                                         <th>ประเภทการส่ง</th>
                                         <th>เลขขนส่ง</th>
                                         <th>วันที่ส่ง</th>        
@@ -97,7 +96,6 @@
                                         echo date("d $myMonth ",strtotime($myDate)).$myYearBuddhist;
                                         ?></td>
                                         <td>{{$row->trdepositor}}</td>
-                                        <td>{{$row->bookout->Oname_receive}}</td>
                                         <td>{{$row->trtaye}}</td>
                                         <td>{{$row->ttransport}}</td>
                                         @if($row->trdatesent==null)

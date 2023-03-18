@@ -18,9 +18,65 @@ use Intervention\Image\ImageManagerStatic;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
 use Illuminate\support\Facades\DB; 
+use App\Models\Department;
+use App\Models\agency;
+use App\Models\agency_branch_department;
+use App\Models\branch;
+
+
+
 
 class TransportController extends Controller
 {
+
+  public function addtransport(){
+
+    $transport =transport::all();
+    $user =User::all();
+    $transport_type = transport_type::all();
+    $department = Department::all();
+    $agency = agency::all();
+    $abd=  agency_branch_department::all();
+    $branch= branch::all();
+    $depositor = depositor::all();
+    return view('transport.add',compact('transport','user','abd','branch','depositor','transport_type','department','agency'));
+}
+
+public function store(Request $request)
+    {
+      $role=Auth::user()->role;
+
+        $transport = new transport();
+        // $transport->formid = $request->formid;
+        $transport->trbearer = $request->trbearer;
+        $transport->trdate = $request->trdate;
+        $transport->trnumber = $request->trnumber;
+        $transport->trdepositor = $request->trdepositor;
+        $transport->tag_receive = $request->tag_receive;
+        $transport->tname_receive = $request->tname_receive;
+        $transport->trtaye = $request->trtaye;
+        $transport->trdepartment = Auth::user()->Department;
+        $transport->trbranch= Auth::user()->Branch;
+        $transport->tragency = Auth::user()->Agency;
+        $transport->user_id =  Auth::user()->id;
+        $transport->trsender = Auth::user()->name.' '.Auth::user()->Lastname ;
+        $transport->trsid = '1';  
+        $transport->save();
+        // dd($request);
+        if($role=='0'){
+          return redirect()->route('transportuser')->with('success',"อัพเดตข้อมูลเรียบร้อย") ;
+  
+          }
+          elseif($role=='1'){
+          return redirect()->route('transportsaff')->with('success',"อัพเดตข้อมูลเรียบร้อย") ;
+  
+          }
+          elseif($role=='2'){
+          return redirect()->route('transportadmin')->with('success',"อัพเดตข้อมูลเรียบร้อย") ;
+          }
+          return redirect()->back()->with('success',"อัพเดตข้อมูลเรียบร้อย") ;
+}
+
 public function transportadmin(Request $request)
   {
 
@@ -28,8 +84,8 @@ public function transportadmin(Request $request)
       $searchdate = $request->input('searchdate');
       $searchend = $request->input('searchend');
 
-      $transport= transport::Join('bookouts', 'transports.trbookout', '=', 'bookouts.id')
-      ->select('transports.*')->
+      $transport= transport::
+      
       Where(function($q) use ($request){
       if($request->get('searchdate')&&$request->get('searchend')){
           $q ->where('trdatesent','>=',$request->searchdate.'%')
@@ -37,33 +93,34 @@ public function transportadmin(Request $request)
         }
       elseif($request->get('search')){
         $q ->where('trnumber','LIKE','%'.$request->search.'%')
-        ->orwhere('Oname_receive','LIKE','%'.$request->search.'%')
+        ->orwhere('tag_receive','LIKE','%'.$request->search.'%')
         ->orwhere('ttransport','LIKE','%'.$request->search.'%');
       } else{}})->orderby('id','DESC')->paginate(15, ['*'], 'transport');  
 
-      $transportwait= transport::Join('bookouts', 'transports.trbookout', '=', 'bookouts.id')
-      ->select('transports.*')->
+      $transportwait= transport::
+      
       where('trsid','1')
       ->where('trnumber','LIKE','%'.$request->search.'%')
       ->orWhere(function($q) use ($request){
         $q->orwhere('ttransport', 'LIKE', '%' . $request->search . '%')
-        ->orwhere('Oname_receive','LIKE','%'.$request->search.'%')
+       
           ;
        }) 
       ->whereNotIn('trsid', ['2','3','4'])
       ->orderby('id','DESC')->paginate(15, ['*'], 'transportwait');  
 
-      $transportexecuted= transport::Join('bookouts', 'transports.trbookout', '=', 'bookouts.id')
-      ->select('transports.*')->
+      $transportexecuted= transport::
+      
       where('trsid','3')
       ->where('trnumber','LIKE','%'.$request->search.'%')
       ->orWhere(function($q) use ($request){
         $q->orwhere('ttransport', 'LIKE', '%' . $request->search . '%')
-        ->orwhere('Oname_receive','LIKE','%'.$request->search.'%')
+       
           ;
        }) 
       ->whereNotIn('trsid', ['2','1','4'])
       ->orderby('id','DESC')->paginate(15, ['*'], 'transportexecuted');  
+
 
       $service = service::all();
       $depositor=depositor::all();
@@ -86,8 +143,8 @@ public function transportuser(Request $request)
     //   $transport= transport::all();
       $dpm=Auth::user()->Department;
 
-        $transport = transport::Join('bookouts', 'transports.trbookout', '=', 'bookouts.id')
-        ->select('transports.*')->where('trbranch','LIKE',Auth::user()->Branch)->where('trdepartment','LIKE',Auth::user()->Department)
+        $transport = transport::
+        where('trbranch','LIKE',Auth::user()->Branch)->where('trdepartment','LIKE',Auth::user()->Department)
        ->Where(function($q) use ($request){
         if($request->get('searchdate')&&$request->get('searchend')){
             $q ->where('trdatesent','>=',$request->searchdate.'%')
@@ -95,7 +152,7 @@ public function transportuser(Request $request)
           }
         elseif($request->get('search')){
           $q ->where('trnumber','LIKE','%'.$request->search.'%')
-          ->orwhere('Oname_receive','LIKE','%'.$request->search.'%')
+          ->orwhere('tag_receive','LIKE','%'.$request->search.'%')
           ->orwhere('ttransport','LIKE','%'.$request->search.'%');
         } 
        else{}})
@@ -112,8 +169,8 @@ public function transportstaff(Request $request)
         $searchdate = $request->input('searchdate');
         $searchend = $request->input('searchend');
 
-        $transport= transport::Join('bookouts', 'transports.trbookout', '=', 'bookouts.id')
-        ->select('transports.*')->
+        $transport= transport::
+        
         Where(function($q) use ($request){
         if($request->get('searchdate')&&$request->get('searchend')){
             $q ->where('trdatesent','>=',$request->searchdate.'%')
@@ -121,31 +178,31 @@ public function transportstaff(Request $request)
           }
         elseif($request->get('search')){
           $q ->where('trnumber','LIKE','%'.$request->search.'%')
-          ->orwhere('Oname_receive','LIKE','%'.$request->search.'%')
+          ->orwhere('tag_receive','LIKE','%'.$request->search.'%')
           ->orwhere('ttransport','LIKE','%'.$request->search.'%');
         } 
        else{}})
         ->orderby('id','DESC')->paginate(15, ['*'], 'transport');  
 
-        $transportwait= transport::Join('bookouts', 'transports.trbookout', '=', 'bookouts.id')
-        ->select('transports.*')->
+        $transportwait= transport::
+        
         where('trsid','1')
         ->where('trnumber','LIKE','%'.$request->search.'%')
         ->orWhere(function($q) use ($request){
           $q->orwhere('ttransport', 'LIKE', '%' . $request->search . '%')
-          ->orwhere('Oname_receive','LIKE','%'.$request->search.'%')
+         
           ;
          }) 
         ->whereNotIn('trsid', ['2','3','4'])
         ->orderby('id','DESC')->paginate(15, ['*'], 'transportwait');  
 
-        $transportexecuted= transport::Join('bookouts', 'transports.trbookout', '=', 'bookouts.id')
-        ->select('transports.*')->
+        $transportexecuted= transport::
+        
         where('trsid','3')
         ->where('trnumber','LIKE','%'.$request->search.'%')
         ->orWhere(function($q) use ($request){
           $q->orwhere('ttransport', 'LIKE', '%' . $request->search . '%')
-          ->orwhere('Oname_receive','LIKE','%'.$request->search.'%')
+         
           ;
          }) 
         ->whereNotIn('trsid', ['2','1','4'])
@@ -297,8 +354,17 @@ public function updatetransport(Request $request , $id)
     {
       $role=Auth::user()->role;
         $update = transport::find($id)->update([
-            'trdate'=>$request->trdate,
-            'trdepositor'=>$request->trdepositor,
+          'trnumber'=>$request->trnumber,
+          'trbearer'=>$request->trbearer,
+          'trdate'=>$request->trdate,
+          'tag_receive'=>$request->tag_receive,
+          'tname_receive'=>$request->tname_receive,
+          'trdepositor'=>$request->trdepositor,
+            'trdepartment'=>Auth::user()->Department,
+            'trbranch'=>Auth::user()->Branch,
+            'tragency'=>Auth::user()->Agency,
+            'user_id'=>Auth::user()->id,
+            'trsender'=>Auth::user()->name.' '.Auth::user()->Lastname,
             'trtaye'=>$request->trtaye
         ]);
         if($role=='0'){

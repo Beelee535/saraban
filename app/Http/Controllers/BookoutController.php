@@ -390,20 +390,20 @@ public function store(Request $request)
         $bookout->Ostatus = $request->Ostatus;
         $bookout ->save();
 
-        $transport = new transport();
-        $transport->trbookout = $bookout->id;
-        $transport->formid = $request->formid;
-        $transport->trdate = $request->trdate;
-        $transport->trnumber = $request->trnumber;
-        $transport->trdepositor = $request->trdepositor;
-        $transport->trtaye = $request->trtaye;
-        $transport->trdepartment = Auth::user()->Department;
-        $transport->trbranch= Auth::user()->Branch;
-        $transport->tragency = Auth::user()->Agency;
-        $transport->user_id =  Auth::user()->id;
-        $transport->trsender = Auth::user()->name.' '.Auth::user()->Lastname ;
-        $transport->trsid = '1';  
-        $transport->save();
+        // $transport = new transport();
+        // $transport->trbookout = $bookout->id;
+        // $transport->formid = $request->formid;
+        // $transport->trdate = $request->trdate;
+        // $transport->trnumber = $request->trnumber;
+        // $transport->trdepositor = $request->trdepositor;
+        // $transport->trtaye = $request->trtaye;
+        // $transport->trdepartment = Auth::user()->Department;
+        // $transport->trbranch= Auth::user()->Branch;
+        // $transport->tragency = Auth::user()->Agency;
+        // $transport->user_id =  Auth::user()->id;
+        // $transport->trsender = Auth::user()->name.' '.Auth::user()->Lastname ;
+        // $transport->trsid = '1';  
+        // $transport->save();
         // dd($request);
         if($role=='0'){
           return redirect()->route('bookoutuser')->with('success',"อัพเดตข้อมูลเรียบร้อย") ;

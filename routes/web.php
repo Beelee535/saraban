@@ -103,9 +103,11 @@ Route::post('/transport/export',[TransportController::class,'transportexport'])-
 Route::get('/transport/pdf',[TransportController::class,'transportpdf'])->name('transportpdf');
 Route::get('/transport/user',[TransportController::class,'transportuser'])->name('transportuser');
 Route::post('/transport/add/{id}',[TransportController::class,'transportadd'])->name('transportadd');
-Route::post('/transport/update/{id}',[TransportController::class,'updatetransport'])->name('uodatetransport'); //แก้ไขmodal edit
+Route::post('/transport/update/{id}',[TransportController::class,'updatetransport'])->name('updatetransport'); //แก้ไขmodal edit
 Route::get('/transport/edit/{id}',[TransportController::class,'edittransport'])->name('edittransport'); //แก้ไขmodal edit
 Route::post('/transport/edit/depositor',[TransportController::class,'adddepositor1'])->name('adddepositortransport');
+Route::get('add/transport',[TransportController::class,'addtransport'])->name('addtransport');
+Route::post('/storetransport',[TransportController::class,'store'])->name('storetransport');
 // Route::get('/search',[TransportController::class,'search'])->name('search');
 
 Route::get('/transport/depositor',[TransportController::class,'depositor']); //ดึงข้อมูล story

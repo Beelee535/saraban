@@ -97,7 +97,7 @@
                 <div class="card-header"> 
                     <div class="d-flex">
                     <div class="p-2 flex-grow-1">
-                       <h5> ออกรายงานการส่งออก </h5>
+                       <h5> ออกรายงานการขนส่ง </h5>
                     </div>
                     <form action="/transport/export" method="POST">  
                     @csrf
@@ -124,7 +124,7 @@
                                         <!-- <td>เลขที่หนังสือ</td> -->
                                         <td>วันที่ฝากส่ง</td>
                                         <td>ผู้ฝากส่ง</td>
-                                        <td>ผู้รับ</td>
+                                        <td>หน่วยงานผู้รับ</td>
                                         <td>ประเภทการส่ง</td>
                                         <td>เลขขนส่ง</td>
                                         <td>วันที่ส่ง</td>        
@@ -147,7 +147,7 @@
                                         echo date("d $myMonth ",strtotime($myDate)).$myYearBuddhist;
                                         ?></td>
                                         <td>{{$row->trdepositor}}</td>
-                                        <td>{{$row->bookout->Oname_receive}}</td>
+                                        <td>{{$row->tag_receive}}</td>
                                         <td>{{$row->trtaye}}</td>
                                         <td>{{$row->ttransport}}</td>
                                         @if($row->trdatesent==null)

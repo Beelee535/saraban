@@ -23,7 +23,11 @@ class transport extends Model
         'trbranch', //สาขา
         'tragency', //หน่วยงาน
         'user_id', //รหัสไอดี
+        'tag_receive',
+        'tname_receive',
+        'trbearer',
         'trsid' //สถานะการส่ง
+        
         
     ];
 

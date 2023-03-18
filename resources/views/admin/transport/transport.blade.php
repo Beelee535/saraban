@@ -72,7 +72,7 @@
                 <div class="card-header">                    
                     <div class="d-flex">
                     <div class="p-2 flex-grow-1">
-                      รายงานการส่งออก
+                      รายงานการขนส่ง
                     </div>
                     @foreach($setallow as $export)
                     @if($export->id==27&&$export->adminstatus==1)
@@ -100,6 +100,7 @@
                             วันที่ &nbsp;<input class="form-control form-control-sm" type="date" id="searchdate" style="width: 100px" name="searchdate" >&nbsp; 
                             <input class="form-control form-control-sm" type="date" id="searchend" style="width: 100px" name="searchend" >
                             </div>
+                            <p class="text-center text-gray" style="font-size:10px;margin-left:20px;">ค้นหาเลขหนังสือ/หน่วยงานผู้รับ</p> 
                      </form>
                             <br>
                             <div class="d-flex justify-content-center">
@@ -126,7 +127,7 @@
                                         <td>ลำดับ</td>
                                         <td>เลขที่หนังสือ</td>
                                         <td>ผู้ฝากส่ง</td>
-                                        <td>ผู้รับ</td>
+                                        <td>หน่วยงานผู้รับ</td>
                                         <td>ประเภทการส่ง</td>
                                         <td>เลขขนส่ง</td>
                                         <td>วันที่ส่ง</td>   
@@ -167,7 +168,7 @@
                                 <td >{{$transport->firstItem()+$loop->index}}</td>
                                         <td>{{$row->trnumber}}</td>
                                         <td>{{$row->trdepositor}}</td>
-                                        <td>{{$row->bookout->Oname_receive}}</td>
+                                        <td>{{$row->tag_receive}}</td>
                                         <td>{{$row->trtaye}}</td>
                                         <td>{{$row->ttransport}}</td>
                                         @if($row->trdatesent==null)
@@ -348,12 +349,7 @@
                                                         <div class="d-flex justify-content-center text-dark">
                                                         <div class="col-4">เลขที่หนังสือออก : </div>
                                                         <div class="col-7" style="margin-left:50px">{{$row->trnumber}}</div>
-                                                        </div>     
-
-                                                        <div class="d-flex justify-content-center text-dark">
-                                                        <div class="col-4">ประเภทหนังสือออก : </div>
-                                                        <div class="col-7" style="margin-left:50px">{{$row->form->type}}</div>
-                                                        </div>
+                                                        </div>  
 
                                                          <div class="d-flex justify-content-center text-dark">
                                                         <div class="col-4">วันที่ฝากส่ง : </div>
@@ -368,13 +364,18 @@
                                                         </div>    
 
                                                         <div class="d-flex justify-content-center text-dark">
-                                                        <div class="col-4">ผู้ส่งหนังสือ : </div>
-                                                        <div class="col-7" style="margin-left:50px">{{$row->trsender}}</div>
-                                                        </div>   
+                                                        <div class="col-4">หน่วยงานผู้รับ : </div>
+                                                        <div class="col-7" style="margin-left:50px">{{$row->tag_receive}}</div>
+                                                        </div>
 
                                                         <div class="d-flex justify-content-center text-dark">
-                                                        <div class="col-4">ผู้รับหนังสือ : </div>
-                                                        <div class="col-7" style="margin-left:50px">{{$row->bookout->Oname_receive}}</div>
+                                                        <div class="col-4">ผู้รับ : </div>
+                                                        <div class="col-7" style="margin-left:50px">{{$row->tname_receive}}</div>
+                                                        </div>
+
+                                                        <div class="d-flex justify-content-center text-dark">
+                                                        <div class="col-4">ผู้ส่งหนังสือ : </div>
+                                                        <div class="col-7" style="margin-left:50px">{{$row->trsender}}</div>
                                                         </div>   
                                                         
                                                         <div class="d-flex justify-content-center text-dark">
@@ -458,7 +459,7 @@
                                     <td>ลำดับ</td>
                                         <td>เลขที่หนังสือ</td>
                                         <td>ผู้ฝากส่ง</td>
-                                        <td>ผู้รับ</td>
+                                        <td>หน่วยงานผู้รับ</td>
                                         <td>ประเภทการส่ง</td>
                                         <td>เลขขนส่ง</td>
                                         <td>วันที่ส่ง</td>   
@@ -491,7 +492,7 @@
                                 <td >{{$transportwait->firstItem()+$loop->index}}</td>
                                         <td>{{$row1->trnumber}}</td>
                                         <td>{{$row1->trdepositor}}</td>
-                                        <td>{{$row1->bookout->Oname_receive}}</td>
+                                        <td>{{$row1->tag_receive}}</td>
                                         <td>{{$row1->trtaye}}</td>
                                         <td>{{$row1->ttransport}}</td>
                                         @if($row1->trdatesent==null)
@@ -598,12 +599,7 @@
                                                         <div class="d-flex justify-content-center text-dark">
                                                         <div class="col-4">เลขที่หนังสือออก : </div>
                                                         <div class="col-7" style="margin-left:50px">{{$row1->trnumber}}</div>
-                                                        </div>     
-
-                                                        <div class="d-flex justify-content-center text-dark">
-                                                        <div class="col-4">ประเภทหนังสือออก : </div>
-                                                        <div class="col-7" style="margin-left:50px">{{$row1->form->type}}</div>
-                                                        </div>
+                                                        </div>  
 
                                                          <div class="d-flex justify-content-center text-dark">
                                                         <div class="col-4">วันที่ฝากส่ง : </div>
@@ -618,13 +614,18 @@
                                                         </div>    
 
                                                         <div class="d-flex justify-content-center text-dark">
-                                                        <div class="col-4">ผู้ส่งหนังสือ : </div>
-                                                        <div class="col-7" style="margin-left:50px">{{$row1->trsender}}</div>
-                                                        </div>   
+                                                        <div class="col-4">หน่วยงานผู้รับ : </div>
+                                                        <div class="col-7" style="margin-left:50px">{{$row1->tag_receive}}</div>
+                                                        </div>
 
                                                         <div class="d-flex justify-content-center text-dark">
-                                                        <div class="col-4">ผู้รับหนังสือ : </div>
-                                                        <div class="col-7" style="margin-left:50px">{{$row1->bookout->Oname_receive}}</div>
+                                                        <div class="col-4">ผู้รับ : </div>
+                                                        <div class="col-7" style="margin-left:50px">{{$row1->tname_receive}}</div>
+                                                        </div>
+
+                                                        <div class="d-flex justify-content-center text-dark">
+                                                        <div class="col-4">ผู้ส่งหนังสือ : </div>
+                                                        <div class="col-7" style="margin-left:50px">{{$row1->trsender}}</div>
                                                         </div>   
                                                         
                                                         <div class="d-flex justify-content-center text-dark">

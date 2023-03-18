@@ -70,21 +70,6 @@ class FormController extends Controller
         $idd = Form::where('formagency','LIKE',Auth::user()->Agency)
         ->where('formbranch','LIKE',Auth::user()->Branch)
         ->where('formdepartment','LIKE',Auth::user()->Department)->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();
-        // $ad = Form::where('fdepartment','AD')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//ธุรการ
-        // $pur = Form::where('fdepartment','PUR')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//จัดซื้อ
-        // $fin = Form::where('fdepartment','FIN')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//การเงิน
-        // $acc = Form::where('fdepartment','AC')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//บัญชี
-        // $hr = Form::where('fdepartment','HR')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//บุคคล
-        // $iti = Form::where('fdepartment','ITI')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//ไอที
-        // $mkt = Form::where('fdepartment','MKT')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//มาร์เก็ตติ้ง
-        // $itd = Form::where('fdepartment','ID')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//บริหารงานพัฒนาผลิตภัณฑ์
-        // $sale = Form::where('fdepartment','SALE')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//เซลล์
-        // $leg = Form::where('fdepartment','LEG')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//กฎหมาย
-        // $cs = Form::where('fdepartment','CS')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//ส่วนงานเลขานุการ
-        // $iso = Form::where('fdepartment','ISO')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//ส่วนงานบริหารงานคุณภาพ
-        // $pm = Form::where('fdepartment','PM')->where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();//บริหารงานโครงการ
-       
-        // $total = Form::where('type','โรงเรียนสอนขับรถไอดีไดร์ฟเวอร์')->count();
         $total = Form::count();
         $data10 = date("y-m-d");
         $ec1 = explode("-", $data10);
@@ -103,21 +88,6 @@ class FormController extends Controller
         $ins = Form::where('formagency','LIKE',Auth::user()->Agency)
         ->where('formbranch','LIKE',Auth::user()->Branch)
         ->where('formdepartment','LIKE',Auth::user()->Department)->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();
-        // $ad = Form::where('fdepartment','AD')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//ธุรการ
-        // $pur = Form::where('fdepartment','PUR')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//จัดซื้อ
-        // $fin = Form::where('fdepartment','FIN')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//การเงิน
-        // $acc = Form::where('fdepartment','AC')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//บัญชี
-        // $hr = Form::where('fdepartment','HR')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//บุคคล
-        // $iti = Form::where('fdepartment','ITI')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//ไอที
-        // $mkt = Form::where('fdepartment','MKT')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//มาร์เก็ตติ้ง
-        // $itd = Form::where('fdepartment','ID')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//บริหารงานพัฒนาผลิตภัณฑ์
-        // $sale = Form::where('fdepartment','SALE')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//เซลล์
-        // $leg = Form::where('fdepartment','LEG')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//กฎหมาย
-        // $cs = Form::where('fdepartment','CS')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//ส่วนงานเลขานุการ
-        // $iso = Form::where('fdepartment','ISO')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//ส่วนงานบริหารงานคุณภาพ
-        // $pm = Form::where('fdepartment','PM')->where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();//บริหารงานโครงการ
-        
-        // $total = Form::where('type','สถานตรวจสภาพรถศูนย์ตรอ.ไอดี')->count();
         $total = Form::count();
         $data10 = date("y-m-d");
         $ec1 = explode("-", $data10);
@@ -136,20 +106,6 @@ class FormController extends Controller
         $tz = Form::where('formagency','LIKE',Auth::user()->Agency)
         ->where('formbranch','LIKE',Auth::user()->Branch)
         ->where('formdepartment','LIKE',Auth::user()->Department)->where('type','ศูนย์ฝึกอบรม')->count();//ธุรการ
-        // $ad = Form::where('fdepartment','AD')->where('type','ศูนย์ฝึกอบรม')->count();//ธุรการ
-        // $pur = Form::where('fdepartment','PUR')->where('type','ศูนย์ฝึกอบรม')->count();//จัดซื้อ
-        // $fin = Form::where('fdepartment','FIN')->where('type','ศูนย์ฝึกอบรม')->count();//การเงิน
-        // $acc = Form::where('fdepartment','AC')->where('type','ศูนย์ฝึกอบรม')->count();//บัญชี
-        // $hr = Form::where('fdepartment','HR')->where('type','ศูนย์ฝึกอบรม')->count();//บุคคล
-        // $iti = Form::where('fdepartment','ITI')->where('type','ศูนย์ฝึกอบรม')->count();//ไอที
-        // $mkt = Form::where('fdepartment','MKT')->where('type','ศูนย์ฝึกอบรม')->count();//มาร์เก็ตติ้ง
-        // $itd = Form::where('fdepartment','ID')->where('type','ศูนย์ฝึกอบรม')->count();//บริหารงานพัฒนาผลิตภัณฑ์
-        // $sale = Form::where('fdepartment','SALE')->where('type','ศูนย์ฝึกอบรม')->count();//เซลล์
-        // $leg = Form::where('fdepartment','LEG')->where('type','ศูนย์ฝึกอบรม')->count();//กฎหมาย
-        // $cs = Form::where('fdepartment','CS')->where('type','ศูนย์ฝึกอบรม')->count();//ส่วนงานเลขานุการ
-        // $iso = Form::where('fdepartment','ISO')->where('type','ศูนย์ฝึกอบรม')->count();//ส่วนงานบริหารงานคุณภาพ
-        // $pm = Form::where('fdepartment','PM')->where('type','ศูนย์ฝึกอบรม')->count();//บริหารงานโครงการ
-        // $total = Form::where('type','ศูนย์ฝึกอบรม')->count();
         $total = Form::count();
         $data10 = date("y-m-d");
         $ec1 = explode("-", $data10);

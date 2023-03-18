@@ -227,22 +227,71 @@
 
               @endif
               @endforeach
-          <!-- ข้อมูลขนส่ง -->
-          @foreach($setallow as $transport)
-           @if($transport->id==10&&$transport->userstatus==1)
-          <li class="nav-item">
-            <a href="{{ route('transportuser') }}" class="nav-link">
-            <i class="nav-icon bi bi-car-front"></i>
+
+           <!-- ข้อมูลขนส่ง -->
+           @foreach($setallow as $transport)
+           @if($transport->id==29&&$transport->userstatus==1)
+              <li class="nav-item">
+             <a href="#" class="nav-link">
+             <i class="nav-icon bi bi-car-front"></i>
               <p>
-              ข้อมูลขนส่ง
+               ข้อมูลขนส่ง
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              @else
+
+          @endif
+          @endforeach 
+
+           <!-- เพิ่มข้อมูลการขนส่ง -->
+           @foreach($setallow as $addtransport)
+           @if($addtransport->id==30&&$addtransport->userstatus==1)
+              <li class="nav-item">
+                <a href="{{ route('addtransport') }}" class="nav-link">
+                @foreach($setallow as $transport)
+                @if($transport->id==29&&$transport->userstatus==1) 
+                <i class="far fa-circle nav-icon"></i>
+                @elseif($transport->id==29&&$transport->userstatus==0)
+                  <i class="nav-icon bi bi-car-front"></i>   
+                @endif
+                 @endforeach 
+                  <p>เพิ่มข้อมูลการขนส่ง</p>
+                </a>
+              </li>
+              @else
+
+          @endif
+          @endforeach
+          <!-- ข้อมูลขนส่ง -->
+          @foreach($setallow as $datatransport)
+           @if($datatransport->id==31&&$datatransport->userstatus==1)
+              <li class="nav-item">
+                <a href="{{route('transportuser')}}" class="nav-link">
+                @foreach($setallow as $transport)
+                @if($transport->id==29&&$transport->userstatus==1)
+                <i class="far fa-circle nav-icon"></i>
+                @elseif($transport->id==29&&$transport->userstatus==0)
+                  <i class="nav-icon bi bi-box"></i>   
+                @endif
+                 @endforeach
+                  <p>ข้อมูลขนส่ง</p>
+                </a>
+              </li>
+              @else
+
+          @endif
+          @endforeach
+          <!-- ขนส่ง folder ปิดfolder-->
+            @foreach($setallow as $transport)
+           @if($transport->id==29&&$transport->userstatus==1)
+                </ul>
           </li>
-          @else
+              @else
 
-        @endif
-        @endforeach
-
+          @endif
+          @endforeach
 
          <!-- ตั้งค่าข้อมูลส่วนตัว -->
          @foreach($setallow as $profile)

@@ -179,7 +179,7 @@
                     </div>
                     <div class="col-4">
                     <!-- <span class="right badge badge-warning" style="font-size:7px;">{{$rowtr->Status->Sname}}</span> -->
-                      {{$rowtr->form->story}} <span class="text-warning" style="font-size:13px;">({{$rowtr->Status->Sname}})</span>
+                      {{$rowtr->trbearer}} <span class="text-warning" style="font-size:13px;">({{$rowtr->Status->Sname}})</span>
                     </div>
                 </div> <hr></a>
           @endforeach  

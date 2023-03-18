@@ -31,6 +31,9 @@ return new class extends Migration
             $table->string('tragency');
             $table->string('user_id');
             $table->string('trsid');
+            $table->string('tag_receive');
+            $table->string('tname_receive');
+            $table->string('trbearer');
         });
     }
 

@@ -19,33 +19,44 @@
             <div class="mb-3 row">
                 <div class="col-sm-2 col-form-label">ชื่อ-นามสกุล</div>
                 <div class="col-sm-9">
-                <input class="form-control" type="text"  value="{{$transport->bookout->Oname}}" disabled>
+                <input class="form-control" type="text"  value="{{Auth::user()->name}} {{Auth::user()->Lastname}}" disabled>
                 </div>
                 </div>
 
                 <div class="mb-3 row">
-                <div class="col-sm-2 col-form-label">หน่วยงาน</div>
-                <div class="col-sm-9">
-                <input class="form-control"  type="text"  value="{{$transport->agency->agency_name}}" disabled>
-                </div>
-                </div>
+    <div class="col-sm-2 col-form-label">หน่วยงาน</div>
+    <div class="col-sm-9">
+    <input class="form-control" type="text"  value="{{Auth::user()->agency->agency_name}}" disabled>
+    </div>
+    </div>
 
 
-                <div class="mb-3 row">
-                <div class="col-sm-2 col-form-label">ฝ่าย</div>
-                <div class="col-sm-9">
-                <input class="form-control"   type="text"  value="{{$transport->department->Dpmname}}" disabled>
-                </div>
-                </div>
-                
-                <div class="mb-3 row">
-                <div class="col-sm-2 col-form-label">สาขา</div>
-                <div class="col-sm-9">
-                <input class="form-control"   type="text"  value="{{$transport->branch->branche_name}}" disabled>
-                </div>
-                </div>
+    @if(Auth::user()->Department==null)
+    <input class="form-control" type="hidden">
+    @else
+    <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">ฝ่าย</div>
+    <div class="col-sm-9">
+    <input class="form-control" type="text"  value="{{Auth::user()->department->Dpmname}}" disabled>
+    </div>
+    </div>
+    @endif
+    
+    @if(Auth::user()->Branch==null)
+    <input class="form-control"   type="hidden">
+    @else
+    <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">สาขา</div>
+    <div class="col-sm-9">
+    <input class="form-control"  type="text"  value="{{Auth::user()->branch->branche_name}}" disabled>
+    </div>
+    </div>
+    @endif
+    
+    </div>
+    </div>
 
-        </div>
+</div>
 </div>
 
 
@@ -54,16 +65,45 @@
 @csrf 
         <div class="card">
         <div class="card-header">
-        <i class="bi bi-journal-text"></i> แก้ไขบันทึกการจัดส่งไปรษณีย์
+        <i class="bi bi-journal-text"></i> แก้ไขบันทึกการขนส่ง
         </div>
         <div class="card-body" style="margin: 20px">
 
         <div class="mb-3 row">
-        <div class="col-sm-2 col-form-label">วันที่ฝากส่ง :</div>
-        <div class="col-sm-9">
-        <input class="form-control" name="trdate" type="date" value="{{$transport->trdate}}" required>
-        </div>
-        </div>
+    <div class="col-sm-2 col-form-label">วันที่ฝากส่ง :</div>
+    <div class="col-sm-9">
+    <input class="form-control" name="trdate" type="date" value="{{$transport->trdate}}" required>
+    </div>
+    </div>
+
+    <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">เรื่อง :</div>
+    <div class="col-sm-9">
+    <input class="form-control"  name="trbearer"  type="text" value="{{$transport->trbearer}}" required>
+    </div>
+    </div>
+    
+
+    <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">เลขที่หนังสือ :</div>
+    <div class="col-sm-9">
+    <input class="form-control"  name="trnumber"  type="text" value="{{$transport->trnumber}}" required>
+    </div>
+    </div>
+
+    <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">หน่วยงานผู้รับ :</div>
+    <div class="col-sm-9">
+    <input class="form-control" name="tag_receive" type="text" value="{{$transport->tag_receive}}" required>
+    </div>
+    </div>
+
+    <div class="mb-3 row">
+    <div class="col-sm-2 col-form-label">ชื่อผู้รับ :</div>
+    <div class="col-sm-9">
+    <input class="form-control"  name="tname_receive"  type="text" value="{{$transport->tname_receive}}" required>
+    </div>
+    </div>
 
         <div class="mb-3 row">
         <div class="col-sm-2 col-form-label">ผู้ฝากส่งหนังสือ :</div>
